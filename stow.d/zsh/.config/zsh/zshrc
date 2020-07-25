@@ -131,8 +131,8 @@ fi
 
 # {{{ FZF Options
 # Use fzf
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
+[ -f "/usr/share/fzf/completion.zsh" ] && source /usr/share/fzf/completion.zsh
+[ -f "/usr/share/fzf/key-bindings.zsh" ] && source /usr/share/fzf/key-bindings.zsh
 # Preview alt-c directories with tree
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
 # }}}
