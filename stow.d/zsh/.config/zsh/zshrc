@@ -175,6 +175,10 @@ if
 	uname -r | grep -q MANJARO
 then
 	POWERLEVEL9K_OS_ICON_FOREGROUND="green"
+elif
+	echo $OS | grep -q Android
+then
+	POWERLEVEL9K_OS_ICON_FOREGROUND="green"
 fi
 ##}}}
 
