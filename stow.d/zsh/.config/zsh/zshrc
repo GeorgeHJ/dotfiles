@@ -175,8 +175,11 @@ if
 	uname -r | grep -q MANJARO
 then
 	POWERLEVEL9K_OS_ICON_FOREGROUND="green"
+elif
+	[ "$OS" = "Android" ]
+then
+	POWERLEVEL9K_OS_ICON_FOREGROUND="green"
 fi
-[ "$OS" = "Android" ] && POWERLEVEL9K_OS_ICON_FOREGROUND="green"
 ##}}}
 
 ##{{{ Segment Colours
