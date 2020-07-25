@@ -176,7 +176,7 @@ if
 then
 	POWERLEVEL9K_OS_ICON_FOREGROUND="green"
 elif
-	[ "$OS" = "Android" ]
+	uname -a | grep -q Android
 then
 	POWERLEVEL9K_OS_ICON_FOREGROUND="green"
 fi
