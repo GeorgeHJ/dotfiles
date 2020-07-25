@@ -176,7 +176,7 @@ if
 then
 	POWERLEVEL9K_OS_ICON_FOREGROUND="green"
 elif
-	echo $OS | grep -q Android
+	[ "$OS" = "Android" ]
 then
 	POWERLEVEL9K_OS_ICON_FOREGROUND="green"
 fi
