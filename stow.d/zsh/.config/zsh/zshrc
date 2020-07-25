@@ -1,0 +1,225 @@
+#! /bin/env zsh
+# vim: foldmethod=marker
+
+# {{{ P10k Instant Prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+# }}}
+autoload -U colors && colors
+#{{{ History File
+HISTFILE=~/.cache/zsh/history
+HISTSIZE=10000
+SAVEHIST=10000
+#}}}
+
+#{{{ compinstall and compinit options
+zstyle :compinstall filename '/home/george/.config/zsh/zshrc'
+zstyle ':completion:*' rehash true
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion:*:descriptions' format $'%B%{\e[10;39m%}[%d]%b%{\e[0m%}'
+zstyle ':completion:*:messages' format '%U%d%u'
+zstyle ':completion:*:warnings' format "%B%{$fg[red]%}No match for:%b%{$reset_color%} %d"
+zstyle ':completion:*' group-name ''
+
+# Execute code in the background to not affect the current session
+{
+	# Compile zcompdump, if modified, to increase startup speed.
+	zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+	if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+		zcompile "$zcompdump"
+	fi
+} &!
+
+autoload -Uz compinit
+compinit
+#}}} End of lines added by compinstall
+
+# Shell options{{{
+unsetopt nomatch
+
+# Initialise arrays for hook functions
+typeset -a precmd_functions preexec_functions
+#}}}
+
+# {{{ Completion Options
+# Include hidden files in autocomplete:
+_comp_options+=(globdots)
+# Add personal completions and functions directories to fpath
+fpath=($ZDOTDIR/completions $ZDOTDIR/functions $fpath )
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:commands' list-colors '=*=32'
+zstyle ':completion:*:builtins' list-colors '=*=32'
+zstyle ':completion:*:aliases' list-colors '=*=32'
+zstyle ':completion:*:options' list-colors '=*=39'
+zstyle ':completion:*:*:man:*' list-colors '=*=39'
+zmodload zsh/complist
+# }}}
+
+#{{{ Vi Keybindings
+bindkey -v # Use Vi Keys
+# Backspace fix
+bindkey '^?' backward-delete-char
+bindkey -a "^[[3~" vi-delete-char
+bindkey -a "^[3;5~" vi-delete-char
+bindkey "^[[3~" delete-char
+bindkey "^[3;5~" delete-char
+export KEYTIMEOUT=1 # Suggested for Vi mode
+# Insert Mode bindings
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^L' clear-screen
+bindkey '^K' kill-line
+# use the vi navigation keys in menu completion
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+# Edit line in $EDITOR with ctrl-v:
+autoload edit-command-line; zle -N edit-command-line
+bindkey -a '^v' edit-command-line
+#}}}
+
+#{{{ Widgets and bindings
+vicd_wrapper(){BUFFER="vicd $PWD"; zle accept-line; }
+zle -N vicd_wrapper
+bindkey -a '^o' vicd_wrapper
+# Fzf Manpages
+zle -N fman
+bindkey -a 'm' fman
+#}}}
+
+# {{{ Luke Smith — cursor settings
+# https://github.com/LukeSmithxyz/voidrice/blob/master/.config/zsh/.zshrc
+# Now autoloaded from my fpath
+autoload zle-line-init; zle -N zle-line-init
+autoload zle-line-blockcursor; zle -N zle-line-blockcursor
+
+# Add it to the array of preexec functions
+preexec_functions+=(zle-line-blockcursor)
+
+autoload zle-keymap-select; zle -N zle-keymap-select
+# }}}
+
+#{{{ Source extra files
+
+#Global alias file
+[ -f "$HOME/.config/shells/alias" ] && source "$HOME/.config/shells/alias"
+[ -f "$HOME/.config/shells/functions" ]&& source "$HOME/.config/shells/functions"
+# Pacman command not found hook
+if
+	[[ -a '/usr/share/doc/pkgfile/command-not-found.zsh' ]]
+then
+	source /usr/share/doc/pkgfile/command-not-found.zsh
+fi
+
+if
+	[ "command -v broot" ]
+then
+	autoload br
+fi
+#}}}
+
+#{{{ Dircolors
+# Use dircolors to set LS_COLOR
+[ -f "$HOME/.dircolors" ] &&
+	eval "$(dircolors "$HOME/.dir_colors")" ||
+	[ -f "$HOME/.config/dir_colors/dir_colors" ] &&
+	eval "$(dircolors "$HOME/.config/dir_colors/dir_colors")"
+#}}}
+
+# {{{ FZF Options
+# Use fzf
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
+# Preview alt-c directories with tree
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
+# }}}
+
+#{{{ Terminals: tmux/xterm, title options and little fixes
+
+autoload tmux_title_restore tmux_title_set xterm_window_title
+
+case $TERM in
+	screen*|tmux*)
+		precmd_functions+=(tmux_title_restore)
+		preexec_functions+=(tmux_title_set)
+		;;
+	xterm*)
+		precmd_functions+=(xterm_window_title)
+		;;
+esac
+#}}}
+
+#{{{ powerlevel9k Settings
+case $TERM in
+	screen* | tmux* | xterm*)
+		POWERLEVEL9K_MODE='nerdfont-complete'
+		;;
+	gvim*)
+		POWERLEVEL9K_MODE='default'
+		;;
+esac
+
+##{{{ Segment Settings
+POWERLEVEL9K_STATUS_VERBOSE="false"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs status)
+POWERLEVEL9K_DISABLE_RPROMPT=true
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode)
+POWERLEVEL9K_CONTEXT_TEMPLATE='%B%n%b'
+##}}}
+
+##{{{ OS Icon Settings
+if
+	uname -r | grep -q MANJARO
+then
+	POWERLEVEL9K_OS_ICON_FOREGROUND="green"
+fi
+##}}}
+
+##{{{ Segment Colours
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="15"
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="blue"
+POWERLEVEL9K_ALWAYS_SHOW_USER="true"
+POWERLEVEL9K_USER_DEFAULT_FOREGROUND="15"
+POWERLEVEL9K_USER_DEFAULT_BACKGROUND="blue"
+POWERLEVEL9K_DIR_PATH_HIGHLIGHT_BOLD="true"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="15"
+POWERLEVEL9K_DIR_HOME_BACKGROUND="10"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="15"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="10"
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="15"
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="10"
+POWERLEVEL9K_DIR_ETC_FOREGROUND="15"
+POWERLEVEL9K_DIR_ETC_BACKGROUND="10"
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND="15"
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND="10"
+POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND="15"
+POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND="yellow"
+##}}}
+#}}}
+
+#{{{ Autosuggestions Settings
+# Settings for Autosuggestions
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#586e75,bold,underline"
+bindkey '^ ' autosuggest-accept
+bindkey 'M-w' forward-word
+#}}}
+
+#{{{ zplug Settings
+export ZPLUG_HOME="$HOME/.config/zsh/zplug"
+[ -f "$XDG_CONFIG_HOME/zsh/zplug/init.zsh" ] && source ~/.config/zsh/zplug/init.zsh
+
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+if [ -n $DISPLAY ];then
+	zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
+fi
+zplug "zdharma/fast-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-autosuggestions", defer:2
+
+# Then, source plugins and add commands to $PATH
+zplug load
+#}}}

@@ -1,0 +1,2 @@
+#compdef whipper
+compdef _gnu_generic whipper

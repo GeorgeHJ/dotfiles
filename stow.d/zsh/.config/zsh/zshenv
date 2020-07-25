@@ -1,0 +1,5 @@
+#!/bin/zsh
+# Use bash/sh behaviour when no match to a glob rather than zsh behaviour
+unsetopt nomatch
+
+FAST_WORK_DIR=XDG

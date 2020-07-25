@@ -1,0 +1,3 @@
+zle-line-blockcursor(){
+# Set cursor shape to block for sanity
+echo -ne "\e[2 q"}

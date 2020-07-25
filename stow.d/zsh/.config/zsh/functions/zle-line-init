@@ -1,0 +1,4 @@
+# Change cursor shape for different vi modes.
+zle-line-init() {
+# Set cursor shape to beam
+echo -ne "\e[6 q"}

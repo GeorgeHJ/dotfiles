@@ -1,0 +1,3 @@
+tmux_title_restore(){
+	# Restore tmux-title to 'zsh'
+	printf "\033kzsh\033\\"}

@@ -1,0 +1,8 @@
+#! /bin/zsh
+tmux_title_set(){
+	# set tmux-title to running program
+	local prog
+	prog=$(echo "$1" | cut -d" " -f1)
+	if [ -n $prog -a $prog != 'zsh' ];then
+		printf "\033k$prog\033\\"
+	fi}
