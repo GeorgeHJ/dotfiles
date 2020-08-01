@@ -182,6 +182,11 @@ elif
 	uname -a | grep -q Android
 then
 	POWERLEVEL9K_OS_ICON_FOREGROUND="green"
+elif
+	uname -a | grep -q Debian
+then
+	POWERLEVEL9K_OS_ICON_FOREGROUND="red"
+	POWERLEVEL9K_OS_ICON_BACKGROUND="white"
 fi
 ##}}}
 
