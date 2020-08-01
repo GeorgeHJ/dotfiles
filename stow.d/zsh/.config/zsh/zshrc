@@ -11,6 +11,9 @@ autoload -U colors && colors
 HISTFILE=~/.cache/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
+if [ ! -f "$HISTFILE" ];then
+	mkdir "$HOME/.cache/zsh" && touch "$HISTFILE"
+fi
 #}}}
 
 #{{{ compinstall and compinit options
@@ -217,6 +220,10 @@ bindkey 'M-w' forward-word
 
 #{{{ zplug Settings
 export ZPLUG_HOME="$HOME/.config/zsh/zplug"
+if [ ! -d $ZDOTDIR/zplug ]; then
+	git clone https://github.com/zplug/zplug $ZPLUG_HOME
+fi
+
 [ -f "$XDG_CONFIG_HOME/zsh/zplug/init.zsh" ] && source ~/.config/zsh/zplug/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
