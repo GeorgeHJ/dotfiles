@@ -3,7 +3,7 @@
 main() {
 	sw_update
 	get_pkgs
-	set-font
+	font
 }
 
 font() {
