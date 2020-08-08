@@ -1,6 +1,7 @@
 #! /data/data/com.termux/files/usr/bin/sh
 # Fetch preferred font and use it for termux
 main(){
+	sw_update
 	set-font
 }
 
@@ -10,5 +11,9 @@ File="JetBrains Mono Regular Nerd Font Complete.ttf"
 Dest="$HOME/.termux/$File"
 wget -O "$Dest" "$Url"
 ln -s "$Dest" "$HOME/.termux/font.ttf"
+}
+
+sw_update() {
+	apt update && apt-upgrade -y
 }
 main
