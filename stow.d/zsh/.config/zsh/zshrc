@@ -135,8 +135,8 @@ fi
 # {{{ FZF Options
 # Use fzf
 if uname -a | grep -q Android;then
-	[ -f "$PREFIX/share/fzf/completion.zsh" ] && source "$PREFIX/completion.zsh"
-	[ -f "$PREFIX/share/fzf/key-bindings.zsh" ] && source "$PREFIX/key-bindings.zsh"
+	[ -f "$PREFIX/share/fzf/completion.zsh" ] && source "$PREFIX/share/fzf/completion.zsh"
+	[ -f "$PREFIX/share/fzf/key-bindings.zsh" ] && source "$PREFIX/share/fzf/key-bindings.zsh"
 else
 	[ -f "/usr/share/fzf/completion.zsh" ] && source /usr/share/fzf/completion.zsh
 	[ -f "/usr/share/fzf/key-bindings.zsh" ] && source /usr/share/fzf/key-bindings.zsh
