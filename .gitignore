@@ -3,5 +3,5 @@
 **/.zcompdump
 **/zplug/**
 **/*.ttf
-**/wget.log
+**/wget-log
 stow.d/termux/.termux/shell
