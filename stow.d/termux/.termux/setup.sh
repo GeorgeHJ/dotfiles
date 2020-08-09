@@ -23,12 +23,14 @@ sw_update() {
 
 get_pkgs() {
 	apt install \
-		wget \
+		fzf \
 		git \
 		openssh \
-		zsh \
 		tergent \
 		termux-api \
-		vim
+		tree \
+		wget \
+		vim \
+		zsh
 }
 main
