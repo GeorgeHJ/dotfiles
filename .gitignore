@@ -1,7 +1,7 @@
 **/*.zwc
 **/.zcompcache
-**/.zcompdump
-**/zplug/*
+**/zsh/.zcompdump
+**/zsh/zplug/
 **/*.ttf
 **/wget-log
 stow.d/termux/.termux/shell
