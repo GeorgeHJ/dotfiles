@@ -2,7 +2,7 @@
 #
 # ~/.profile
 #
-#
+# shellcheck disable=1090
 
 [ "$XDG_CURRENT_DESKTOP" = "KDE" ] || export QT_QPA_PLATFORMTHEME="qt5ct"
 export VISUAL=/usr/bin/vim
@@ -15,8 +15,12 @@ export EDITOR=/usr/bin/vim
 export PATH=$PATH:~/.bin
 # Add $GOBIN to $PATH for go
 if command -v go >/dev/null; then
-	[ -d "$HOME/go" ] &&  export GOPATH="$HOME/go" &&
-		export GOBIN="$GOPATH/bin" &&
+	if [ -d "$HOME/go" ]; then
+		export GOPATH="$HOME/go"
+	elif [ -d "$HOME/.local/lib/go" ];then
+		export GOPATH="$HOME/.local/lib/go"
+	fi
+	export GOBIN="$GOPATH/bin" &&
 		export PATH=$PATH:$GOBIN
 fi
 
@@ -39,8 +43,8 @@ export LESSHISTFILE="-"
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 # Parallel
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
-# Zsh
-export ZDOTDIR=$HOME/.config/zsh
+# Pass
+[ -d "$XDG_DATA_HOME/pass/password-store" ] && export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass/password-store"
 # Make xfce4-terminal the default terminal
 export TERMINAL=xfce4-terminal
 #Global alias file
@@ -59,3 +63,9 @@ export IPYTHONDIR="$HOME/.config/ipython"
 # Chromium BSU
 export CHROMIUM_BSU_SCORE="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-score"
 export CHROMIUM_BSU_DATA="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-data"
+# MPV
+export DVDCSS_CACHE="$XDG_CACHE_HOME/mpv/dvdcss"
+# PyLint
+export PYLINTHOME="$XDG_CONFIG_HOME/pylint.d/"
+# Zsh
+export ZDOTDIR=$HOME/.config/zsh
