@@ -16,6 +16,9 @@ if [ ! -f "$HISTFILE" ];then
 fi
 #}}}
 
+#Fallback PS1{{{
+PS1="%B[%{$fg[green]%}%n%{$fg[green]%}%{$reset_color%}%B@%{$fg[green]%}%M %{$reset_color%}%B%~]%{$reset_color%}%#%b "}}}
+
 #{{{ compinstall and compinit options
 zstyle :compinstall filename '/home/george/.config/zsh/zshrc'
 zstyle ':completion:*' rehash true
@@ -118,7 +121,7 @@ then
 fi
 
 if
-	[ "command -v broot" ]
+	[[ "command -v broot" ]]
 then
 	autoload br
 fi
@@ -236,7 +239,7 @@ fi
 [ -f "$XDG_CONFIG_HOME/zsh/zplug/init.zsh" ] && source ~/.config/zsh/zplug/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-if [ -n $DISPLAY ];then
+if [[ $(tput colors) == "256" ]];then
 	zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
 fi
 zplug "zdharma/fast-syntax-highlighting", defer:2
