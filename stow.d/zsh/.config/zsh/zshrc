@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 # }}}
-autoload -U colors && colors
+
 #{{{ History File
 HISTFILE=~/.cache/zsh/history
 HISTSIZE=10000
@@ -16,7 +16,7 @@ if [ ! -f "$HISTFILE" ];then
 fi
 #}}}
 
-#Fallback PS1{{{
+#Fallback PS1
 autoload -U colors && colors
 PS1="%B[%{$fg[green]%}%n%{$fg[green]%}%{$reset_color%}%B@%{$fg[green]%}%M %{$reset_color%}%B%~]%{$reset_color%}%#%(?..%{$fg[red]%} %?)%b "
 #}}}
@@ -43,7 +43,7 @@ autoload -Uz compinit
 compinit
 #}}} End of lines added by compinstall
 
-#{{{ Bash-style help{{{
+#{{{ Bash-style help
 autoload run-help
 unalias run-help
 alias help=run-help
@@ -201,18 +201,22 @@ fi
 #}}}
 
 # {{{ Plugins
-if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] ||
-	[[ -f "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]];then
+if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]];then
 	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [[ -f "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]];then
+	source "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
-if [[ -f /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]] ||
-	[[ -f "$HOME/.local/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]];then
+if [[ -f /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
 	source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+elif [[ -f "$HOME/.local/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]];then
+	source "$HOME/.local/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 fi
-if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]] ||
-	[[ -f "$HOME.local.share/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme" ]] &&
-	[[ $(tput colors) == "256" ]];then
-	source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+if [[ $(tput colors) == "256" ]];then
+	if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]];then
+		source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+	elif [[ -f "$HOME.local.share/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme" ]];then
+		source "$HOME.local.share/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme"
+	fi
 fi
 #
 # }}}
