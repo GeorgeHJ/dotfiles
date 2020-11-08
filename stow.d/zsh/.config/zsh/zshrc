@@ -214,8 +214,8 @@ fi
 if [[ $(tput colors) == "256" ]];then
 	if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]];then
 		source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-	elif [[ -f "$HOME.local.share/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme" ]];then
-		source "$HOME.local.share/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme"
+	elif [[ -f "$HOME/.local.share/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme" ]];then
+		source "$HOME/.local.share/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme"
 	fi
 fi
 #
