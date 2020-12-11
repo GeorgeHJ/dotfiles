@@ -1,2 +1,0 @@
-#! /bin/sh
-termux-fingerprint && ssh $@
