@@ -16,7 +16,7 @@ if [ ! -f "$HISTFILE" ];then
 fi
 #}}}
 
-#Fallback PS1
+#{{{ Fallback PS1
 autoload -U colors && colors
 PS1="%B[%{$fg[green]%}%n%{$fg[green]%}%{$reset_color%}%B@%{$fg[green]%}%M %{$reset_color%}%B%~]%{$reset_color%}%#%(?..%{$fg[red]%} %?)%b "
 #}}}
@@ -49,6 +49,45 @@ unalias run-help
 alias help=run-help
 # }}}
 
+#{{{ Named Directories
+declare -A hash_dirs
+hash_dirs[bin]="$HOME/.local/bin"
+hash_dirs[go]="$GOPATH"
+hash_dirs[zsh]="$HOME/.config/zsh"
+hash_dirs[vim]="$HOME/.vim"
+
+# Loop over the associative array to build the directory hashes
+for key value in ${(kv)hash_dirs};
+do
+	hash -d "$key"="$value"
+done
+unset hash_dirs
+
+# The standard _tilde completion function with users removed named directories only
+_tilde_no_users () {
+    [[ -n "$compstate[quote]" ]] && return 1
+    local expl suf ret=1
+    if [[ "$SUFFIX" = */* ]]; then
+        ISUFFIX="/${SUFFIX#*/}$ISUFFIX"
+        SUFFIX="${SUFFIX%%/*}"
+        suf=(-S '')
+    else
+        suf=(-qS/)
+    fi
+    _tags named-directories directory-stack
+    while _tags; do
+        _requested named-directories expl 'named directory' compadd "$suf[@]" "$@" -k nameddirs && ret=0
+        _requested directory-stack && _directory_stack "$suf[@]" && ret=0
+        (( ret )) || return 0
+    done
+    return ret
+}
+compdef _tilde_no_users -tilde-
+
+
+
+#}}}
+
 # Shell options{{{
 unsetopt nomatch
 
@@ -63,6 +102,7 @@ _comp_options+=(globdots)
 fpath=($ZDOTDIR/completions $ZDOTDIR/functions $fpath )
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*:commands' list-colors '=*=32'
 zstyle ':completion:*:builtins' list-colors '=*=32'
 zstyle ':completion:*:aliases' list-colors '=*=32'
@@ -180,25 +220,6 @@ bindkey '^ ' autosuggest-accept
 bindkey 'M-w' forward-word
 #}}}
 
-#{{{ zplug Settings
-export ZPLUG_HOME="$HOME/.config/zsh/zplug"
-if [ ! -d $ZDOTDIR/zplug ]; then
-	git clone https://github.com/zplug/zplug $ZPLUG_HOME
-fi
-
-# [ -f "$XDG_CONFIG_HOME/zsh/zplug/init.zsh" ] && source ~/.config/zsh/zplug/init.zsh
-
-# zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-if [[ $(tput colors) == "256" ]];then
-	autoload powerlevel9k; powerlevel9k
-	# zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
-fi
-# zplug "zdharma/fast-syntax-highlighting", defer:2
-# zplug "zsh-users/zsh-autosuggestions", defer:2
-
-# Then, source plugins and add commands to $PATH
-# zplug load
-#}}}
 
 # {{{ Plugins
 if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]];then
@@ -212,11 +233,11 @@ elif [[ -f "$HOME/.local/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-
 	source "$HOME/.local/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 fi
 if [[ $(tput colors) == "256" ]];then
+	autoload powerlevel9k; powerlevel9k
 	if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]];then
 		source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 	elif [[ -f "$HOME/.local/share/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme" ]];then
 		source "$HOME/.local/share/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme"
 	fi
 fi
-#
 # }}}
