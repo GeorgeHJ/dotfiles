@@ -59,7 +59,9 @@ hash_dirs[vim]="$HOME/.vim"
 # Loop over the associative array to build the directory hashes
 for key value in ${(kv)hash_dirs};
 do
-	hash -d "$key"="$value"
+	if [[ ! -L "$value" ]] && [[ -d "$value" ]]; then
+		hash -d "$key"="$value"
+	fi
 done
 unset hash_dirs
 
