@@ -51,16 +51,16 @@ alias help=run-help
 
 #{{{ Named Directories
 declare -A hash_dirs
-hash_dirs[bin]="$HOME/.local/bin"
-hash_dirs[go]="$GOPATH"
-hash_dirs[zsh]="$XDG_CONFIG_HOME/zsh"
-hash_dirs[vim]="$XDG_CONFIG_HOME/vim"
+[[ -d $HOME/.local/bin ]] && hash_dirs[bin]="$HOME/.local/bin"
+[[ -d "$GOPATH" ]] && hash_dirs[go]="$GOPATH"
+[[ -d "$XDG_CONFIG_HOME/zsh" ]] && hash_dirs[zsh]="$XDG_CONFIG_HOME/zsh"
+[[ -d "$XDG_CONFIG_HOME/vim" ]] && hash_dirs[vim]="$XDG_CONFIG_HOME/vim"
 
 # Loop over the associative array to build the directory hashes
 for key value in ${(kv)hash_dirs};
 do
 	if [[ -L "$value" ]];then
-		hash -d "$key"="$(readlink "$value")"
+		hash -d "$key"="$(realpath "$value")"
 	elif [[ -d "$value" ]]; then
 		hash -d "$key"="$value"
 	fi
