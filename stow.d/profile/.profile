@@ -37,6 +37,10 @@ elif [ -d "$XDG_DATA_HOME/texmf" ]; then
 fi
 
 # Programs
+# Cargo compiler for Rust
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+# NPM
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 # Less — disable history file
 export LESSHISTFILE="-"
 # Readline
@@ -52,20 +56,25 @@ export TERMINAL=xfce4-terminal
 # Use vim as a man pager
 export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nonumber nomod nolist noma' -\""
 # Set the configuration paths for lynx
-export LYNX_CFG="$HOME/.config/lynx/lynx.cfg"
-export LYNX_LSS="$HOME/.config/lynx/lynx.lss"
+export LYNX_CFG="$XDG_CONFIG_HOME/lynx/lynx.cfg"
+export LYNX_LSS="$XDG_CONFIG_HOME/lynx/lynx.lss"
 # Quick Start Settings for Par
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
 # fzf options
 export FZF_DEFAULT_OPTS="--color=16,fg+:14"
 # IPython configuration directory
-export IPYTHONDIR="$HOME/.config/ipython"
+export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
 # Chromium BSU
 export CHROMIUM_BSU_SCORE="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-score"
 export CHROMIUM_BSU_DATA="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-data"
+# Mailcap (RTV)
+export MAILCAPS="$XDG_CONFIG_HOME/rtv/mailcap"
 # MPV
 export DVDCSS_CACHE="$XDG_CACHE_HOME/mpv/dvdcss"
 # PyLint
 export PYLINTHOME="$XDG_CONFIG_HOME/pylint.d/"
+# Vim
+export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+export GVIMINIT='let $MYGVIMRC="$XDG_CONFIG_HOME/vim/gvimrc" | source $MYGVIMRC'
 # Zsh
-export ZDOTDIR=$HOME/.config/zsh
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
