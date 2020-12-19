@@ -11,7 +11,7 @@ fi
 HISTFILE=~/.cache/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
-if [ ! -f "$HISTFILE" ];then
+if [[ ! -f "$HISTFILE" ]];then
 	mkdir "$HOME/.cache/zsh" && touch "$HISTFILE"
 fi
 #}}}
@@ -53,13 +53,15 @@ alias help=run-help
 declare -A hash_dirs
 hash_dirs[bin]="$HOME/.local/bin"
 hash_dirs[go]="$GOPATH"
-hash_dirs[zsh]="$HOME/.config/zsh"
-hash_dirs[vim]="$HOME/.vim"
+hash_dirs[zsh]="$XDG_CONFIG_HOME/zsh"
+hash_dirs[vim]="$XDG_CONFIG_HOME/vim"
 
 # Loop over the associative array to build the directory hashes
 for key value in ${(kv)hash_dirs};
 do
-	if [[ ! -L "$value" ]] && [[ -d "$value" ]]; then
+	if [[ -L "$value" ]];then
+		hash -d "$key"="$(readlink "$value")"
+	elif [[ -d "$value" ]]; then
 		hash -d "$key"="$value"
 	fi
 done
@@ -67,26 +69,24 @@ unset hash_dirs
 
 # The standard _tilde completion function with users removed named directories only
 _tilde_no_users () {
-    [[ -n "$compstate[quote]" ]] && return 1
-    local expl suf ret=1
-    if [[ "$SUFFIX" = */* ]]; then
-        ISUFFIX="/${SUFFIX#*/}$ISUFFIX"
-        SUFFIX="${SUFFIX%%/*}"
-        suf=(-S '')
-    else
-        suf=(-qS/)
-    fi
-    _tags named-directories directory-stack
-    while _tags; do
-        _requested named-directories expl 'named directory' compadd "$suf[@]" "$@" -k nameddirs && ret=0
-        _requested directory-stack && _directory_stack "$suf[@]" && ret=0
-        (( ret )) || return 0
-    done
-    return ret
+	[[ -n "$compstate[quote]" ]] && return 1
+	local expl suf ret=1
+	if [[ "$SUFFIX" = */* ]]; then
+		ISUFFIX="/${SUFFIX#*/}$ISUFFIX"
+		SUFFIX="${SUFFIX%%/*}"
+		suf=(-S '')
+	else
+		suf=(-qS/)
+	fi
+	_tags named-directories directory-stack
+	while _tags; do
+		_requested named-directories expl 'named directory' compadd "$suf[@]" "$@" -k nameddirs && ret=0
+		_requested directory-stack && _directory_stack "$suf[@]" && ret=0
+		(( ret )) || return 0
+	done
+	return ret
 }
 compdef _tilde_no_users -tilde-
-
-
 
 #}}}
 
@@ -135,6 +135,26 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 # Edit line in $EDITOR with ctrl-v:
 autoload edit-command-line; zle -N edit-command-line
 bindkey -a '^v' edit-command-line
+#}}}
+
+#{{{ Vim text objects
+# ci", ci', ci`, di", etc
+autoload -U select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+	for c in {a,i}{\',\",\`}; do
+		bindkey -M $m $c select-quoted
+	done
+done
+
+# ci{, ci(, ci<, di{, etc
+autoload -U select-bracketed
+zle -N select-bracketed
+for m in visual viopp; do
+	for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+		bindkey -M $m $c select-bracketed
+	done
+done
 #}}}
 
 #{{{ Widgets and bindings
@@ -221,7 +241,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#586e75,bold,underline"
 bindkey '^ ' autosuggest-accept
 bindkey 'M-w' forward-word
 #}}}
-
 
 # {{{ Plugins
 if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]];then
