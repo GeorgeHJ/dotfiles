@@ -21,6 +21,14 @@ autoload -U colors && colors
 PS1="%B[%{$fg[green]%}%n%{$fg[green]%}%{$reset_color%}%B@%{$fg[green]%}%M %{$reset_color%}%B%~]%{$reset_color%}%#%(?..%{$fg[red]%} %?)%b "
 #}}}
 
+#{{{ Dircolors
+# Use dircolors to set LS_COLOR
+[ -f "$HOME/.dircolors" ] &&
+	eval "$(dircolors "$HOME/.dir_colors")" ||
+	[ -f "$HOME/.config/dir_colors/dir_colors" ] &&
+	eval "$(dircolors "$HOME/.config/dir_colors/dir_colors")"
+#}}}
+
 #{{{ compinstall and compinit options
 zstyle :compinstall filename '/home/george/.config/zsh/zshrc'
 zstyle ':completion:*' rehash true
@@ -195,14 +203,6 @@ if
 then
 	autoload br
 fi
-#}}}
-
-#{{{ Dircolors
-# Use dircolors to set LS_COLOR
-[ -f "$HOME/.dircolors" ] &&
-	eval "$(dircolors "$HOME/.dir_colors")" ||
-	[ -f "$HOME/.config/dir_colors/dir_colors" ] &&
-	eval "$(dircolors "$HOME/.config/dir_colors/dir_colors")"
 #}}}
 
 # {{{ FZF Options
