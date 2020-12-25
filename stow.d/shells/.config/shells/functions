@@ -1,0 +1,41 @@
+#! /bin/sh
+# Shared functions for shells, written in POSIX compliant shell
+
+# An fzf menu for man pages
+case $TERM in
+# Use splits with tmux
+tmux*)
+	fman() {
+		if [ -n "$1" ]; then
+			# Take the first argument to the function as the argument for man
+			tmux split-window -h man "$1"
+		else
+			# Use fzf to choose the manpage; open in a split with tmux
+			man -k . | fzf-tmux --prompt='Man> ' |
+				cut -d'(' -f1 | xargs -r tmux split-window -h man
+		fi
+	}
+	;;
+# Otherwise use standard full terminal
+*)
+	fman() {
+		man -k . | fzf --prompt='Man> ' | cut -d'(' -f1 | xargs -r man
+	}
+	;;
+esac
+
+vicd() {
+	dst="$(command vifm --choose-dir - "$@")"
+	if [ -z "$dst" ]; then
+		echo 'Directory picking cancelled/failed'
+		return 1
+	fi
+	cd "$dst" || exit
+}
+
+json_tree_file() {
+	if [ ! -f "$1" ];then
+		return 1
+	fi
+	nu -c "open $1 | tree"
+}
