@@ -74,7 +74,9 @@ export DVDCSS_CACHE="$XDG_CACHE_HOME/mpv/dvdcss"
 # PyLint
 export PYLINTHOME="$XDG_CONFIG_HOME/pylint.d/"
 # Vim
-export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
-export GVIMINIT='let $MYGVIMRC="$XDG_CONFIG_HOME/vim/gvimrc" | source $MYGVIMRC'
+if [ -f "$XDG_CONFIG_HOME/vim/vimrc" ];then
+	export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+	export GVIMINIT='let $MYGVIMRC="$XDG_CONFIG_HOME/vim/gvimrc" | source $MYGVIMRC'
+fi
 # Zsh
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
