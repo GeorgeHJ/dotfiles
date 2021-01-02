@@ -80,6 +80,7 @@ TERM xterm-color
 TERM xterm-debian
 TERM xterm-termite
 TERM alacritty-256color
+TERM xterm-kitty
 
 ## Documentation
 #
@@ -105,7 +106,7 @@ TERM alacritty-256color
 
 ## Special files
 
-NORMAL 00;38;5;244 # no color code at all
+NORMAL 00;38;5;12 # normal content "base0" color code
 #FILE 00 # regular file: use no color at all
 RESET 0 # reset to "normal" color
 DIR 01;38;5;33 # directory 01;34
