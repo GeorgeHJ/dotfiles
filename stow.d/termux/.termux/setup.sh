@@ -10,6 +10,7 @@ main() {
 	if [ ! -f "$Dest" ]; then
 		font
 	fi
+	get_zsh_plugins
 }
 
 font() {
@@ -32,5 +33,11 @@ get_pkgs() {
 		wget \
 		vim \
 		zsh
+}
+
+get_zsh_plugins(){
+	git  clone 'https://github.com/romkatv/powerlevel10k' $HOME/.local/share/zsh/themes/powerlevel10k
+git  clone 'https://github.com/zdharma/fast-syntax-highlighting' $HOME/.local/share/zsh/plugins/fast-syntax-highlighting
+git  clone 'https://github.com/zsh-users/zsh-autosuggestions' $HOME/.local/share/zsh/plugins/zsh-autosuggestions
 }
 main
