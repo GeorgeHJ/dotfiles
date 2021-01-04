@@ -19,12 +19,13 @@ POWERLEVEL9K_CONTEXT_TEMPLATE='%B%n%b'
 ##}}}
 
 ##{{{ OS Icon Settings
-case $_p9k_os_icon in
-	" "|" "|" ")
+local unamea=$(uname -a)
+case $unamea in
+	*MANJARO*|*Android*)
 		POWERLEVEL9K_OS_ICON_FOREGROUND="green";;
-	" ")
+	*ARCH*)
 		POWERLEVEL9K_OS_ICON_FOREGROUND="blue";;
-	" "|" ")
+	*DEBIAN*)
 		POWERLEVEL9K_OS_ICON_FOREGROUND="red";;
 esac
 ##}}}
