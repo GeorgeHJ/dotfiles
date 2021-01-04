@@ -23,9 +23,9 @@ PS1="%B[%{$fg[green]%}%n%{$fg[green]%}%{$reset_color%}%B@%{$fg[green]%}%M %{$res
 
 #{{{ Dircolors
 # Use dircolors to set LS_COLOR
-[ -f "$HOME/.dircolors" ] &&
+[[ -f "$HOME/.dircolors" ]] &&
 	eval "$(dircolors "$HOME/.dir_colors")" ||
-	[ -f "$HOME/.config/dir_colors/dir_colors" ] &&
+	[[ -f "$HOME/.config/dir_colors/dir_colors" ]] &&
 	eval "$(dircolors "$HOME/.config/dir_colors/dir_colors")"
 #}}}
 
@@ -197,8 +197,8 @@ autoload zle-keymap-select; zle -N zle-keymap-select
 #{{{ Source extra files
 
 #Global alias file
-[ -f "$HOME/.config/shells/alias" ] && source "$HOME/.config/shells/alias"
-[ -f "$HOME/.config/shells/functions" ]&& source "$HOME/.config/shells/functions"
+[[ -f "$HOME/.config/shells/alias" ]] && source "$HOME/.config/shells/alias"
+[[ -f "$HOME/.config/shells/functions" ]] && source "$HOME/.config/shells/functions"
 # Pacman command not found hook
 if
 	[[ -a '/usr/share/doc/pkgfile/command-not-found.zsh' ]]
@@ -216,11 +216,11 @@ fi
 # {{{ FZF Options
 # Use fzf
 if uname -a | grep -q Android;then
-	[ -f "$PREFIX/share/fzf/completion.zsh" ] && source "$PREFIX/share/fzf/completion.zsh"
-	[ -f "$PREFIX/share/fzf/key-bindings.zsh" ] && source "$PREFIX/share/fzf/key-bindings.zsh"
+	[[ -f "$PREFIX/share/fzf/completion.zsh" ]] && source "$PREFIX/share/fzf/completion.zsh"
+	[[ -f "$PREFIX/share/fzf/key-bindings.zsh" ]] && source "$PREFIX/share/fzf/key-bindings.zsh"
 else
-	[ -f "/usr/share/fzf/completion.zsh" ] && source /usr/share/fzf/completion.zsh
-	[ -f "/usr/share/fzf/key-bindings.zsh" ] && source /usr/share/fzf/key-bindings.zsh
+	[[ -f "/usr/share/fzf/completion.zsh" ]] && source /usr/share/fzf/completion.zsh
+	[[ -f "/usr/share/fzf/key-bindings.zsh" ]] && source /usr/share/fzf/key-bindings.zsh
 fi
 # Preview alt-c directories with tree
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
