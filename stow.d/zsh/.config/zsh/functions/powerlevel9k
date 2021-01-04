@@ -19,23 +19,14 @@ POWERLEVEL9K_CONTEXT_TEMPLATE='%B%n%b'
 ##}}}
 
 ##{{{ OS Icon Settings
-if
-	uname -r | grep -q MANJARO
-then
-	POWERLEVEL9K_OS_ICON_FOREGROUND="green"
-elif
-	uname -a | grep -q ARCH
-then
-	POWERLEVEL9K_OS_ICON_FOREGROUND="blue"
-elif
-	uname -a | grep -q Android
-then
-	POWERLEVEL9K_OS_ICON_FOREGROUND="green"
-elif
-	uname -a | grep -q Debian
-then
-	POWERLEVEL9K_OS_ICON_FOREGROUND="red"
-fi
+case $_p9k_os_icon in
+	" "|" "|" ")
+		POWERLEVEL9K_OS_ICON_FOREGROUND="green";;
+	" ")
+		POWERLEVEL9K_OS_ICON_FOREGROUND="blue";;
+	" "|" ")
+		POWERLEVEL9K_OS_ICON_FOREGROUND="red";;
+esac
 ##}}}
 
 ##{{{ Segment Colours
