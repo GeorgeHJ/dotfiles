@@ -161,37 +161,6 @@ compdef _tilde_no_users -tilde-
 
 #}}}
 
-# Shell options{{{
-unsetopt nomatch
-
-# Initialise arrays for hook functions
-typeset -a precmd_functions preexec_functions
-#}}}
-
-# {{{ Completion Options
-# Include hidden files in autocomplete:
-_comp_options+=(globdots)
-# Add personal completions and functions directories to fpath
-fpath=($ZDOTDIR/completions $ZDOTDIR/functions $fpath )
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion::*:-tilde-:*:*' group-order named-directories users
-# Menu Completion Listing colours
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*:commands' list-colors 'ma=32;01;07:=*=32'
-zstyle ':completion:*:builtins' list-colors 'ma=32;01;07:=*=32'
-zstyle ':completion:*:aliases' list-colors 'ma=32;01;07:=*=32'
-zstyle ':completion:*:functions' list-colors 'ma=32;01;07:=*=32'
-zstyle ':completion:*:options' list-colors 'ma=39;01;07:=*=39'
-zstyle ':completion:*:arguments' list-colors 'ma=39;01;07:=*=39'
-zstyle ':completion:*:reserved-words' list-colors 'ma=33;01;07:=*=33'
-zstyle ':completion:*:named-directories' list-colors 'ma=34;01;07:=*=34'
-zstyle ':completion:*:packages' list-colors 'ma=95;01;07:=*=95'
-zstyle ':completion:*:parameters' list-colors 'ma=91;01;07:=*=91'
-zstyle ':completion:*:manuals' list-colors 'ma=39;01;07:=*=39'
-zmodload zsh/complist
-# }}}
-
 #{{{ Vi Keybindings
 bindkey -v # Use Vi Keys
 # Backspace fix
