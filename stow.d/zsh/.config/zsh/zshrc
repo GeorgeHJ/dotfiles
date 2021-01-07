@@ -29,6 +29,13 @@ PS1="%B[%{$fg[green]%}%n%{$fg[green]%}%{$reset_color%}%B@%{$fg[green]%}%M %{$res
 	eval "$(dircolors "$HOME/.config/dir_colors/dir_colors")"
 #}}}
 
+# Shell options{{{
+unsetopt nomatch
+
+# Initialise arrays for hook functions
+typeset -a precmd_functions preexec_functions
+#}}}
+
 #{{{ compinstall and compinit options
 zstyle :compinstall filename '/home/george/.config/zsh/zshrc'
 zstyle ':completion:*' rehash true
@@ -50,6 +57,62 @@ zstyle ':completion:*' group-name ''
 autoload -Uz compinit
 compinit
 #}}} End of lines added by compinstall
+
+# {{{ Completion Options
+# Include hidden files in autocomplete:
+_comp_options+=(globdots)
+# Add personal completions and functions directories to fpath
+fpath=($ZDOTDIR/completions $ZDOTDIR/functions $fpath )
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion::*:-tilde-:*:*' group-order named-directories users
+
+# Menu Completion Listing colours
+zstyle ':completion:*:default'		list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ""
+
+## Contexts
+zstyle ':completion:*:commands'	\
+	list-colors 'ma='$color[green]';'$color[bold]';'$color[reverse]':=*='$color[green]''
+zstyle ':completion:*:builtins'	\
+	list-colors 'ma='$color[green]';'$color[bold]';'$color[reverse]':=*='$color[green]''
+zstyle ':completion:*:aliases' \
+	list-colors 'ma='$color[green]';'$color[bold]';'$color[reverse]':=*='$color[green]''
+zstyle ':completion:*:functions' \
+	list-colors 'ma='$color[green]';'$color[bold]';'$color[reverse]':=*='$color[green]''
+zstyle ':completion:*:executable' \
+	list-colors 'ma='$color[green]';'$color[bold]';'$color[reverse]':=*='$color[green]''
+zstyle ':completion:*:options' \
+	list-colors 'ma='$color[default]';'$color[bold]';'$color[reverse]':=*='$color[default]''
+zstyle ':completion:*:arguments' \
+	list-colors 'ma='$color[default]';'$color[bold]';'$color[reverse]':=*='$color[default]''
+zstyle ':completion:*:reserved-words' \
+	list-colors 'ma='$color[yellow]';'$color[bold]';'$color[reverse]':=*='$color[yellow]''
+zstyle ':completion:*:named-directories' \
+	list-colors 'ma='$color[blue]';'$color[bold]';'$color[reverse]':=*='$color[blue]''
+zstyle ':completion:*:packages' \
+	list-colors 'ma=95;'$color[bold]';'$color[reverse]':=*=95'
+zstyle ':completion:*:parameters' \
+	list-colors 'ma=91;'$color[bold]';'$color[reverse]':=*=91'
+zstyle ':completion:*:manuals' \
+	list-colors 'ma='$color[default]';'$color[bold]';'$color[reverse]':=*='$color[default]''
+
+## Tags
+zstyle ':completion::*:*::local-directories' \
+	list-colors 'ma='$color[blue]';'$color[bold]';'$color[reverse]''
+zstyle ':completion::*:*::path-directories' \
+	list-colors 'ma='$color[blue]';'$color[bold]';'$color[reverse]''
+zstyle ':completion::*:*::directories' \
+	list-colors 'ma='$color[blue]';'$color[bold]';'$color[reverse]''
+
+## Programs
+zstyle ':completion:*:*:rmdir:*' \
+	list-colors 'ma='$color[blue]';'$color[bold]';'$color[reverse]''
+zstyle ':completion:*:*:mkdir:*' \
+	list-colors 'ma='$color[blue]';'$color[bold]';'$color[reverse]''
+
+zmodload zsh/complist
+# }}}
 
 #{{{ Bash-style help
 autoload run-help
@@ -148,6 +211,8 @@ bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect '^[[Z' reverse-menu-complete
+bindkey -M menuselect '^o' accept-and-infer-next-history
 # Edit line in $EDITOR with ctrl-v:
 autoload edit-command-line; zle -N edit-command-line
 bindkey -a '^v' edit-command-line
