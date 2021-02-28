@@ -8,6 +8,7 @@ fi
 # }}}
 
 #{{{ History File
+setopt SHARE_HISTORY HIST_EXPIRE_DUPS_FIRST histignorespace
 HISTFILE=~/.cache/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -162,29 +163,65 @@ compdef _tilde_no_users -tilde-
 #}}}
 
 #{{{ Vi Keybindings
+
+# create a zkbd compatible hash;
+# to add other keys to this hash, see: man 5 terminfo
+typeset -g -A key
+
+key[Home]="${terminfo[khome]}"
+key[End]="${terminfo[kend]}"
+key[Insert]="${terminfo[kich1]}"
+key[Backspace]="${terminfo[kbs]}":
+key[Delete]="${terminfo[kdch1]}"
+key[Up]="${terminfo[kcuu1]}"
+key[Down]="${terminfo[kcud1]}"
+key[Left]="${terminfo[kcub1]}"
+key[Right]="${terminfo[kcuf1]}"
+key[PageUp]="${terminfo[kpp]}"
+key[PageDown]="${terminfo[knp]}"
+key[Shift-Tab]="${terminfo[kcbt]}"
+
 bindkey -v # Use Vi Keys
-# Backspace fix
-bindkey '^?' backward-delete-char
-bindkey -a "^[[3~" vi-delete-char
-bindkey -a "^[3;5~" vi-delete-char
-bindkey "^[[3~" delete-char
-bindkey "^[3;5~" delete-char
+bindkey "$key[Backspace]" backward-delete-char
+bindkey -a "$key[Delete]" vi-delete-char
+bindkey "$key[Delete]" delete-char
+bindkey '^[[H' beginning-of-line
+bindkey "$key[Home]" beginning-of-line
+bindkey "$key[End]" end-of-line
+bindkey '^[[F' end-of-line
+bindkey -a "$key[Home]" beginning-of-line
+bindkey -a '^[[H'  beginning-of-line
+bindkey -a "$key[End]" end-of-line
+bindkey -a '^[[F' end-of-line
+
 export KEYTIMEOUT=1 # Suggested for Vi mode
 # Insert Mode bindings
-bindkey '^P' up-history
-bindkey '^N' down-history
-bindkey '^L' clear-screen
-bindkey '^K' kill-line
-# use the vi navigation keys in menu completion
+bindkey '^p' up-history
+bindkey '^n' down-history
+bindkey '^l' clear-screen
+bindkey '^k' kill-line
+
+# Menu completion bindings
+## use the vi navigation keys in menu completion
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect '^[[Z' reverse-menu-complete
+bindkey -M menuselect "$key[Shift-Tab]" reverse-menu-complete
 bindkey -M menuselect '^o' accept-and-infer-next-history
+bindkey -M menuselect '/' accept-and-infer-next-history
+bindkey -M menuselect ' ' accept-and-hold
 # Edit line in $EDITOR with ctrl-v:
 autoload edit-command-line; zle -N edit-command-line
 bindkey -a '^v' edit-command-line
+
+# Cycle through history based on characters already typed on the line
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey -a "k" up-line-or-beginning-search
+bindkey -a "j" down-line-or-beginning-search
 #}}}
 
 #{{{ Vim text objects
@@ -214,6 +251,12 @@ bindkey -a '^o' vicd_wrapper
 # Fzf Manpages
 zle -N fman
 bindkey -a 'm' fman
+# Mpq wrapper
+if command -v mpq >/dev/null;then
+	mpq_wrapper(){BUFFER="mpq"; zle accept-line; }
+	zle -N mpq_wrapper
+	bindkey -a '^i' mpq_wrapper
+fi
 #}}}
 
 # {{{ Luke Smith — cursor settings
@@ -249,7 +292,8 @@ fi
 
 # {{{ FZF Options
 # Use fzf
-if uname -a | grep -q Android;then
+unamea=$(uname -a)
+if [[ $unamea == *Android* ]] ;then
 	[[ -f "$PREFIX/share/fzf/completion.zsh" ]] && source "$PREFIX/share/fzf/completion.zsh"
 	[[ -f "$PREFIX/share/fzf/key-bindings.zsh" ]] && source "$PREFIX/share/fzf/key-bindings.zsh"
 else
