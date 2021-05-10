@@ -23,7 +23,7 @@ local unamea=$(uname -a)
 case $unamea in
 	*MANJARO*|*Android*)
 		POWERLEVEL9K_OS_ICON_FOREGROUND="green";;
-	*ARCH*)
+	*ARCH*|*arch*)
 		POWERLEVEL9K_OS_ICON_FOREGROUND="blue";;
 	*DEBIAN*)
 		POWERLEVEL9K_OS_ICON_FOREGROUND="red";;
