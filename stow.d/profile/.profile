@@ -13,6 +13,7 @@ export EDITOR=/usr/bin/vim
 # $PATH variable
 # Add user scripts directory
 export PATH=$PATH:~/.bin
+export PATH=$PATH:~/.local/bin
 # Add $GOBIN to $PATH for go
 if command -v go >/dev/null; then
 	if [ -d "$HOME/go" ]; then
