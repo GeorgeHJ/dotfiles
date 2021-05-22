@@ -39,7 +39,9 @@ fi
 
 # Programs
 # Cargo compiler for Rust
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
+if command -v cargo; then
+		export CARGO_HOME="$XDG_DATA_HOME/cargo"
+fi
 # NPM
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 # Less — disable history file
@@ -57,26 +59,42 @@ export TERMINAL=xfce4-terminal
 # Use vim as a man pager
 export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nonumber nomod nolist noma' -\""
 # Set the configuration paths for lynx
-export LYNX_CFG="$XDG_CONFIG_HOME/lynx/lynx.cfg"
-export LYNX_LSS="$XDG_CONFIG_HOME/lynx/lynx.lss"
+if command -v lynx; then 
+		export LYNX_CFG="$XDG_CONFIG_HOME/lynx/lynx.cfg"
+		export LYNX_LSS="$XDG_CONFIG_HOME/lynx/lynx.lss"
+fi
 # Quick Start Settings for Par
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
 # fzf options
-export FZF_DEFAULT_OPTS="--color=16,fg+:14"
+if command -v fzf; then
+		export FZF_DEFAULT_OPTS="--color=16,fg+:14"
+fi
 # IPython configuration directory
-export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
+if command -v ipython; then
+		export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
+fi
 # Chromium BSU
-export CHROMIUM_BSU_SCORE="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-score"
-export CHROMIUM_BSU_DATA="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-data"
-# Mailcap (RTV)
-export MAILCAPS="$XDG_CONFIG_HOME/rtv/mailcap"
+if command -v chromium-bsu; then
+		export CHROMIUM_BSU_SCORE="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-score"
+		export CHROMIUM_BSU_DATA="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-data"
+fi
+# Mailcap (tuir)
+if command -v tuir; then
+		export MAILCAPS="$XDG_CONFIG_HOME/tuir/mailcap"
+fi
 # MPV
-export DVDCSS_CACHE="$XDG_CACHE_HOME/mpv/dvdcss"
+if  command -v mpv ;then
+		export DVDCSS_CACHE="$XDG_CACHE_HOME/mpv/dvdcss"
+fi
 # PyLint
-export PYLINTHOME="$XDG_CONFIG_HOME/pylint.d/"
+if command -v pylint; then
+		export PYLINTHOME="$XDG_CONFIG_HOME/pylint.d/"
+fi
 # Vim
 if [ -f "$XDG_CONFIG_HOME/vim/vimrc" ];then
+		#shellcheck disable=SC2016
 	export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+		#shellcheck disable=SC2016
 	export GVIMINIT='let $MYGVIMRC="$XDG_CONFIG_HOME/vim/gvimrc" | source $MYGVIMRC'
 fi
 # Zsh
