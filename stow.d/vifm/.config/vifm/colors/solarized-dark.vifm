@@ -1,0 +1,71 @@
+" VIFM COLORS
+" solarized dark 16 colour
+" based on: https://github.com/istib/dotfiles/blob/master/vifm/vifm-colors
+
+" Default = -1 = None, can be used for transparency or default color
+" Black = 0
+" Red = 1
+" Green = 2
+" Yellow = 3
+" Blue = 4
+" Magenta = 5
+" Cyan = 6
+" White = 7
+
+" Light versions of colors are also available (set bold attribute):
+" LightBlack = 8
+" LightRed = 9
+" LightGreen = 10
+" LightYellow = 11
+" LightBlue = 12
+" LightMagenta = 13
+" LightCyan = 14
+" LightWhite = 15
+
+" STYLES
+" bold
+" underline
+" reverse or inverse
+" standout
+" none
+
+
+highlight clear
+
+highlight Win             cterm=none ctermfg=default    ctermbg=none
+
+highlight TopLine         cterm=none ctermfg=blue       ctermbg=none
+highlight TopLineSel      cterm=none ctermfg=blue       ctermbg=none
+highlight StatusLine      cterm=none ctermfg=blue       ctermbg=none
+highlight Border          cterm=none ctermfg=blue       ctermbg=none
+
+highlight Selected        cterm=bold ctermfg=magenta    ctermbg=default
+highlight CurrLine        cterm=bold ctermfg=default    ctermbg=blue
+
+highlight WildMenu        cterm=underline,reverse ctermfg=white ctermbg=black
+highlight CmdLine         cterm=none ctermfg=white ctermbg=black
+highlight ErrorMsg        cterm=none ctermfg=red ctermbg=black
+
+highlight Directory       cterm=none ctermfg=cyan ctermbg=default
+highlight Link            cterm=none ctermfg=yellow ctermbg=default
+highlight BrokenLink      cterm=none ctermfg=red ctermbg=default
+highlight Socket          cterm=none ctermfg=magenta ctermbg=default
+highlight Device          cterm=none ctermfg=red ctermbg=default
+highlight Fifo            cterm=none ctermfg=cyan ctermbg=default
+highlight Executable      cterm=none ctermfg=green ctermbg=default
+" generic file types
+highlight BrokenLink cterm=none ctermfg=160 ctermbg=235
+highlight Device cterm=bold ctermfg=244 ctermbg=230
+highlight Directory cterm=none ctermfg=33 ctermbg=default
+highlight Executable cterm=none ctermfg=64 ctermbg=default
+highlight Fifo cterm=bold ctermfg=136 ctermbg=230
+highlight Link cterm=none ctermfg=37 ctermbg=default
+highlight Socket cterm=bold ctermfg=136 ctermbg=230
+highlight Win cterm=none ctermfg=244 ctermbg=default
+
+" file name specific highlight
+highlight /.*\.CR2$|.*\.JPG$|.*\.PNG$|.*\.bmp$|.*\.cgm$|.*\.dl$|.*\.emf$|.*\.eps$|.*\.gif$|.*\.ico$|.*\.jpeg$|.*\.jpg$|.*\.mng$|.*\.pbm$|.*\.pcx$|.*\.pgm$|.*\.png$|.*\.ppm$|.*\.svg$|.*\.svgz$|.*\.tga$|.*\.tif$|.*\.tiff$|.*\.xbm$|.*\.xcf$|.*\.xpm$|.*\.xwd$|.*\.yuv$/I cterm=none ctermfg=136 ctermbg=default
+highlight /.*\.MOV$|.*\.aac$|.*\.anx$|.*\.asf$|.*\.au$|.*\.avi$|.*\.axa$|.*\.axv$|.*\.divx$|.*\.flac$|.*\.flc$|.*\.fli$|.*\.flv$|.*\.gl$|.*\.m2ts$|.*\.m2v$|.*\.m4a$|.*\.m4v$|.*\.mid$|.*\.midi$|.*\.mka$|.*\.mkv$|.*\.mov$|.*\.mp3$|.*\.mp4$|.*\.mp4v$|.*\.mpc$|.*\.mpeg$|.*\.mpg$|.*\.nuv$|.*\.oga$|.*\.ogg$|.*\.ogm$|.*\.ogv$|.*\.ogx$|.*\.opus$|.*\.qt$|.*\.ra$|.*\.rm$|.*\.rmvb$|.*\.spx$|.*\.vob$|.*\.wav$|.*\.webm$|.*\.wmv$|.*\.xspf$/I cterm=none ctermfg=166 ctermbg=default
+highlight /.*#$|.*\.aux$|.*\.bak$|.*\.bbl$|.*\.blg$|.*\.cache$|.*\.class$|.*\.incomplete$|.*\.lof$|.*\.log$|.*\.lol$|.*\.lot$|.*\.o$|.*\.out$|.*\.part$|.*\.pyc$|.*\.swp$|.*\.temp$|.*\.tmp$|.*\.toc$|.*~$/I cterm=none ctermfg=240 ctermbg=default
+highlight /.*1$|.*Dockerfile$|.*Makefile$|.*README$|.*README.markdown$|.*README.txt$|.*Rakefile$|.*\.c$|.*\.cc$|.*\.cfg$|.*\.conf$|.*\.cpp$|.*\.csv$|.*\.cxx$|.*\.go$|.*\.h$|.*\.hpp$|.*\.ini$|.*\.md$|.*\.n3$|.*\.nfo$|.*\.nt$|.*\.objc$|.*\.owl$|.*\.rdf$|.*\.sql$|.*\.sqlite$|.*\.tex$|.*\.torrent$|.*\.ttl$|.*\.xml$|.*\.yml$|.*build.xml$|.*rc$|.*readme.txt$/I cterm=none ctermfg=245 ctermbg=default
+highlight /.*\.7z$|.*\.Z$|.*\.ace$|.*\.apk$|.*\.arj$|.*\.bz$|.*\.bz2$|.*\.cpio$|.*\.deb$|.*\.dz$|.*\.gem$|.*\.gz$|.*\.jar$|.*\.lz$|.*\.lzh$|.*\.lzma$|.*\.rar$|.*\.rpm$|.*\.rz$|.*\.tar$|.*\.taz$|.*\.tbz$|.*\.tbz2$|.*\.tgz$|.*\.tlz$|.*\.txz$|.*\.tz$|.*\.xz$|.*\.z$|.*\.zip$|.*\.zoo$/I cterm=none ctermfg=61 ctermbg=default

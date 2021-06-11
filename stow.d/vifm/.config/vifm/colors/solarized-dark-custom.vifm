@@ -1,0 +1,80 @@
+" VIFM COLORS
+" solarized dark
+" based on: https://github.com/istib/dotfiles/blob/master/vifm/vifm-colors
+" further modified from https://github.com/vifm/vifm-colors/blob/master/solarized-dark.vifm
+
+" A colorscheme for VIFM users with a solarized dark terminal
+" Uses the first 16 xterm colors (0-15)
+" Requires a terminal emulator set to Solarized Dark colourscheme
+
+" Default = -1 = None, can be used for transparency or default color
+" Black = 0
+" Red = 1
+" Green = 2
+" Yellow = 3
+" Blue = 4
+" Magenta = 5
+" Cyan = 6
+" White = 7
+
+" From http://ethanschoonover.com/solarized
+" SOLARIZED  16  TERMCOL 	Comments		vifm Colour
+" ----------------------------------------------------------
+" base03      8  brblack  	darkest 		8
+" base02      0  black    	dark			black
+" base01     10  brgreen  	darkest content		10
+" base00     11  bryellow 	dark content		11
+" base0      12  brblue   	light content		12
+" base1      14  brcyan   	lightest content	14
+" base2       7  white    	bright			white
+" base3      15  brwhite  	brightest		15
+" yellow      3  yellow   	""			yellow
+" orange      9  brred    	""			9
+" red         1  red      	""			red
+" magenta     5  magenta  	""			magenta
+" violet     13  brmagenta	""			13
+" blue        4  blue     	""			blue
+" cyan        6  cyan     	""			cyan
+" green       2  green    	""			green
+
+" STYLES
+" bold
+" underline
+" italic
+" reverse or inverse
+" standout
+" none
+
+highlight clear
+
+highlight Win		cterm=none	ctermfg=default		ctermbg=8
+
+highlight TopLine	cterm=none	ctermfg=14		ctermbg=black
+highlight TopLineSel	cterm=none	ctermfg=14		ctermbg=black
+highlight StatusLine	cterm=none	ctermfg=8		ctermbg=14
+highlight Border	cterm=none	ctermfg=blue		ctermbg=black
+
+highlight Selected	cterm=bold	ctermfg=magenta		ctermbg=default
+highlight CurrLine	cterm=bold,reverse ctermfg=default	ctermbg=default
+highlight WildMenu	cterm=reverse	ctermfg=white		ctermbg=black
+highlight SuggestBox	cterm=none	ctermfg=12		ctermbg=default
+highlight CmdLine	cterm=none	ctermfg=14		ctermbg=none
+highlight ErrorMsg	cterm=none	ctermfg=red		ctermbg=black
+highlight JobLine	cterm=none	ctermfg=14		ctermbg=none
+
+" generic file types
+highlight BrokenLink	cterm=none	ctermfg=red		ctermbg=black
+highlight Device 	cterm=bold	ctermfg=12		ctermbg=15
+highlight Directory  	cterm=bold	ctermfg=blue		ctermbg=default
+highlight Executable 	cterm=none	ctermfg=green		ctermbg=default
+highlight Fifo 		cterm=bold	ctermfg=yellow		ctermbg=15
+highlight Link 		cterm=none	ctermfg=cyan		ctermbg=default
+highlight Socket 	cterm=bold	ctermfg=yellow		ctermbg=15
+
+" file name specific highlight
+" taken from dircolors
+highlight /.*\.CR2$|.*\.JPG$|.*\.PNG$|.*\.bmp$|.*\.cgm$|.*\.dl$|.*\.emf$|.*\.eps$|.*\.gif$|.*\.ico$|.*\.jpeg$|.*\.jpg$|.*\.mng$|.*\.pbm$|.*\.pcx$|.*\.pgm$|.*\.png$|.*\.ppm$|.*\.svg$|.*\.svgz$|.*\.tga$|.*\.tif$|.*\.tiff$|.*\.xbm$|.*\.xcf$|.*\.xpm$|.*\.xwd$|.*\.yuv$/I cterm=none ctermfg=yellow ctermbg=default
+highlight /.*\.MOV$|.*\.aac$|.*\.anx$|.*\.asf$|.*\.au$|.*\.avi$|.*\.axa$|.*\.axv$|.*\.divx$|.*\.flac$|.*\.flc$|.*\.fli$|.*\.flv$|.*\.gl$|.*\.m2ts$|.*\.m2v$|.*\.m4a$|.*\.m4v$|.*\.mid$|.*\.midi$|.*\.mka$|.*\.mkv$|.*\.mov$|.*\.mp3$|.*\.mp4$|.*\.mp4v$|.*\.mpc$|.*\.mpeg$|.*\.mpg$|.*\.nuv$|.*\.oga$|.*\.ogg$|.*\.ogm$|.*\.ogv$|.*\.ogx$|.*\.opus$|.*\.qt$|.*\.ra$|.*\.rm$|.*\.rmvb$|.*\.spx$|.*\.vob$|.*\.wav$|.*\.webm$|.*\.wmv$|.*\.xspf$/I cterm=none ctermfg=9 ctermbg=default
+highlight /.*#$|.*\.aux$|.*\.bak$|.*\.bbl$|.*\.blg$|.*\.cache$|.*\.class$|.*\.incomplete$|.*\.lof$|.*\.log$|.*\.lol$|.*\.lot$|.*\.o$|.*\.out$|.*\.part$|.*\.pyc$|.*\.swp$|.*\.temp$|.*\.tmp$|.*\.toc$|.*~$/I cterm=none ctermfg=10 ctermbg=default
+highlight /.*1$|.*Dockerfile$|.*Makefile$|.*README$|.*README.markdown$|.*README.txt$|.*Rakefile$|.*\.c$|.*\.cc$|.*\.cfg$|.*\.conf$|.*\.cpp$|.*\.csv$|.*\.cxx$|.*\.go$|.*\.h$|.*\.hpp$|.*\.ini$|.*\.md$|.*\.n3$|.*\.nfo$|.*\.nt$|.*\.objc$|.*\.owl$|.*\.rdf$|.*\.sql$|.*\.sqlite$|.*\.tex$|.*\.torrent$|.*\.ttl$|.*\.xml$|.*\.yml$|.*build.xml$|.*rc$|.*readme.txt$/I cterm=none ctermfg=14 ctermbg=default
+highlight /.*\.7z$|.*\.Z$|.*\.ace$|.*\.apk$|.*\.arj$|.*\.bz$|.*\.bz2$|.*\.cpio$|.*\.deb$|.*\.dz$|.*\.gem$|.*\.gz$|.*\.jar$|.*\.lz$|.*\.lzh$|.*\.lzma$|.*\.rar$|.*\.rpm$|.*\.rz$|.*\.tar$|.*\.taz$|.*\.tbz$|.*\.tbz2$|.*\.tgz$|.*\.tlz$|.*\.txz$|.*\.tz$|.*\.xz$|.*\.z$|.*\.zip$|.*\.zoo$|.*\.*zst$/I cterm=none ctermfg=13 ctermbg=default

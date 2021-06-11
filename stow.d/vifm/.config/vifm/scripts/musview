@@ -1,0 +1,81 @@
+#!/bin/bash
+TRACKNUMBER=$(metaflac --show-tag=TRACKNUMBER "$1"&). 
+TITLE=$(metaflac --show-tag=TITLE "$1"&) 
+DURATION=$(soxi -d "$1" | cut -d: -f2,3 &) 
+ALBUM=$(metaflac --show-tag=ALBUM "$1"&) 
+ARTIST=$(metaflac --show-tag=ARTIST "$1") 
+BITS=$(soxi -p "$1" &)bit
+SAMPLERATE=$(soxi -r "$1" &)hz 
+FORMAT=$(soxi -t "$1" &) 
+DISC=$(metaflac --show-tag=DISCNUMBER "$1"&) 
+DATE=$(metaflac --show-tag=DATE "$1")
+DISCTOTAL=$(metaflac --show-tag=DISCTOTAL "$1"&) 
+REPLAYGAINTRACK=$(metaflac --show-tag=REPLAYGAIN_TRACK_GAIN "$1"&)
+REPLAYGAINALBUM=$(metaflac --show-tag=REPLAYGAIN_ALBUM_GAIN "$1"&)
+DYNAMICRANGE=$(metaflac --show-tag="DYNAMIC RANGE" "$1"&) 
+ALBUMDR=$(metaflac --show-tag="ALBUM DYNAMIC RANGE" "$1"&)
+wait
+# Pad DR Values with a zero if needed
+# Causes Breakage
+DYNAMICRANGE=${DYNAMICRANGE##'DYNAMIC RANGE='}
+ALBUMDR=${ALBUMDR##'ALBUM DYNAMIC RANGE='}
+if
+	[[ "$DYNAMICRANGE" -lt "10" ]]
+then
+DYNAMICRANGE="0$DYNAMICRANGE"
+fi
+if
+	[[ "$ALBUMDR" -lt "10" ]]
+then
+ALBUMDR="0$ALBUMDR"
+fi
+# Define font coding
+italic_start="\\033[3;37m"
+
+# Add colour coding and remarks
+if
+	[[ 10#"$DYNAMICRANGE" -ge "14" ]]
+then
+	DYNAMICRANGE="\\033[01;37;42m$DYNAMICRANGE\\033[0m"
+	DRCOMMENT="${italic_start}Good!\\033[0m"
+elif
+	[[ 10#"$DYNAMICRANGE" -ge "8" ]] && [[ 10#"$DYNAMICRANGE" -lt "14"  ]]
+then
+	DYNAMICRANGE="\\033[01;37;43m$DYNAMICRANGE\\033[0m"
+	DRCOMMENT="${italic_start}Transition!\\033[0m"
+elif
+	[[ 10#"$DYNAMICRANGE" -ge "1" ]] && [[ 10#"$DYNAMICRANGE" -le "7"  ]]
+then
+	DYNAMICRANGE="\\033[01;37;41m$DYNAMICRANGE\\033[0m"
+	DRCOMMENT="${italic_start}Bad!\\033[0m"
+fi
+if
+	[[ 10#"$ALBUMDR" -ge "14" ]]
+then
+	ALBUMDR="\\033[01;37;42m$ALBUMDR\\033[0m"
+	ALBUMDRCOMMENT="{$italic_start}Good!\\033[0m"
+
+elif
+	[[ 10#"$ALBUMDR" -ge "8" ]] && [[ 10#"$ALBUMDR" -lt "14"  ]]
+then
+	ALBUMDR="\\033[01;37;43m$ALBUMDR\\033[0m"
+	ALBUMDRCOMMENT="${italic_start}Transition!\\033[0m"
+elif
+	[[ 10#"$ALBUMDR" -ge "1"  ]] && [[ 10#"$ALBUMDR" -le "7"  ]]
+then 
+	ALBUMDR="\\033[01;37;41m$ALBUMDR\\033[0m"
+	ALBUMDRCOMMENT="${italic_start}Bad!\\033[0m"
+fi
+wait
+# Print the Results
+printf "\\033[01m%-9s\\t\\033[0;37m%-3s %-36s\\n\\033[0m" 	"Track:" 	"${TRACKNUMBER##'TRACKNUMBER='}" "${TITLE##'TITLE='}" &&
+printf "\\033[01m%-9s\\t\\033[0;36m%-40s\\n\\033[0m" 		"Artist:" 	"${ARTIST##'ARTIST='}" &&
+printf "\\033[01m%-9s\\t\\033[0;34m%-40s\\n\\033[0m" 		"Album:" 	"${ALBUM##'ALBUM='}" &&
+printf "\\033[01m%-9s\\t\\033[0;35m%-40s\\n\\033[0m" 		"Duration:" 	"$DURATION" &&
+printf "\\033[01m%-9s\\t\\033[0;32m%s/%s\\n\\033[0m" 		"Disc:" 	"${DISC##'DISCNUMBER='}" "${DISCTOTAL##'DISCTOTAL='}" &&
+printf "\\033[01m%-9s\\t\\033[0;32m%s\\n\\033[0m" 		"Date:" 	"${DATE##'DATE='}" &&
+printf "\\033[01m%-9s\\t\\033[0;33m%s, %s/%-s\\n\\033[0m" 	"Format:" 	"$FORMAT" "$BITS" "$SAMPLERATE" &&
+printf "\\033[01m%-9s\\t\\033[0;35m%-40s\\n\\033[0m" 		"RG Track:" 	"${REPLAYGAINTRACK##'REPLAYGAIN_TRACK_GAIN='}"&&
+printf "\\033[01m%-9s\\t\\033[0;35m%-40s\\n\\033[0m"		"RG Album:" 	"${REPLAYGAINALBUM##'REPLAYGAIN_ALBUM_GAIN='}"&&
+printf "\\033[01m%-9s\\t%2b %b\\n\\033[0m" 			"Track DR:" 	"$DYNAMICRANGE" "$DRCOMMENT" &&
+printf "\\033[01m%-9s\\t%2b %b\\n\\033[0m"			"Album DR:" 	"$ALBUMDR" "$ALBUMDRCOMMENT"
