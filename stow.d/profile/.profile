@@ -15,7 +15,7 @@ export EDITOR=/usr/bin/vim
 export PATH=$PATH:~/.bin
 export PATH=$PATH:~/.local/bin
 # Add $GOBIN to $PATH for go
-if command -v go >/dev/null; then
+if command -v go > /dev/null 2>&1; then
 	if [ -d "$HOME/go" ]; then
 		export GOPATH="$HOME/go"
 	elif [ -d "$HOME/.local/lib/go" ];then
@@ -39,7 +39,7 @@ fi
 
 # Programs
 # Cargo compiler for Rust
-if command -v cargo; then
+if command -v cargo > /dev/null 2>&1; then
 		export CARGO_HOME="$XDG_DATA_HOME/cargo"
 fi
 # NPM
@@ -59,35 +59,35 @@ export TERMINAL=xfce4-terminal
 # Use vim as a man pager
 export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nonumber nomod nolist noma' -\""
 # Set the configuration paths for lynx
-if command -v lynx; then 
+if command -v lynx > /dev/null 2>&1; then 
 		export LYNX_CFG="$XDG_CONFIG_HOME/lynx/lynx.cfg"
 		export LYNX_LSS="$XDG_CONFIG_HOME/lynx/lynx.lss"
 fi
 # Quick Start Settings for Par
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
 # fzf options
-if command -v fzf; then
+if command -v fzf > /dev/null 2>&1; then
 		export FZF_DEFAULT_OPTS="--color=16,fg+:14"
 fi
 # IPython configuration directory
-if command -v ipython; then
+if command -v ipython > /dev/null 2>&1; then
 		export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
 fi
 # Chromium BSU
-if command -v chromium-bsu; then
+if command -v chromium-bsu > /dev/null 2>&1; then
 		export CHROMIUM_BSU_SCORE="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-score"
 		export CHROMIUM_BSU_DATA="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-data"
 fi
 # Mailcap (tuir)
-if command -v tuir; then
+if command -v tuir > /dev/null 2>&1; then
 		export MAILCAPS="$XDG_CONFIG_HOME/tuir/mailcap"
 fi
 # MPV
-if  command -v mpv ;then
+if  command -v mpv > /dev/null 2>&1 ;then
 		export DVDCSS_CACHE="$XDG_CACHE_HOME/mpv/dvdcss"
 fi
 # PyLint
-if command -v pylint; then
+if command -v pylint > /dev/null 2>&1; then
 		export PYLINTHOME="$XDG_CONFIG_HOME/pylint.d/"
 fi
 # Vim
