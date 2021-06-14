@@ -252,7 +252,7 @@ bindkey -a '^o' vicd_wrapper
 zle -N fman
 bindkey -a 'm' fman
 # Mpq wrapper
-if command -v mpq >/dev/null 2&>1;then
+if command -v mpq >/dev/null 2>&1;then
 	mpq_wrapper(){BUFFER="mpq"; zle accept-line; }
 	zle -N mpq_wrapper
 	bindkey -a '^i' mpq_wrapper
