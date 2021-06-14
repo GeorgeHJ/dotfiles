@@ -1,0 +1,42 @@
+session_name: Music
+windows:
+- layout: 85b2,191x38,0,0[191x13,0,0{33x13,0,0,1,157x13,34,0,2},191x24,0,14,3]
+  options:
+    automatic-rename: off
+    allow-rename: off
+  panes:
+  - albumart-ueber.bash
+  - cava
+  - focus: 'true'
+    shell_command: ncmpcpp
+  start_directory: /home/george
+  focus: 'true'
+  window_name: Now Playing
+- layout: c244,136x26,0,0,7
+  options:
+    automatic-rename: off
+    allow-rename: off
+  panes:
+  - focus: 'true'
+    shell_command: vifm "$HOME/Music" "$HOME/.local/share/whipper"
+  start_directory: /home/george/Music
+  window_name: Music Files
+- layout: c245,136x26,0,0,8
+  options:
+    automatic-rename: off
+    allow-rename: off
+  panes:
+  - focus: 'true'
+    shell_command: spt
+  start_directory: /home/george
+  window_name: Spotify
+- layout: cb43,191x38,0,0,6
+  options:
+    automatic-rename: 'off'
+    allow-rename: off
+  panes:
+  - focus: 'true'
+    shell_command: librespot-java.sh
+  start_directory: /home/george/Scripts/java/librespot-java
+  window_name: librespot
+

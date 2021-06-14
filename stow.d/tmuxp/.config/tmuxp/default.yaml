@@ -1,0 +1,19 @@
+session_name: ''
+windows:
+- focus: 'true'
+  layout: ae60,80x23,0,0,3
+  options:
+    allow-rename: off
+  panes:
+  - focus: 'true'
+    shell_command: newsboat
+  start_directory: /home/george
+  window_name: newsboat
+- layout: ae5e,80x23,0,0,1
+  options:
+    allow-rename: off
+  panes:
+  - focus: 'true'
+    shell_command: vifm
+  start_directory: /home/george/.tmux/tmuxp
+  window_name: vifm
