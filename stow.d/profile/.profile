@@ -26,9 +26,9 @@ if command -v go > /dev/null 2>&1; then
 fi
 
 # XDG Base Directories
-[ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
-[ -z "$XDG_CACHE_HOME" ] && export XDG_CACHE_HOME="$HOME/.cache"
-[ -z "$XDG_DATA_HOME" ] && export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
+export XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
 
 # TEXMF HOME Directory Settings for LaTeX
 if [ -d ~/.texmf ]; then
