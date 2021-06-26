@@ -182,19 +182,20 @@ key[PageDown]="${terminfo[knp]}"
 key[Shift-Tab]="${terminfo[kcbt]}"
 
 bindkey -v # Use Vi Keys
+export KEYTIMEOUT=1 # Suggested for Vi mode
+
+# Insert Mode
 bindkey "$key[Backspace]" backward-delete-char
-bindkey -a "$key[Delete]" vi-delete-char
+bindkey '^?' backward-delete-char
 bindkey "$key[Delete]" delete-char
 bindkey '^[[H' beginning-of-line
-bindkey "$key[Home]" beginning-of-line
-bindkey "$key[End]" end-of-line
 bindkey '^[[F' end-of-line
-bindkey -a "$key[Home]" beginning-of-line
+
+# Normal Mode
+bindkey -a "$key[Delete]" vi-delete-char
 bindkey -a '^[[H'  beginning-of-line
-bindkey -a "$key[End]" end-of-line
 bindkey -a '^[[F' end-of-line
 
-export KEYTIMEOUT=1 # Suggested for Vi mode
 # Insert Mode bindings
 bindkey '^p' up-history
 bindkey '^n' down-history
