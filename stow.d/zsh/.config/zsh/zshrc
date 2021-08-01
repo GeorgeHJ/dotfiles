@@ -37,33 +37,15 @@ unsetopt nomatch
 typeset -a precmd_functions preexec_functions
 #}}}
 
-#{{{ compinstall and compinit options
-zstyle :compinstall filename '/home/george/.config/zsh/zshrc'
-zstyle ':completion:*' rehash true
-zstyle ':completion::complete:*' use-cache on
-zstyle ':completion:*:descriptions' format $'%B%{\e[10;39m%}[%d]%b%{\e[0m%}'
-zstyle ':completion:*:messages' format '%U%d%u'
-zstyle ':completion:*:warnings' format "%B%{$fg[red]%}No match for:%b%{$reset_color%} %d"
-zstyle ':completion:*' group-name ''
-
-# Execute code in the background to not affect the current session
-{
-	# Compile zcompdump, if modified, to increase startup speed.
-	zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
-	if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
-		zcompile "$zcompdump"
-	fi
-} &!
-
-autoload -Uz compinit
-compinit
-#}}} End of lines added by compinstall
-
 # {{{ Completion Options
 # Include hidden files in autocomplete:
 _comp_options+=(globdots)
 # Add personal completions and functions directories to fpath
-fpath=($ZDOTDIR/completions $ZDOTDIR/functions $fpath )
+fpath=($ZDOTDIR/completions $ZDOTDIR/functions $fpath)
+# Add (Nix) Home Manager if there
+if [[ -d $HOME/.nix-profile/share/zsh/site-functions ]]; then
+		fpath=("$HOME/.nix-profile/share/zsh/site-functions" $fpath)
+fi
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion::*:-tilde-:*:*' group-order named-directories users
@@ -114,6 +96,28 @@ zstyle ':completion:*:*:mkdir:*' \
 
 zmodload zsh/complist
 # }}}
+
+#{{{ compinstall and compinit options
+zstyle :compinstall filename '/home/george/.config/zsh/zshrc'
+zstyle ':completion:*' rehash true
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion:*:descriptions' format $'%B%{\e[10;39m%}[%d]%b%{\e[0m%}'
+zstyle ':completion:*:messages' format '%U%d%u'
+zstyle ':completion:*:warnings' format "%B%{$fg[red]%}No match for:%b%{$reset_color%} %d"
+zstyle ':completion:*' group-name ''
+
+# Execute code in the background to not affect the current session
+{
+	# Compile zcompdump, if modified, to increase startup speed.
+	zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+	if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+		zcompile "$zcompdump"
+	fi
+} &!
+
+autoload -Uz compinit
+compinit
+#}}} End of lines added by compinstall
 
 #{{{ Bash-style help
 autoload run-help
@@ -339,6 +343,8 @@ if [[ -f /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlightin
 	source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 elif [[ -f "$HOME/.local/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]];then
 	source "$HOME/.local/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+elif [[ -f "$HOME/.nix-profile/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh" ]];then
+		source "$HOME/.nix-profile/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh" 
 fi
 if [[ $(tput colors) == "256" ]];then
 	autoload powerlevel9k; powerlevel9k
