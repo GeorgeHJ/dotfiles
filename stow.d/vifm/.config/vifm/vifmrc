@@ -378,7 +378,7 @@ fileviewer *.7z 7z l %c
 filetype *.sc sc-im %f
 
 " Office files
-filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
+filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx setsid nohup libreoffice %f >/dev/null 2>&1 &
 fileviewer *.odt,*.docx
 	\ pandoc -t plain %c | sed 's/^[ \t]*//g; s/\.$/\.\n/g'| cat -s | par -w%pw -df
 " Problematic office filetypes
