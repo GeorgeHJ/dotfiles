@@ -99,3 +99,7 @@ if [ -f "$XDG_CONFIG_HOME/vim/vimrc" ];then
 fi
 # Zsh
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+# If using Nix/ home-manager
+if command -v home-manager > /dev/null 2>&1; then
+		. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+fi
