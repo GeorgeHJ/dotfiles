@@ -1,0 +1,454 @@
+" vim: foldmethod=marker
+" vim: fileencoding=utf-8
+"        _
+" __   _(_)_ __ ___  _ __ ___
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__
+" (_)_/ |_|_| |_| |_|_|  \___|
+
+"{{{ XDG
+let g:netrw_home='$XDG_CACHE_HOME/vim/netrw'
+set viminfo+='1000,n$XDG_CACHE_HOME/vim/viminfo
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
+set runtimepath+=$XDG_DATA_HOME/vim
+
+set spellfile=$XDG_DATA_HOME/vim/spell/en.utf-8.add
+set undofile	" Maintain undo history between sessions
+set undodir=$XDG_CACHE_HOME/vim/undo		| call mkdir(&undodir,   'p', 0700)
+set viewdir=$XDG_CACHE_HOME/vim/view		| call mkdir(&viewdir,   'p', 0700)
+set backupdir=$XDG_CACHE_HOME/vim/backup	| call mkdir(&backupdir, 'p', 0700)
+set directory=$XDG_CACHE_HOME/vim/swap  	| call mkdir(&directory, 'p', 0700)
+call mkdir($XDG_DATA_HOME.'/vim/spell', 'p', 0700)
+"}}}
+
+"{{{ Useful Defaults
+
+
+" Bail out if something that ran earlier, e.g. a system wide vimrc, does not
+" want Vim to use these default values.
+if exists('skip_defaults_vim')
+	finish
+endif
+
+" Allow backspacing over everything in insert mode.
+set backspace=indent,eol,start
+
+set history=200		" keep 200 lines of command line history
+set ruler		" show the cursor position all the time
+set showcmd		" display incomplete commands
+set wildmenu		" display completion matches in a status line
+set number 		" show line numbers " Added 22/01/18
+set ttimeout		" time out for key codes
+set ttimeoutlen=100	" wait up to 100ms after Esc for special key
+set splitright		" put vertical splits on the right
+set display=truncate	" Show @@@ in the last line if it is truncated.
+
+" Show a few lines of context around the cursor.  Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching when it's possible to timeout.
+if has('reltime')
+	set incsearch
+endif
+
+" Do not recognize octal numbers for Ctrl-A and Ctrl-X, most users find it
+" confusing.
+set nrformats-=octal
+
+" Don't use Ex mode, use Q for formatting.
+" Revert with ":unmap Q".
+map Q gq
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+" Revert with ":iunmap <C-U>".
+inoremap <C-U> <C-G>u<C-U>
+
+
+" In many terminal emulators the mouse works just fine.  By enabling it you
+" can position the cursor, Visually select and scroll with the mouse.
+if has('mouse')
+	set mouse=a
+endif
+
+" Switch syntax highlighting on when the terminal has colors or when using the
+" GUI (which always has colors).
+if &t_Co > 2 || has('gui_running')
+	" Revert with ":syntax off".
+	syntax on
+
+	" I like highlighting strings inside C comments.
+	" Revert with ":unlet c_comment_strings".
+	let c_comment_strings=1
+endif
+
+" Only do this part when compiled with support for autocommands.
+if has('autocmd')
+
+	" Enable file type detection.
+	" Use the default filetype settings, so that mail gets 'tw' set to 72,
+	" 'cindent' is on in C files, etc.
+	" Also load indent files, to automatically do language-dependent indenting.
+	" Revert with ":filetype off".
+	filetype plugin indent on
+	set omnifunc=syntaxcomplete#Complete
+
+	" Put these in an autocmd group, so that you can revert them with:
+	" ":augroup vimStartup | au! | augroup END"
+	augroup vimStartup
+		autocmd!
+
+		" When editing a file, always jump to the last known cursor position.
+		" Don't do it when the position is invalid, when inside an event handler
+		" (happens when dropping a file on gvim) and for a commit message (it's
+		" likely a different one than last time).
+		autocmd BufReadPost *
+					\ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+					\ |   exe "normal! g`\""
+					\ | endif
+
+	augroup END
+
+endif " has("autocmd")
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+" Revert with: ":delcommand DiffOrig".
+if !exists(':DiffOrig')
+	command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+				\ | wincmd p | diffthis
+endif
+
+if has('langmap') && exists('+langremap')
+	" Prevent that the langmap option applies to characters that result from a
+	" mapping.  If set (default), this may break plugins (but it's backward
+	" compatible).
+	set nolangremap
+endif
+
+set tabstop=4
+" }}}
+
+"{{{ Wild menu settings
+" better navigation of command history
+" allow next completion after / alternative
+" is <C-E> if <C-D> makes to long of a list
+if has('nvim-0.5.0')
+	cnoremap <expr> / wildmenumode() ? "\<C-Y>" : "/"
+else
+	cnoremap <expr> / wildmenumode() ? "\<C-E>" : "/"
+endif"
+set wildignorecase
+set wildignore=*.git/*,*.tags,tags,*.o,*.class,*.ccls-cache
+"}}}
+
+"{{{UI Options
+" Mappings for Clipboard Integration
+" copy
+vnoremap <C-y> "+y
+" paste
+map <C-p> "+P
+"}}}
+
+" {{{vim-plug Plugin Manager
+" Use vim-plug
+call plug#begin('$XDG_DATA_HOME/vim/plugged')
+Plug 'https://github.com/Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+Plug 'https://github.com/chrisbra/Colorizer'
+Plug 'https://github.com/dense-analysis/ale'
+Plug 'fatih/vim-go', { 'for': ['go', 'gomod'], 'do': ':GoUpdateBinaries' }
+Plug 'https://github.com/ericpruitt/tmux.vim', { 'for': 'tmux' }
+Plug 'https://github.com/icymind/NeoSolarized'
+Plug 'https://github.com/junegunn/fzf.vim'
+Plug 'https://github.com/junegunn/goyo.vim'
+Plug 'https://github.com/junegunn/limelight.vim'
+Plug 'https://github.com/plasticboy/vim-markdown', { 'for': ['markdown', 'vimwiki', 'html'] }
+Plug 'https://github.com/romainl/vim-cool'
+Plug 'https://github.com/shime/vim-livedown', { 'for': ['markdown', 'vimwiki'] }
+Plug 'https://github.com/tpope/vim-fugitive'
+Plug 'https://github.com/tpope/vim-commentary'
+Plug 'https://github.com/tpope/vim-dispatch'
+Plug 'https://github.com/tpope/vim-repeat'
+Plug 'https://github.com/tpope/vim-surround'
+Plug 'https://github.com/tpope/vim-unimpaired'
+Plug 'https://github.com/vifm/vifm.vim'
+Plug 'https://github.com/vim-airline/vim-airline'
+Plug 'https://github.com/vim-airline/vim-airline-themes'
+Plug 'https://github.com/vim-latex/vim-latex', { 'for': 'tex' }
+Plug 'https://github.com/vim-python/python-syntax', { 'for': 'python' }
+Plug 'https://github.com/vim-utils/vim-man'
+Plug 'https://github.com/vimwiki/vimwiki'
+Plug 'https://github.com/mattn/emmet-vim'
+Plug 'https://github.com/LnL7/vim-nix'
+call plug#end()
+"}}}
+
+"{{{ Theming options
+
+let $TERM = 'xterm-256color'
+" User syntax highlighting overrides
+function! SyntaxMods() abort
+	highlight	Folded		term=underline,bold	cterm=underline,bold	gui=underline,bold	guisp=#839496
+	highlight	VertSplit	cterm=reverse		ctermfg=11		guifg=#657B83	guibg=#657B83
+	highlight	SpellBad	cterm=strikethrough	ctermfg=red		guisp=#cb4b16
+	highlight	SpellCap	cterm=strikethrough	ctermfg=green		guisp=#859900
+	highlight	SpellRare	cterm=strikethrough	ctermfg=blue		guisp=#839496
+	highlight	SpellLocal	cterm=strikethrough	ctermfg=magenta		guisp=#d33682
+	highlight	ALEError	cterm=bold,underline	ctermfg=lightred	gui=undercurl	guisp=#cb4b16	guibg=#073642
+	highlight	ALEWarning	cterm=bold,underline	ctermfg=green		gui=undercurl	guisp=#859900	guibg=#073642
+	highlight	ALEErrorSign	cterm=bold,underline	ctermfg=lightred	gui=bold	guibg=#073642
+	highlight	ALEWarningSign	cterm=bold,underline	ctermfg=green		gui=bold	guifg=#859900	guibg=#073642
+	" Render comments in italics
+	highlight Comment cterm=italic gui=italic
+endfunction
+
+" Call the SyntaxMods function when the colorscheme is changed or vim finishes loading
+if has('autocmd')
+	augroup SyntaxMods
+		autocmd!
+		autocmd ColorScheme,VimEnter * call SyntaxMods()
+	augroup END
+endif
+" My Colour Scheme
+if has('gui_running') || &term =~? 'xterm-256color\|tmux-256color\|xterm-kitty'
+	set t_co=256
+	set termguicolors
+	set background=dark
+	colorscheme NeoSolarized
+	let g:solarized_menu=0
+	let g:neosolarized_vertsplitbgtrans=0
+	set cursorline
+endif
+" Spellchecking and highlighting
+set spelllang=en_gb
+" Highlight searches
+set hlsearch
+" Internal Terminal configuration
+let g:terminal_ansi_colors = [
+			\'#073642',
+			\'#dc322f',
+			\'#859900',
+			\'#b58900',
+			\'#268bd2',
+			\'#d33682',
+			\'#2aa198',
+			\'#eee8d5',
+			\'#002b36',
+			\'#cb4b16',
+			\'#586e75',
+			\'#657b83',
+			\'#839496',
+			\'#6c71c4',
+			\'#93a1a1',
+			\'#fdf6e3']
+
+if &term ==# 'tmux-256color'
+	setlocal term=xterm-256color
+endif
+" Cursor Configuration
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+"}}}
+
+"Colorizer settings{{{
+let g:colorizer_auto_filetype = 'css,html,markdown,vimwiki,rasi,tmux,vifm,conf'
+let g:colorizer_custom_colors = {'base03': '#002b36',
+				\'base02': '#073642',
+				\'base01': '#586e75',
+				\'base00': '#657b83',
+				\'base0' : '#839496',
+				\'base1' : '#93a1a1',
+				\'base2' : '#eee8d5',
+				\'base3' : '#fdf6e3'}
+"}}}
+
+"{{{ Goyo Plugin
+function! s:goyo_enter()
+	set nocursorline
+	set noshowmode
+	set noshowcmd
+	set scrolloff=999
+	setlocal wrap
+	setlocal linebreak
+	setlocal formatoptions=l
+	setlocal noexpandtab
+	setlocal spell spelllang=en_gb
+	map <leader>s :set spell!<CR>
+	hi SpellBad cterm=strikethrough ctermfg=1
+	hi SpellCap cterm=strikethrough ctermfg=2
+	hi SpellRare cterm=strikethrough ctermfg=4
+	hi SpellLocal cterm=strikethrough ctermfg=13
+	map j gj
+	map k gk
+	set mouse=
+	Limelight
+	" ...
+endfunction
+
+function! s:goyo_leave()
+	set cursorline
+	set showmode
+	set showcmd
+	set scrolloff=5
+	map k k
+	map j j
+	if has('mouse')
+		set mouse=a
+	endif
+	filetype detect
+	setlocal nospell
+	AirlineRefresh
+	Limelight!
+	" ...
+endfunction
+
+if has('autocmd')
+	augroup Goyo
+		autocmd!
+		autocmd! User GoyoEnter nested call <SID>goyo_enter()
+		autocmd! User GoyoLeave nested call <SID>goyo_leave()
+	augroup END
+endif
+
+"}}}
+
+"{{{ Limelight Plugin
+let g:limelight_conceal_ctermfg = '10'
+"}}}
+
+"{{{ Airline Plugin
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
+"}}}
+
+" {{{ ALE Plugin
+" Completion settings
+let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
+" Ale fixer settings
+let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace']}
+" }}}
+
+"{{{ vimwiki Plugin
+" vimwiki with markdown support
+let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown','.mdown': 'markdown'}
+let g:vimwiki_global_ext = 0
+" helppage -> :h vimwiki-syntax
+" folding settings:
+let g:vimwiki_folding = 'expr'
+" set nice syntax highlighting
+" if has('autocmd')
+" 	augroup vimwiki-settings
+" 		autocmd!
+" 		autocmd FileType vimwiki setlocal syntax=markdown
+" 		" Set Softwrap for vimwiki
+" 		autocmd FileType vimwiki set wrap linebreak nolist
+" 		" Set Format Options for vimwiki
+" 		autocmd FileType vimwiki set fo-=l
+" 		" autocmd FileType vimwiki setlocal textwidth=100
+" 		autocmd FileType vimwiki set foldlevel=4
+" 	augroup END
+" endif
+
+" register my wiki on the vimwiki list
+let notes = {}
+let notes.path = '~/Documents/Notes/'
+let notes.index = 'index'
+let notes.ext = '.md'
+let notes.syntax = 'markdown'
+let notes.auto_diary_index = 1
+let python_notes = {}
+let python_notes.path = '~/Documents/Notes/Python'
+let python_notes.index = 'index'
+let python_notes.ext = '.md'
+let python_notes.syntax = 'markdown'
+let g:vimwiki_list = [notes,python_notes]
+" diary settings
+if has('autocmd')
+	augroup VimWikiDiary
+		autocmd!
+		autocmd BufNewFile ~/Documents/Notes/diary/* read !echo -e "> "$(fortune)""
+		autocmd BufNewFile ~/Documents/Notes/diary/* :g/^$/d
+	augroup END
+endif
+
+"{{{ Skeleton Files
+if has('autocmd')
+	augroup templates
+		autocmd!
+		autocmd BufNewFile *.py 0r ~/.config/vim/templates/skeleton.py
+		autocmd BufNewFile main.go 0r ~/.config/vim/templates/main.go
+	augroup END
+endif
+
+" }}}
+
+"{{{ netrw — file explorer settings
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+hi Directory cterm=bold
+hi netrwExe ctermfg=2
+" Toggle netrw
+let g:NetrwIsOpen=0
+function! ToggleNetrw()
+	if g:NetrwIsOpen
+		let i = bufnr('$')
+		while (i >= 1)
+			if (getbufvar(i, '&filetype') ==# 'netrw')
+				silent exe 'bwipeout ' . i
+			endif
+			let i-=1
+		endwhile
+		let g:NetrwIsOpen=0
+	else
+		let g:NetrwIsOpen=1
+		cd %:p:h
+		silent Lexplore
+	endif
+endfunction
+
+augroup CloseNetrw
+	autocmd!
+	autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" || &buftype == 'quickfix' |q| endif
+augroup END
+
+"}}}
+
+" {{{ LEADER Key Mappings
+
+" {{{ ALE Plugin
+nmap <leader>af <plug>(ale_fix)
+nmap <leader>at <plug>(ale_toggle_buffer)
+nmap <leader>ad <plug>(ale_go_to_definition)
+" map <leader>
+" map <leader>
+" map <leader>
+" }}}
+"{{{ FZF Plugin
+nmap <leader>f :FZF<CR>
+nmap <leader>u :Buffers<CR>
+"}}}
+"{{{ Misc
+nmap <leader>g :Goyo<CR>
+nmap <leader>l :Limelight!!<CR>
+nmap <leader>md :LivedownPreview<CR>
+nmap <leader>n :call ToggleNetrw()<CR>
+" }}}
+" }}}
+
+"{{{ Reddit — RTV
+if has('autocmd')
+	augroup reddit
+		autocmd!
+		autocmd BufRead /tmp/rtv_*.txt set filetype=markdown
+		autocmd BufRead /tmp/rtv_*.txt set syntax=markdown
+	augroup END
+endif"}}}
