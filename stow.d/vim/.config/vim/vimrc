@@ -9,6 +9,7 @@
 "{{{ XDG
 let g:netrw_home='$XDG_CACHE_HOME/vim/netrw'
 set viminfo+='1000,n$XDG_CACHE_HOME/vim/viminfo
+set viminfofile=$XDG_CACHE_HOME/vim/viminfo
 set runtimepath^=$XDG_CONFIG_HOME/vim
 set runtimepath+=$XDG_CONFIG_HOME/vim/after
 set runtimepath+=$XDG_DATA_HOME/vim
@@ -341,19 +342,6 @@ let g:vimwiki_global_ext = 0
 " helppage -> :h vimwiki-syntax
 " folding settings:
 let g:vimwiki_folding = 'expr'
-" set nice syntax highlighting
-" if has('autocmd')
-" 	augroup vimwiki-settings
-" 		autocmd!
-" 		autocmd FileType vimwiki setlocal syntax=markdown
-" 		" Set Softwrap for vimwiki
-" 		autocmd FileType vimwiki set wrap linebreak nolist
-" 		" Set Format Options for vimwiki
-" 		autocmd FileType vimwiki set fo-=l
-" 		" autocmd FileType vimwiki setlocal textwidth=100
-" 		autocmd FileType vimwiki set foldlevel=4
-" 	augroup END
-" endif
 
 " register my wiki on the vimwiki list
 let notes = {}
