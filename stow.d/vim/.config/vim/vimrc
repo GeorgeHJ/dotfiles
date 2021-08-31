@@ -345,12 +345,14 @@ let g:vimwiki_folding = 'expr'
 
 " register my wiki on the vimwiki list
 let notes = {}
+let notes.name = 'Notes'
 let notes.path = '~/Documents/Notes/'
 let notes.index = 'index'
 let notes.ext = '.md'
 let notes.syntax = 'markdown'
 let notes.auto_diary_index = 1
 let python_notes = {}
+let python_notes.name = 'Python'
 let python_notes.path = '~/Documents/Notes/Python'
 let python_notes.index = 'index'
 let python_notes.ext = '.md'
@@ -360,8 +362,9 @@ let g:vimwiki_list = [notes,python_notes]
 if has('autocmd')
 	augroup VimWikiDiary
 		autocmd!
-		autocmd BufNewFile ~/Documents/Notes/diary/* read !echo -e "> "$(fortune)""
+		autocmd BufNewFile ~/Documents/Notes/diary/* read !fortune|sed -e 's/\(^\)/\1> /'
 		autocmd BufNewFile ~/Documents/Notes/diary/* :g/^$/d
+		autocmd BufNewFile ~/Documents/Notes/diary/* :norm G2o
 	augroup END
 endif
 
