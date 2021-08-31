@@ -97,6 +97,10 @@ zstyle ':completion:*:*:mkdir:*' \
 zmodload zsh/complist
 # }}}
 
+#{{{ Extra functions
+autoload diary
+# }}}
+
 #{{{ compinstall and compinit options
 zstyle :compinstall filename '/home/george/.config/zsh/zshrc'
 zstyle ':completion:*' rehash true

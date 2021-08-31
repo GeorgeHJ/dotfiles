@@ -1,0 +1,14 @@
+#! /usr/bin/env zsh
+function diary() {
+		local func
+case $1 in
+		t|\-t|tomorrow)
+vim -c "VimwikiMakeTomorrowDiaryNote";;
+		y|\-y|yesterday)
+vim -c "VimwikiMakeYesterdayDiaryNote";;
+		'')
+vim -c "VimwikiMakeDiaryNote";;
+		*)
+date -d "$1" > /dev/null && vim ~/Documents/Notes/diary/$(date -d "$1" +%Y-%m-%d).md;;
+esac
+}
