@@ -1,6 +1,6 @@
 configuration {
 	modi: "window,run,drun";
-	font: "sans 11";
+	font: "IBM Plex Sans 11";
 	icon-theme: "Papirus";
 	show-icons: true;
 	terminal: "xfce4-terminal";
