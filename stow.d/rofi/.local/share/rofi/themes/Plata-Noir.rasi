@@ -77,9 +77,13 @@ configuration {
 #element-icon {
 	size: 24px;
 	padding: 0px 20px 0px 20px;
+	background-color: inherit;
+
 }
 #element-text {
 	padding: 2px 0px 2px;
+	background-color: inherit;
+	text-color: inherit;
 }
 #element {
 	border:  0;
