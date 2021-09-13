@@ -271,8 +271,8 @@ fi
 # {{{ Luke Smith — cursor settings
 # https://github.com/LukeSmithxyz/voidrice/blob/master/.config/zsh/.zshrc
 # Now autoloaded from my fpath
-[[ -n $functions[zle-line-init] || -n $functions[zle-keymap-select] ]] &&
-		unfunction zle-line-init zle-keymap-select
+[[ -n $functions[zle-line-init] ]] && unfunction zle-line-init
+[[ -n $functions[zle-keymap-select] ]] && unfunction zle-keymap-select
 autoload zle-line-init; zle -N zle-line-init
 autoload zle-line-blockcursor; zle -N zle-line-blockcursor
 
