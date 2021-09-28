@@ -1,14 +1,27 @@
 #! /usr/bin/env zsh
 function diary() {
-		local func
-case $1 in
-		t|\-t|tomorrow)
-vim -c "VimwikiMakeTomorrowDiaryNote";;
-		y|\-y|yesterday)
-vim -c "VimwikiMakeYesterdayDiaryNote";;
-		'')
-vim -c "VimwikiMakeDiaryNote";;
-		*)
-date -d "$1" > /dev/null && vim ~/Documents/Notes/diary/$(date -d "$1" +%Y-%m-%d).md;;
-esac
+		# Run over standard options
+		local opts
+		while getopts ity opts
+		do
+				case $opts in
+						i)
+								vim -c "VimwikiDiaryIndex"; return;;
+						t)
+								vim -c "VimwikiMakeTomorrowDiaryNote"; return;;
+						y)
+								vim -c "VimwikiMakeYesterdayDiaryNote"; return;;
+				esac
+				echo $OPTARG
+		done
+		# Catch arguments only
+		if [[ -z $opts ]]; then
+				case $1 in
+						'')
+								vim -c "VimwikiMakeDiaryNote"; return;;
+						*)
+								date -d "$1" > /dev/null &&
+										vim ~/Documents/Notes/diary/$(date -d "$1" +%Y-%m-%d).md;;
+				esac
+		fi
 }
