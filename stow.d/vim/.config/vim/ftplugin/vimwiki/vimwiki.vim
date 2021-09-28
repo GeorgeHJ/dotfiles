@@ -2,7 +2,7 @@ setlocal syntax=markdown
 setlocal wrap linebreak nolist
 setlocal formatoptions-=l
 setlocal foldlevel=4
-setlocal textwidth=100
+setlocal textwidth=80
 map j gj
 map k gk
 let g:vim_markdown_fenced_languages = ['bash=sh', 'sh=sh', 'zsh=sh', 'tex', 'viml=vim']
