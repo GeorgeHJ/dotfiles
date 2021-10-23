@@ -9,11 +9,12 @@ fi
 
 #{{{ History File
 setopt SHARE_HISTORY HIST_EXPIRE_DUPS_FIRST histignorespace
-HISTFILE=~/.cache/zsh/history
+XDG_STATE_HOME=${XDG_STATE_HOME:-$HOME/.local/state}
+HISTFILE=$XDG_STATE_HOME/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
 if [[ ! -f "$HISTFILE" ]];then
-	mkdir -p "$HOME/.cache/zsh" && touch "$HISTFILE"
+	mkdir -p "$XDG_STATE_HOME/zsh" && touch "$HISTFILE"
 fi
 #}}}
 
@@ -135,6 +136,12 @@ declare -A hash_dirs
 [[ -d "$GOPATH" ]] && hash_dirs[go]="$GOPATH"
 [[ -d "$XDG_CONFIG_HOME/zsh" ]] && hash_dirs[zsh]="$XDG_CONFIG_HOME/zsh"
 [[ -d "$XDG_CONFIG_HOME/vim" ]] && hash_dirs[vim]="$XDG_CONFIG_HOME/vim"
+
+declare -A desc_dirs
+desc_dirs[bin]='bin - Executable scripts'
+desc_dirs[go]='go - Go Language Workspace'
+desc_dirs[zsh]='zsh - Zsh directory'
+desc_dirs[vim]='vim - Vim configurations'
 
 # Loop over the associative array to build the directory hashes
 for key value in ${(kv)hash_dirs};
