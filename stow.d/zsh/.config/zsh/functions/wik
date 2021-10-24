@@ -1,0 +1,13 @@
+#! /bin/env zsh
+function wik(){
+		local wiki_no
+		declare -i wiki_no
+		wiki_no=$1
+
+		case $wiki_no in
+				'')
+						vim -c "VimwikiIndex";;
+				*)
+						vim -c "VimwikiIndex${wiki_no}"
+		esac
+}

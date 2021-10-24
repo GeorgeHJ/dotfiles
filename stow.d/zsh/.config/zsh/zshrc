@@ -99,7 +99,7 @@ zmodload zsh/complist
 # }}}
 
 #{{{ Extra functions
-autoload diary
+autoload diary wik
 # }}}
 
 #{{{ compinstall and compinit options
