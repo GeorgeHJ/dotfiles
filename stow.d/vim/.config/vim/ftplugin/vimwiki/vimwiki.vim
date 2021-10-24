@@ -5,6 +5,7 @@ setlocal foldlevel=4
 setlocal textwidth=80
 map j gj
 map k gk
+map <leader>bl :VimwikiBacklinks<CR>
 let g:vim_markdown_fenced_languages = ['bash=sh', 'sh=sh', 'zsh=sh', 'tex', 'viml=vim']
 let g:vim_markdown_folding_style_pythonic = 1
 
