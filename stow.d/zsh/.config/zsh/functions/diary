@@ -2,15 +2,19 @@
 function diary() {
 		# Run over standard options
 		local opts
-		while getopts ity opts
+		local nval; declare -i nval
+		while getopts ityn: opts
 		do
 				case $opts in
+						n) nval=$OPTARG
+				esac
+				case $opts in
 						i)
-								vim -c "VimwikiDiaryIndex"; return;;
+								vim -c "VimwikiDiaryIndex $nval"; return;;
 						t)
-								vim -c "VimwikiMakeTomorrowDiaryNote"; return;;
+								vim -c "VimwikiMakeTomorrowDiaryNote $nval"; return;;
 						y)
-								vim -c "VimwikiMakeYesterdayDiaryNote"; return;;
+								vim -c "VimwikiMakeYesterdayDiaryNote $nval"; return;;
 				esac
 				echo $OPTARG
 		done
