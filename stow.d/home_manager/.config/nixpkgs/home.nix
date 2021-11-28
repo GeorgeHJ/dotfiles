@@ -37,6 +37,11 @@
     tuir
     vim-vint
     zsh-fast-syntax-highlighting
+    python38Packages.pycodestyle
+    python38Packages.flake8
+    python38Packages.pydocstyle
+    python38Packages.autopep8
+    python38Packages.isort
   ];
 
   programs.man.enable=false;
