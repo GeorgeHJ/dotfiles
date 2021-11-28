@@ -6,4 +6,5 @@ augroup markdown
 	autocmd filetype markdown map k gk
 augroup END
 let g:markdown_fenced_languages = ['sh', 'tex', 'vim']
+let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_style_pythonic = 1
