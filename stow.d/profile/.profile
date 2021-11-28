@@ -91,11 +91,6 @@ if command -v pylint > /dev/null 2>&1; then
 		export PYLINTHOME="$XDG_CONFIG_HOME/pylint.d/"
 fi
 
-# Task warrior
-if command -v task > /dev/null 2>&1; then
-		export TASKRC="$XDG_CONFIG_HOME/task/taskrc"
-		export TASKDATA="$XDG_DATA_HOME/task"
-fi
 # Vim
 if [ -f "$XDG_CONFIG_HOME/vim/vimrc" ];then
 		#shellcheck disable=SC2016
