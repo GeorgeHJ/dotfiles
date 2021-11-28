@@ -2,7 +2,6 @@
 
 # Aliases
 alias mutt='neomutt'
-alias wik='vim -c "VimwikiIndex"'
 alias ddgr='ddgr --url-handler linkhandler'
 alias yt='ddgr --url-handler linkhandler \!yt'
 alias archw='ddgr --url-handler linkhandler \!arch'
