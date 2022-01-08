@@ -331,7 +331,7 @@ case $TERM in
 		precmd_functions+=(tmux_title_restore)
 		preexec_functions+=(tmux_title_set)
 		;;
-	xterm*)
+	xterm*|wezterm)
 		precmd_functions+=(xterm_window_title)
 		;;
 esac
