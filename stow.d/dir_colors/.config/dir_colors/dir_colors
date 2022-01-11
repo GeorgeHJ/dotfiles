@@ -81,6 +81,7 @@ TERM xterm-debian
 TERM xterm-termite
 TERM alacritty-256color
 TERM xterm-kitty
+TERM wezterm
 
 ## Documentation
 #
