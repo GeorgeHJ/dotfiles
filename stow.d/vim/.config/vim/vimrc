@@ -222,6 +222,17 @@ if has('gui_running') || &term =~? 'xterm-256color\|tmux-256color\|xterm-kitty'
 	let g:solarized_menu=0
 	let g:neosolarized_vertsplitbgtrans=0
 	set cursorline
+elseif &term =~? 'wezterm'
+	let $TERM = 'wezterm'
+	set t_co=256
+	let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+	let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+	set termguicolors
+	set background=dark
+	colorscheme NeoSolarized
+	let g:solarized_menu=0
+	let g:neosolarized_vertsplitbgtrans=0
+	set cursorline
 endif
 " Spellchecking and highlighting
 set spelllang=en_gb
