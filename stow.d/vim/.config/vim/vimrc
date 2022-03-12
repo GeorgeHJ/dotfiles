@@ -353,6 +353,7 @@ let g:vimwiki_global_ext = 0
 " helppage -> :h vimwiki-syntax
 " folding settings:
 let g:vimwiki_folding = 'expr'
+let g:vimwiki_auto_chdir = 1
 
 " register my wiki on the vimwiki list
 let notes = {}
@@ -362,6 +363,7 @@ let notes.index = 'index'
 let notes.ext = '.md'
 let notes.syntax = 'markdown'
 let notes.auto_diary_index = 1
+let notes.diary_caption_level=-1
 let python_notes = {}
 let python_notes.name = 'Python'
 let python_notes.path = '~/Documents/Notes/Python'
