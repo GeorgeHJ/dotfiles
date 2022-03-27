@@ -24,27 +24,29 @@
 
   # User additions below:
   home.packages = with pkgs; [
+    borgbackup
     cava
     ddgr
     dr14_tmeter
     ksuperkey
     nodePackages.readability-cli
     nushell
-    pandoc
     par
+    python310Packages.autopep8
+    python310Packages.flake8
+    python310Packages.isort
+    python310Packages.pycodestyle
+    python310Packages.pydocstyle
     shellcheck
     spotify-tui
     tuir
     vim-vint
     zsh-fast-syntax-highlighting
-    python38Packages.pycodestyle
-    python38Packages.flake8
-    python38Packages.pydocstyle
-    python38Packages.autopep8
-    python38Packages.isort
   ];
 
   programs.man.enable=false;
+  programs.pandoc.enable=true;
+  # Nushell
   programs.nushell.enable=true;
   programs.nushell.settings.line_editor={
     edit_mode = "vi";
