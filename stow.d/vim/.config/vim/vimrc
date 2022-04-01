@@ -348,12 +348,14 @@ let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace']}
 
 "{{{ vimwiki Plugin
 " vimwiki with markdown support
+" See also: ftplugin/vimwiki/vimwiki.md
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown','.mdown': 'markdown'}
 let g:vimwiki_global_ext = 0
 " helppage -> :h vimwiki-syntax
 " folding settings:
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_auto_chdir = 1
+let g:vimwiki_filetypes = ['markdown']
 
 " register my wiki on the vimwiki list
 let notes = {}
@@ -367,9 +369,12 @@ let notes.diary_caption_level=-1
 let python_notes = {}
 let python_notes.name = 'Python'
 let python_notes.path = '~/Documents/Notes/Python'
+let python_notes.diary_rel_path = '../diary/'
 let python_notes.index = 'index'
 let python_notes.ext = '.md'
 let python_notes.syntax = 'markdown'
+let python_notes.auto_diary_index = 1
+let python_notes.diary_caption_level=-1
 let g:vimwiki_list = [notes,python_notes]
 " diary settings
 if has('autocmd')
@@ -386,6 +391,13 @@ if has('autocmd')
 		autocmd BufNewFile ~/Documents/Notes/Python/[^\/]\+.md 0r ~/.config/vim/templates/note.md
 	augroup END
 endif
+
+"}}}
+
+"{{{ Markdown
+" See also: ftplugin/markdown/markdown.vim
+let g:vim_markdown_frontmatter=1
+"}}}
 
 "{{{ Skeleton Files
 if has('autocmd')
