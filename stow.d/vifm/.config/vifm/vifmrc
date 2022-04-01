@@ -268,6 +268,10 @@ if $TERM=='xterm-kitty'
 	\ kitty +icat --place %pwx%ph@%pxx%py  --silent %c
 	\ %pc
 	\ kitty icat --clear --silent %pd
+elseif $TERM=='wezterm'
+	fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.svg,*.ico
+	\ imgcat --height %ph --width %pw %c %pd
+	\ %pc
 else
 	fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
 	\ imgt %px %py %pw %ph %c
@@ -407,7 +411,7 @@ filextype */
 	\ {View in thunar}
 	\ Thunar %f &,
 fileviewer */,.*/
-	\ tree -C %f
+	\ tree -C %c
 
 " Open all other files with default system programs (you can also remove all
 " :file[x]type commands above to ensure they don't interfere with system-wide
@@ -493,7 +497,7 @@ set classify+=' ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,*.jar
 " images
 set classify+=' ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
 " audio
-set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
+set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,**.opus,,.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
 " media
 set classify+='契::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid::'
 " office files
