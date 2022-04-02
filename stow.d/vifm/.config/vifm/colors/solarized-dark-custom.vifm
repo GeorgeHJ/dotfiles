@@ -47,7 +47,7 @@
 
 highlight clear
 
-highlight Win		cterm=none	ctermfg=default		ctermbg=8
+highlight Win		cterm=none	ctermfg=default		ctermbg=none
 
 highlight TopLine	cterm=none	ctermfg=14		ctermbg=black
 highlight TopLineSel	cterm=none	ctermfg=14		ctermbg=black
