@@ -6,6 +6,11 @@ setlocal foldlevel=4
 setlocal textwidth=80
 map <leader>bl :VimwikiBacklinks<CR>
 
+" mardown reflinks
+augroup md_reflinks
+		autocmd!
+		autocmd BufWrite *.md call vimwiki#markdown_base#scan_reflinks()
+augroup end
 
 function! VimwikiLinkHandler(link)
 		" Use Vim to open external files with the 'vfile:' scheme.  E.g.:
