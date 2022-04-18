@@ -342,6 +342,34 @@ let g:airline#extensions#ale#enabled = 1
 " Completion settings
 let g:ale_completion_enabled = 1
 set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_symbols = {
+\ 'text': '',
+\ 'method': '',
+\ 'function': '',
+\ 'constructor': '',
+\ 'field': '',
+\ 'variable': '',
+\ 'class': '',
+\ 'interface': '',
+\ 'module': '',
+\ 'property': '',
+\ 'unit': 'unit',
+\ 'value': 'val',
+\ 'enum': '',
+\ 'keyword': 'keyword',
+\ 'snippet': '',
+\ 'color': 'color',
+\ 'file': '',
+\ 'reference': 'ref',
+\ 'folder': '',
+\ 'enum member': '',
+\ 'constant': '',
+\ 'struct': '',
+\ 'event': 'event',
+\ 'operator': '',
+\ 'type_parameter': 'type param',
+\ '<default>': 'v'
+\ }
 " Ale fixer settings
 let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace']}
 " }}}
