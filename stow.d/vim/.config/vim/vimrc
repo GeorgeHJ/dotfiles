@@ -503,12 +503,3 @@ nmap	<leader>s	:set spell!<CR>
 nmap	<leader>c	:e ~/.config/vim/vimrc<CR>
 " }}}
 " }}}
-
-"{{{ Reddit — RTV
-if has('autocmd')
-	augroup reddit
-		autocmd!
-		autocmd BufRead /tmp/rtv_*.txt set filetype=markdown
-		autocmd BufRead /tmp/rtv_*.txt set syntax=markdown
-	augroup END
-endif"}}}
