@@ -25,29 +25,48 @@ call mkdir($XDG_DATA_HOME.'/vim/spell', 'p', 0700)
 
 "{{{ Useful Defaults
 
-
 " Bail out if something that ran earlier, e.g. a system wide vimrc, does not
 " want Vim to use these default values.
 if exists('skip_defaults_vim')
 	finish
 endif
 
-" Allow backspacing over everything in insert mode.
-set backspace=indent,eol,start
+set tabstop=4
 
-set history=200		" keep 200 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set wildmenu		" display completion matches in a status line
-set number 		" show line numbers " Added 22/01/18
-set ttimeout		" time out for key codes
-set ttimeoutlen=100	" wait up to 100ms after Esc for special key
-set splitright		" put vertical splits on the right
-set display=truncate	" Show @@@ in the last line if it is truncated.
+function!RestoreDefaults() abort
 
-" Show a few lines of context around the cursor.  Note that this makes the
-" text scroll if you mouse-click near the start or end of the window.
-set scrolloff=5
+		" Allow backspacing over everything in insert mode.
+		set backspace=indent,eol,start
+
+		set cursorline
+		set history=200			" keep 200 lines of command line history
+		set ruler				" show the cursor position all the time
+		set showcmd				" display incomplete commands
+		set wildmenu			" display completion matches in a status line
+		set number 				" show line numbers " Added 22/01/18
+		set ttimeout			" time out for key codes
+		set ttimeoutlen=100		" wait up to 100ms after Esc for special key
+		set splitright			" put vertical splits on the right
+		set display=truncate	" Show @@@ in the last line if it is truncated.
+
+		" Show a few lines of context around the cursor.  Note that this makes the
+		" text scroll if you mouse-click near the start or end of the window.
+		set scrolloff=5
+
+		" In many terminal emulators the mouse works just fine.  By enabling it you
+		" can position the cursor, Visually select and scroll with the mouse.
+		if has('mouse')
+				set mouse=a
+		endif
+endfunction
+
+call RestoreDefaults()
+
+" Spellcheck language
+set spelllang=en_gb
+
+" Highlight searches
+set hlsearch
 
 " Do incremental searching when it's possible to timeout.
 if has('reltime')
@@ -67,12 +86,6 @@ map Q gq
 " Revert with ":iunmap <C-U>".
 inoremap <C-U> <C-G>u<C-U>
 
-
-" In many terminal emulators the mouse works just fine.  By enabling it you
-" can position the cursor, Visually select and scroll with the mouse.
-if has('mouse')
-	set mouse=a
-endif
 
 " Switch syntax highlighting on when the terminal has colors or when using the
 " GUI (which always has colors).
@@ -130,7 +143,6 @@ if has('langmap') && exists('+langremap')
 	set nolangremap
 endif
 
-set tabstop=4
 " }}}
 
 "{{{ Wild menu settings
@@ -190,20 +202,39 @@ call plug#end()
 "{{{ Theming options
 
 let $TERM = 'xterm-256color'
-" User syntax highlighting overrides
-function! SyntaxMods() abort
-	highlight	Folded		term=underline,bold	cterm=underline,bold	gui=underline,bold	guisp=#839496
-	highlight	VertSplit	cterm=reverse		ctermfg=11		guifg=#657B83	guibg=#657B83
-	highlight	SpellBad	cterm=strikethrough	ctermfg=red		guisp=#cb4b16
+" Spell colours function
+function! SpellColours() abort
+	highlight	SpellBad	cterm=strikethrough	ctermfg=red			guisp=#cb4b16
 	highlight	SpellCap	cterm=strikethrough	ctermfg=green		guisp=#859900
 	highlight	SpellRare	cterm=strikethrough	ctermfg=blue		guisp=#839496
 	highlight	SpellLocal	cterm=strikethrough	ctermfg=magenta		guisp=#d33682
-	highlight	ALEError	cterm=bold,underline	ctermfg=lightred	gui=undercurl	guisp=#cb4b16	guibg=#073642
-	highlight	ALEWarning	cterm=bold,underline	ctermfg=green		gui=undercurl	guisp=#859900	guibg=#073642
-	highlight	ALEErrorSign	cterm=bold,underline	ctermfg=lightred	gui=bold	guibg=#073642
-	highlight	ALEWarningSign	cterm=bold,underline	ctermfg=green		gui=bold	guifg=#859900	guibg=#073642
+endfunction
+" User syntax highlighting overrides
+function! SyntaxMods() abort
+	highlight	Folded			term=underline,bold		cterm=underline,bold	gui=underline,bold	guisp=#839496
+	highlight	VertSplit		cterm=reverse			ctermfg=11				guifg=#657B83		guibg=#657B83
+	highlight	ALEError		cterm=bold,underline	ctermfg=lightred		gui=undercurl		guisp=#cb4b16	guibg=#073642
+	highlight	ALEWarning		cterm=bold,underline	ctermfg=green			gui=undercurl		guisp=#859900	guibg=#073642
+	highlight	ALEErrorSign	cterm=bold,underline	ctermfg=lightred		gui=bold			guibg=#073642
+	highlight	ALEWarningSign	cterm=bold,underline	ctermfg=green			gui=bold			guifg=#859900	guibg=#073642
 	" Render comments in italics
 	highlight Comment cterm=italic gui=italic
+	" Invert cursor, works in the gui for now
+	highlight Cursor gui=reverse guifg=NONE guibg=NONE
+	highlight Directory cterm=bold
+	highlight netrwExe ctermfg=2
+	call SpellColours()
+endfunction
+
+function! NeoSolarizedSettings() abort
+	set t_co=256
+	set termguicolors
+	set background=dark
+	colorscheme NeoSolarized
+	let g:solarized_menu=0
+	let g:neosolarized_vertsplitbgtrans=0
+	let g:neosolarized_termBoldAsBright = 0
+	let g:neosolarized_italic = 1
 endfunction
 
 " Call the SyntaxMods function when the colorscheme is changed or vim finishes loading
@@ -215,29 +246,13 @@ if has('autocmd')
 endif
 " My Colour Scheme
 if has('gui_running') || &term =~? 'xterm-256color\|tmux-256color\|xterm-kitty'
-	set t_co=256
-	set termguicolors
-	set background=dark
-	colorscheme NeoSolarized
-	let g:solarized_menu=0
-	let g:neosolarized_vertsplitbgtrans=0
-	set cursorline
+	call NeoSolarizedSettings()
 elseif &term =~? 'wezterm'
 	let $TERM = 'wezterm'
-	set t_co=256
 	let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
 	let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
-	set termguicolors
-	set background=dark
-	colorscheme NeoSolarized
-	let g:solarized_menu=0
-	let g:neosolarized_vertsplitbgtrans=0
-	set cursorline
+	call NeoSolarizedSettings()
 endif
-" Spellchecking and highlighting
-set spelllang=en_gb
-" Highlight searches
-set hlsearch
 " Internal Terminal configuration
 let g:terminal_ansi_colors = [
 			\'#073642',
@@ -284,16 +299,12 @@ function! s:goyo_enter()
 	set noshowmode
 	set noshowcmd
 	set scrolloff=999
-	setlocal wrap
+	" setlocal wrap " This is default anyway
 	setlocal linebreak
 	setlocal formatoptions=l
 	setlocal noexpandtab
-	setlocal spell spelllang=en_gb
-	map <leader>s :set spell!<CR>
-	hi SpellBad cterm=strikethrough ctermfg=1
-	hi SpellCap cterm=strikethrough ctermfg=2
-	hi SpellRare cterm=strikethrough ctermfg=4
-	hi SpellLocal cterm=strikethrough ctermfg=13
+	setlocal spell
+	call SpellColours()
 	map j gj
 	map k gk
 	set mouse=
@@ -302,19 +313,14 @@ function! s:goyo_enter()
 endfunction
 
 function! s:goyo_leave()
-	set cursorline
-	set showmode
-	set showcmd
-	set scrolloff=5
+	call RestoreDefaults()
 	map k k
 	map j j
-	if has('mouse')
-		set mouse=a
-	endif
 	filetype detect
 	setlocal nospell
 	AirlineRefresh
 	Limelight!
+	:edit
 	" ...
 endfunction
 
@@ -448,8 +454,6 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
-hi Directory cterm=bold
-hi netrwExe ctermfg=2
 " Toggle netrw
 let g:NetrwIsOpen=0
 function! ToggleNetrw()
@@ -491,10 +495,12 @@ nmap <leader>f :FZF<CR>
 nmap <leader>u :Buffers<CR>
 "}}}
 "{{{ Misc
-nmap <leader>g :Goyo<CR>
-nmap <leader>l :Limelight!!<CR>
-nmap <leader>md :LivedownPreview<CR>
-nmap <leader>n :call ToggleNetrw()<CR>
+nmap	<leader>g	:Goyo<CR>
+nmap	<leader>l	:Limelight!!<CR>
+nmap	<leader>md	:LivedownPreview<CR>
+nmap	<leader>n	:call ToggleNetrw()<CR>
+nmap	<leader>s	:set spell!<CR>
+nmap	<leader>c	:e ~/.config/vim/vimrc<CR>
 " }}}
 " }}}
 
