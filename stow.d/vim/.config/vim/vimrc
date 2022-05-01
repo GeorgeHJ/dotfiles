@@ -210,7 +210,13 @@ function! SpellColours() abort
 	highlight	SpellLocal	cterm=strikethrough	ctermfg=magenta		guisp=#d33682
 endfunction
 " User syntax highlighting overrides
-function! SyntaxMods() abort
+function! NeoSolarizedMods() abort
+	" Settings
+	let g:solarized_menu=0
+	let g:neosolarized_vertsplitbgtrans=0
+	let g:neosolarized_termBoldAsBright = 0
+	let g:neosolarized_italic = 1
+	" Customisations
 	highlight	Folded			term=underline,bold		cterm=underline,bold	gui=underline,bold	guisp=#839496
 	highlight	VertSplit		cterm=reverse			ctermfg=11				guifg=#657B83		guibg=#657B83
 	highlight	ALEError		cterm=bold,underline	ctermfg=lightred		gui=undercurl		guisp=#cb4b16	guibg=#073642
@@ -218,11 +224,33 @@ function! SyntaxMods() abort
 	highlight	ALEErrorSign	cterm=bold,underline	ctermfg=lightred		gui=bold			guibg=#073642
 	highlight	ALEWarningSign	cterm=bold,underline	ctermfg=green			gui=bold			guifg=#859900	guibg=#073642
 	" Render comments in italics
-	highlight Comment cterm=italic gui=italic
-	" Invert cursor, works in the gui for now
-	highlight Cursor gui=reverse guifg=NONE guibg=NONE
-	highlight Directory cterm=bold
-	highlight netrwExe ctermfg=2
+	highlight	Comment			cterm=italic gui=italic
+	" Invert cursor, works in the gui and kitty for now
+	highlight	Cursor			gui=reverse guifg=NONE guibg=NONE
+	" Netrw highlighting changes
+	highlight	Directory		cterm=bold
+	highlight	netrwExe		ctermfg=2
+	" Terminal
+	highlight	Terminal		guifg=#829496 guibg=#002b36
+	" Internal Terminal configuration
+	let g:terminal_ansi_colors = [
+				\'#073642',
+				\'#dc322f',
+				\'#859900',
+				\'#b58900',
+				\'#268bd2',
+				\'#d33682',
+				\'#2aa198',
+				\'#eee8d5',
+				\'#002b36',
+				\'#cb4b16',
+				\'#586e75',
+				\'#657b83',
+				\'#839496',
+				\'#6c71c4',
+				\'#93a1a1',
+				\'#fdf6e3']
+
 	call SpellColours()
 endfunction
 
@@ -231,17 +259,14 @@ function! NeoSolarizedSettings() abort
 	set termguicolors
 	set background=dark
 	colorscheme NeoSolarized
-	let g:solarized_menu=0
-	let g:neosolarized_vertsplitbgtrans=0
-	let g:neosolarized_termBoldAsBright = 0
-	let g:neosolarized_italic = 1
 endfunction
 
-" Call the SyntaxMods function when the colorscheme is changed or vim finishes loading
+" Call a modifying function when the colorscheme is changed
 if has('autocmd')
-	augroup SyntaxMods
+	augroup ColorschemeMods
 		autocmd!
-		autocmd ColorScheme,VimEnter * call SyntaxMods()
+		autocmd ColorScheme NeoSolarized call NeoSolarizedMods()
+		autocmd VimEnter * if g:colors_name == 'NeoSolarized' | call NeoSolarizedMods() | endif
 	augroup END
 endif
 " My Colour Scheme
@@ -253,24 +278,6 @@ elseif &term =~? 'wezterm'
 	let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 	call NeoSolarizedSettings()
 endif
-" Internal Terminal configuration
-let g:terminal_ansi_colors = [
-			\'#073642',
-			\'#dc322f',
-			\'#859900',
-			\'#b58900',
-			\'#268bd2',
-			\'#d33682',
-			\'#2aa198',
-			\'#eee8d5',
-			\'#002b36',
-			\'#cb4b16',
-			\'#586e75',
-			\'#657b83',
-			\'#839496',
-			\'#6c71c4',
-			\'#93a1a1',
-			\'#fdf6e3']
 
 if &term ==# 'tmux-256color'
 	setlocal term=xterm-256color
