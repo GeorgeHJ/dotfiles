@@ -202,6 +202,7 @@ export KEYTIMEOUT=1 # Suggested for Vi mode
 # Insert Mode
 bindkey "$key[Backspace]" backward-delete-char
 bindkey '^?' backward-delete-char
+bindkey -M viins '^H' backward-delete-char
 bindkey "$key[Delete]" delete-char
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
