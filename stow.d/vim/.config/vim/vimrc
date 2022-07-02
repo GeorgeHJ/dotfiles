@@ -190,6 +190,9 @@ Plug 'https://github.com/vim-utils/vim-man'
 Plug 'https://github.com/vimwiki/vimwiki'
 Plug 'https://github.com/mattn/emmet-vim'
 Plug 'https://github.com/LnL7/vim-nix'
+if $XDG_SESSION_TYPE ==# 'wayland'
+	Plug 'https://github.com/jasonccox/vim-wayland-clipboard'
+endif
 call plug#end()
 "}}}
 
@@ -266,7 +269,7 @@ endif
 " My Colour Scheme
 if has('gui_running') || &term =~? 'xterm-256color\|tmux-256color\|xterm-kitty'
 	call NeoSolarizedSettings()
-elseif &term =~? 'wezterm'
+elseif &term =~? 'wezterm\|foot'
 	let $TERM = 'wezterm'
 	let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
 	let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
