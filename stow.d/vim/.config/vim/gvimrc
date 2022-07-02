@@ -7,4 +7,5 @@
 "
 "  Font Settings
 set guifont=JetBrainsMono\ Nerd\ Font\ 13
+set guiligatures=!\"#$%&()*+-./:<=>?@[]^_{\|~
 
