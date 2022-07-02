@@ -300,7 +300,6 @@ function! s:goyo_enter()
 	set noshowmode
 	set noshowcmd
 	set scrolloff=999
-	" setlocal wrap " This is default anyway
 	setlocal linebreak
 	setlocal formatoptions=l
 	setlocal noexpandtab
