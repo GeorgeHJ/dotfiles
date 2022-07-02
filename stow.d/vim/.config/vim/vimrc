@@ -37,29 +37,29 @@ set encoding=utf-8
 
 function!RestoreDefaults() abort
 
-		" Allow backspacing over everything in insert mode.
-		set backspace=indent,eol,start
+	" Allow backspacing over everything in insert mode.
+	set backspace=indent,eol,start
 
-		set cursorline
-		set history=200			" keep 200 lines of command line history
-		set ruler				" show the cursor position all the time
-		set showcmd				" display incomplete commands
-		set wildmenu			" display completion matches in a status line
-		set number 				" show line numbers " Added 22/01/18
-		set ttimeout			" time out for key codes
-		set ttimeoutlen=100		" wait up to 100ms after Esc for special key
-		set splitright			" put vertical splits on the right
-		set display=truncate	" Show @@@ in the last line if it is truncated.
+	set cursorline
+	set history=200			" keep 200 lines of command line history
+	set ruler				" show the cursor position all the time
+	set showcmd				" display incomplete commands
+	set wildmenu			" display completion matches in a status line
+	set number 				" show line numbers " Added 22/01/18
+	set ttimeout			" time out for key codes
+	set ttimeoutlen=100		" wait up to 100ms after Esc for special key
+	set splitright			" put vertical splits on the right
+	set display=truncate	" Show @@@ in the last line if it is truncated.
 
-		" Show a few lines of context around the cursor.  Note that this makes the
-		" text scroll if you mouse-click near the start or end of the window.
-		set scrolloff=5
+	" Show a few lines of context around the cursor.  Note that this makes the
+	" text scroll if you mouse-click near the start or end of the window.
+	set scrolloff=5
 
-		" In many terminal emulators the mouse works just fine.  By enabling it you
-		" can position the cursor, Visually select and scroll with the mouse.
-		if has('mouse')
-				set mouse=a
-		endif
+	" In many terminal emulators the mouse works just fine.  By enabling it you
+	" can position the cursor, Visually select and scroll with the mouse.
+	if has('mouse')
+		set mouse=a
+	endif
 endfunction
 
 call RestoreDefaults()
