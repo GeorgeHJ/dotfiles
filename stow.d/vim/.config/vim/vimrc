@@ -160,14 +160,6 @@ set wildignorecase
 set wildignore=*.git/*,*.tags,tags,*.o,*.class,*.ccls-cache
 "}}}
 
-"{{{UI Options
-" Mappings for Clipboard Integration
-" copy
-vnoremap <C-y> "+y
-" paste
-map <C-p> "+P
-"}}}
-
 " {{{vim-plug Plugin Manager
 " Use vim-plug
 call plug#begin('$XDG_DATA_HOME/vim/plugged')
@@ -457,13 +449,20 @@ endif
 
 " }}}
 
+"{{{ Mappings
+"{{{ Clipboard
+" copy
+vnoremap <C-y> "+y
+" paste
+map <C-p> "+P
+"}}}
 " {{{ LEADER Key Mappings
 
 " {{{ ALE Plugin
 nmap <leader>af <plug>(ale_fix)
 nmap <leader>at <plug>(ale_toggle_buffer)
 nmap <leader>ad <plug>(ale_go_to_definition)
-" map <leader>
+nmap <leader>ar <plug>(ale_find_references)
 " map <leader>
 " map <leader>
 " }}}
@@ -478,5 +477,6 @@ nmap	<leader>md	:LivedownPreview<CR>
 nmap	<leader>n	:call ToggleNetrw()<CR>
 nmap	<leader>s	:set spell!<CR>
 nmap	<leader>c	:e ~/.config/vim/vimrc<CR>
+" }}}
 " }}}
 " }}}
