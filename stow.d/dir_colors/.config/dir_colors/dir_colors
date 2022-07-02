@@ -82,6 +82,7 @@ TERM xterm-termite
 TERM alacritty-256color
 TERM xterm-kitty
 TERM wezterm
+TERM foot
 
 ## Documentation
 #
