@@ -224,7 +224,7 @@ function! NeoSolarizedMods() abort
 	" Render comments in italics
 	highlight	Comment			cterm=italic gui=italic
 	" Invert cursor, works in the gui and kitty for now
-	highlight	Cursor			gui=reverse guifg=NONE guibg=NONE
+	highlight	Cursor			cterm=reverse	gui=reverse guifg=NONE guibg=NONE
 	" Netrw highlighting changes
 	highlight	Directory		cterm=bold
 	highlight	netrwExe		ctermfg=2
