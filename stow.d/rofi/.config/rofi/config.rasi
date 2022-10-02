@@ -4,5 +4,6 @@ configuration {
 	icon-theme: "Papirus";
 	show-icons: true;
 	terminal: "xfce4-terminal";
-	theme: "/home/george/.local/share/rofi/themes/Plata-Noir.rasi";
+	/* theme: "/home/george/.local/share/rofi/themes/Plata-Noir.rasi"; */
 }
+	@theme "Plata-Noir"
