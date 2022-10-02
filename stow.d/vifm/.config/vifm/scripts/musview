@@ -53,7 +53,7 @@ if
 	[[ 10#"$ALBUMDR" -ge "14" ]]
 then
 	ALBUMDR="\\033[01;37;42m$ALBUMDR\\033[0m"
-	ALBUMDRCOMMENT="{$italic_start}Good!\\033[0m"
+	ALBUMDRCOMMENT="${italic_start}Good!\\033[0m"
 
 elif
 	[[ 10#"$ALBUMDR" -ge "8" ]] && [[ 10#"$ALBUMDR" -lt "14"  ]]
