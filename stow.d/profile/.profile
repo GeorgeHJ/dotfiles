@@ -104,3 +104,11 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 if command -v home-manager > /dev/null 2>&1; then
 		. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 fi
+export XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state"}
+export XDG_DESKTOP_DIR=${XDG_DESKTOP_DIR:-"$HOME/Desktop"}
+export XDG_DOWNLOAD_DIR=${XDG_DOWNLOAD_DIR:-"$HOME/Downloads"}
+export XDG_TEMPLATES_DIR=${XDG_TEMPLATES_DIR:-"$HOME/Templates"}
+export XDG_DOCUMENTS_DIR=${XDG_DOCUMENTS_DIR:-"$HOME/Documents"}
+export XDG_MUSIC_DIR=${XDG_MUSIC_DIR:-"$HOME/Music"}
+export XDG_PICTURES_DIR=${XDG_PICTURES_DIR:-"$HOME/Pictures"}
+export XDG_VIDEOS_DIR=${XDG_VIDEOS_DIR:-"$HOME/Videos"}
