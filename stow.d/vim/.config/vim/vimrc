@@ -185,11 +185,12 @@ Plug 'https://github.com/vifm/vifm.vim'
 Plug 'https://github.com/vim-airline/vim-airline'
 Plug 'https://github.com/vim-airline/vim-airline-themes'
 Plug 'https://github.com/vim-latex/vim-latex', { 'for': 'tex' }
-Plug 'https://github.com/vim-python/python-syntax', { 'for': 'python' }
+Plug 'https://github.com/vim-python/python-syntax', { 'for': ['python', 'vimwiki.markdown'] }
 Plug 'https://github.com/vim-utils/vim-man'
-Plug 'https://github.com/vimwiki/vimwiki'
+Plug 'https://github.com/vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'https://github.com/mattn/emmet-vim'
 Plug 'https://github.com/LnL7/vim-nix'
+Plug 'https://github.com/phelipetls/vim-hugo'
 if $XDG_SESSION_TYPE ==# 'wayland'
 	Plug 'https://github.com/jasonccox/vim-wayland-clipboard'
 endif
