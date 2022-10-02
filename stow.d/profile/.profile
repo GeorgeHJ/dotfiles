@@ -134,3 +134,5 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 if command -v home-manager >/dev/null 2>&1; then
 	. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 fi
+# Rootless podman support for docker compose
+export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
