@@ -20,6 +20,9 @@ alias ls='ls --color=auto'
 # Specify config files
 alias extract_url='extract_url -c $HOME/.config/extract_urlview/config'
 
+# XDG Data
+alias wget='wget --hsts-file="$XDG_DATA_HOME/wget/wget-hsts"'
+
 # Modify power commands
 alias poweroff='poweroff --no-wall'
 alias reboot='reboot --no-wall'
