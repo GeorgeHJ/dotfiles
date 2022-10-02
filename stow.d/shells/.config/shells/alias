@@ -1,13 +1,14 @@
 #! /bin/sh
 
 # Aliases
-alias mutt='neomutt'
-alias ddgr='ddgr --url-handler linkhandler'
-alias yt='ddgr --url-handler linkhandler \!yt'
-alias archw='ddgr --url-handler linkhandler \!arch'
 alias album_edit='beet edit "$(beet list | cut -d'-' -f'1,2' | sort -u | fzf -m | cut -d'-' -f2)"'
-alias song_edit='beet edit "$(beet list | fzf | cut -d'-' -f3)"'
+alias archw='ddgr --url-handler linkhandler \!arch'
+alias ddgr='ddgr --url-handler linkhandler'
 alias fopen='setsid nohup xdg-open "$(fzf --reverse --multi --border)"'
+alias mutt='neomutt'
+alias song_edit='beet edit "$(beet list | fzf | cut -d'-' -f3)"'
+alias yt='ddgr --url-handler linkhandler \!yt'
+alias yt-audio='yt-dlp -x --split-chapters'
 
 alias neofetch='neofetch --block_range 0 15'
 
