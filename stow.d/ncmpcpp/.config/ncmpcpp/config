@@ -314,7 +314,7 @@ show_duplicate_tags = yes
 ## part of progressbar.
 ##
 #progressbar_look = =>
-progressbar_look = "━‣─"
+progressbar_look = "━━─"
 #
 ## Available values: database, playlist.
 ##
