@@ -1,0 +1,18 @@
+#! /usr/bin/env zsh
+
+# Choose a directory from the named directories array and cd
+fzf_named_dirs(){
+	local choice=$(
+	for key value in ${(kv)desc_dirs}
+	do
+		if [[ -n ${nameddirs[$key]} ]]; then
+			printf '%s - %s\n' $key $value
+		else continue
+		fi
+	done | fzf -d ' - ' -n 1 --layout=reverse --height=33| awk -F ' - ' '{print $1}'
+)
+[[ -z $choice ]] && return 1 || cd $nameddirs[$choice]
+printf '%s' "$PWD"
+zle push-input
+zle accept-line
+}
