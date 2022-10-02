@@ -15,10 +15,10 @@ export EDITOR=/usr/bin/vim
 export PATH=$PATH:~/.bin
 export PATH=$PATH:~/.local/bin
 # Add $GOBIN to $PATH for go
-if command -v go > /dev/null 2>&1; then
+if command -v go >/dev/null 2>&1; then
 	if [ -d "$HOME/go" ]; then
 		export GOPATH="$HOME/go"
-	elif [ -d "$HOME/.local/lib/go" ];then
+	elif [ -d "$HOME/.local/lib/go" ]; then
 		export GOPATH="$HOME/.local/lib/go"
 	fi
 	export GOBIN="$GOPATH/bin" &&
@@ -39,8 +39,8 @@ fi
 
 # Programs
 # Cargo compiler for Rust
-if command -v cargo > /dev/null 2>&1; then
-		export CARGO_HOME="$XDG_DATA_HOME/cargo"
+if command -v cargo >/dev/null 2>&1; then
+	export CARGO_HOME="$XDG_DATA_HOME/cargo"
 fi
 # NPM
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
@@ -59,50 +59,52 @@ export TERMINAL=xfce4-terminal
 # Use vim as a man pager
 export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nonumber nomod nolist noma' -\""
 # Set the configuration paths for lynx
-if command -v lynx > /dev/null 2>&1; then 
-		export LYNX_CFG="$XDG_CONFIG_HOME/lynx/lynx.cfg"
-		export LYNX_LSS="$XDG_CONFIG_HOME/lynx/lynx.lss"
+if command -v lynx >/dev/null 2>&1; then
+	export LYNX_CFG="$XDG_CONFIG_HOME/lynx/lynx.cfg"
+	export LYNX_LSS="$XDG_CONFIG_HOME/lynx/lynx.lss"
 fi
 # Quick Start Settings for Par
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
 # fzf options
-if command -v fzf > /dev/null 2>&1; then
-		export FZF_DEFAULT_OPTS="--color=16,fg+:14"
+if command -v fzf >/dev/null 2>&1; then
+	export FZF_DEFAULT_OPTS="--color=16,fg+:14"
 fi
 # IPython configuration directory
-if command -v ipython > /dev/null 2>&1; then
-		export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
+if command -v ipython >/dev/null 2>&1; then
+	export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
 fi
 # Chromium BSU
-if command -v chromium-bsu > /dev/null 2>&1; then
-		export CHROMIUM_BSU_SCORE="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-score"
-		export CHROMIUM_BSU_DATA="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-data"
+if command -v chromium-bsu >/dev/null 2>&1; then
+	export CHROMIUM_BSU_SCORE="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-score"
+	export CHROMIUM_BSU_DATA="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-data"
 fi
 # Mailcap (tuir)
-if command -v tuir > /dev/null 2>&1; then
-		export MAILCAPS="$XDG_CONFIG_HOME/tuir/mailcap"
+if command -v tuir >/dev/null 2>&1; then
+	export MAILCAPS="$XDG_CONFIG_HOME/tuir/mailcap"
 fi
 # MPV
-if  command -v mpv > /dev/null 2>&1 ;then
-		export DVDCSS_CACHE="$XDG_CACHE_HOME/mpv/dvdcss"
+if command -v mpv >/dev/null 2>&1; then
+	export DVDCSS_CACHE="$XDG_CACHE_HOME/mpv/dvdcss"
 fi
+# Parallel
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 # PyLint
-if command -v pylint > /dev/null 2>&1; then
-		export PYLINTHOME="$XDG_CONFIG_HOME/pylint.d/"
+if command -v pylint >/dev/null 2>&1; then
+	export PYLINTHOME="$XDG_CONFIG_HOME/pylint.d/"
 fi
 
 # Vim
-if [ -f "$XDG_CONFIG_HOME/vim/vimrc" ];then
-		#shellcheck disable=SC2016
+if [ -f "$XDG_CONFIG_HOME/vim/vimrc" ]; then
+	#shellcheck disable=SC2016
 	export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
-		#shellcheck disable=SC2016
+	#shellcheck disable=SC2016
 	export GVIMINIT='let $MYGVIMRC="$XDG_CONFIG_HOME/vim/gvimrc" | source $MYGVIMRC'
 fi
 # Zsh
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 # If using Nix/ home-manager
-if command -v home-manager > /dev/null 2>&1; then
-		. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+if command -v home-manager >/dev/null 2>&1; then
+	. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 fi
 export XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state"}
 export XDG_DESKTOP_DIR=${XDG_DESKTOP_DIR:-"$HOME/Desktop"}
