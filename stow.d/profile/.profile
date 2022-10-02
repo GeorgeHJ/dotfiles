@@ -78,6 +78,19 @@ if command -v chromium-bsu >/dev/null 2>&1; then
 	export CHROMIUM_BSU_SCORE="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-score"
 	export CHROMIUM_BSU_DATA="$XDG_DATA_HOME/chromium-bsu/chromium-bsu-data"
 fi
+# GNUpg
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+# GTK
+readonly GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export GTK2_RC_FILES
+# ICEauthority
+export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
+# Java
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+# Jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+# KDE
+export KDEHOME="$XDG_CONFIG_HOME/kde"
 # Mailcap (tuir)
 if command -v tuir >/dev/null 2>&1; then
 	export MAILCAPS="$XDG_CONFIG_HOME/tuir/mailcap"
@@ -92,6 +105,11 @@ export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 if command -v pylint >/dev/null 2>&1; then
 	export PYLINTHOME="$XDG_CONFIG_HOME/pylint.d/"
 fi
+# Sqlite
+export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite/sqlite_history
+# Terminfo
+export TERMINFO="$XDG_DATA_HOME"/terminfo
+export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
 # Vim
 if [ -f "$XDG_CONFIG_HOME/vim/vimrc" ]; then
@@ -100,6 +118,8 @@ if [ -f "$XDG_CONFIG_HOME/vim/vimrc" ]; then
 	#shellcheck disable=SC2016
 	export GVIMINIT='let $MYGVIMRC="$XDG_CONFIG_HOME/vim/gvimrc" | source $MYGVIMRC'
 fi
+# Xorg
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 # Zsh
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 # If using Nix/ home-manager
