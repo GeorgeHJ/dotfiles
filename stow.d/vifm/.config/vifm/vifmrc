@@ -272,6 +272,10 @@ elseif $TERM=='wezterm'
 	fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.svg,*.ico
 	\ imgcat --height %ph --width %pw %c %pd
 	\ %pc
+elseif $TERM=='foot'
+	fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.svg,*.ico
+	\ img2sixel --width 800 %c %pd
+	\ %pc
 else
 	fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
 	\ imgt %px %py %pw %ph %c
