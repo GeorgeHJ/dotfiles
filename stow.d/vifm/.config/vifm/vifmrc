@@ -265,9 +265,9 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
 " Displaying pictures in terminal
 if $TERM=='xterm-kitty'
 	fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.svg,*.ico
-	\ kitty +icat --place %pwx%ph@%pxx%py  --silent %c
+	\ kitty +kitten icat --transfer-mode=file --place=%pwx%ph@%pxx%py %c %N
 	\ %pc
-	\ kitty icat --clear --silent %pd
+	\ kitty +kitten icat --transfer-mode=file --place=%pwx%ph@%pxx%py --clear %N
 elseif $TERM=='wezterm'
 	fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.svg,*.ico
 	\ imgcat --height %ph --width %pw %c %pd
