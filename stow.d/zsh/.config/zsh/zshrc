@@ -219,12 +219,16 @@ bindkey '^?' backward-delete-char
 bindkey -M viins '^H' backward-delete-char
 bindkey "$key[Delete]" delete-char
 bindkey '^[[H' beginning-of-line
+bindkey "\E[1~" beginning-of-line
 bindkey '^[[F' end-of-line
+bindkey "\E[4~" end-of-line
 
 # Normal Mode
 bindkey -a "$key[Delete]" vi-delete-char
 bindkey -a '^[[H'  beginning-of-line
+bindkey -a "^[[1~" beginning-of-line
 bindkey -a '^[[F' end-of-line
+bindkey -a "^[[4~" end-of-line
 
 # Insert Mode bindings
 bindkey '^p' up-history
