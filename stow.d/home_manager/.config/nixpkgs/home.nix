@@ -28,8 +28,10 @@
     cava
     ddgr
     dr14_tmeter
-    ksuperkey
-    nodePackages.readability-cli
+    gh
+    hugo
+    libsixel
+    ncspot
     nushell
     par
     python310Packages.autopep8
@@ -39,20 +41,15 @@
     python310Packages.pydocstyle
     shellcheck
     spotify-tui
+    scss-lint
     tuir
     vim-vint
+    zellij
     zsh-fast-syntax-highlighting
   ];
 
   programs.man.enable=false;
   programs.pandoc.enable=true;
-  # Nushell
   programs.nushell.enable=true;
-  programs.nushell.settings.line_editor={
-    edit_mode = "vi";
-    keyseq_timeout_ms = 10;
-    history_duplicates = "ignoreconsecutive";
-  };
-  programs.nushell.settings.prompt = "starship prompt";
   programs.starship.enable=true;
 }
