@@ -7,6 +7,6 @@ let g:tex_flavor='latex'
 " Compiler Target
 let g:Tex_DefaultTargetFormat='pdf'
 " Set Softwrap for LaTeX
-autocmd FileType tex set wrap linebreak nolist
+setlocal wrap linebreak nolist
 " Wrap at 120 columns for readability
-autocmd FileType tex setlocal textwidth=120
+setlocal textwidth=120
