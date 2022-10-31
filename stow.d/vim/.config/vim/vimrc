@@ -324,7 +324,6 @@ function! s:goyo_leave()
 	setlocal nospell
 	AirlineRefresh
 	Limelight!
-	:edit
 	" ...
 endfunction
 
