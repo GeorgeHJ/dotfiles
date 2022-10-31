@@ -1,3 +1,6 @@
+" FtPlugin Settings for Python
+" See also: ~/.config/vim/plugin/python.vim
+"
 " Python specific settings
 map <LEADER>I :vertical terminal ++close ipython<CR>
 map <LEADER>S :vertical terminal <CR>
@@ -11,8 +14,11 @@ let b:ale_python_pylsp_config = { 'pylsp': {
 			\       'flake8': {
 			\         'enabled': v:true
 			\       },
-			\       'pylint': {
+			\       'mypy': {
 			\         'enabled': v:true
+			\       },
+			\       'pylint': {
+			\         'enabled': v:false
 			\       },
 			\       'pydocstyle': {
 			\         'enabled': v:true
@@ -24,7 +30,3 @@ let b:ale_python_pylsp_config = { 'pylsp': {
 			\   },
 			\ }
 
-" Syntax settings
-highlight pythonClassVar cterm=italic ctermfg=13 gui=italic guifg=#6c71c4
-let g:python_highlight_file_headers_as_comments = 1
-let g:python_highlight_all = 1
