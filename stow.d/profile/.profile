@@ -12,18 +12,12 @@ export EDITOR=/usr/bin/vim
 
 # $PATH variable
 # Add user scripts directory
-export PATH=$PATH:~/.bin
-export PATH=$PATH:~/.local/bin
+export PATH="$PATH:~/.bin"
+export PATH="$PATH:~/.local/bin"
 # Add $GOBIN to $PATH for go
-if command -v go >/dev/null 2>&1; then
-	if [ -d "$HOME/go" ]; then
-		export GOPATH="$HOME/go"
-	elif [ -d "$HOME/.local/lib/go" ]; then
-		export GOPATH="$HOME/.local/lib/go"
-	fi
-	export GOBIN="$GOPATH/bin" &&
-		export PATH=$PATH:$GOBIN
-fi
+export GOPATH="$HOME/.local/lib/go"
+export GOBIN="$GOPATH/bin" &&
+	export PATH=${PATH}:${GOBIN}
 
 # XDG Base Directories
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
