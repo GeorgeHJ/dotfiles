@@ -32,6 +32,14 @@ export XDG_MUSIC_DIR=${XDG_MUSIC_DIR:-"$HOME/Music"}
 export XDG_PICTURES_DIR=${XDG_PICTURES_DIR:-"$HOME/Pictures"}
 export XDG_VIDEOS_DIR=${XDG_VIDEOS_DIR:-"$HOME/Videos"}
 
+# Load profiles from ~/.config/profile.d
+if test -d "$HOME/.config/profile.d"/; then
+	for profile in "$HOME"/.config/profile.d/*.sh; do
+		test -r "$profile" && . "$profile"
+	done
+	unset profile
+fi
+
 # TEXMF HOME Directory Settings for LaTeX
 if [ -d ~/.texmf ]; then
 	export TEXMFHOME=~/.texmf
@@ -113,13 +121,6 @@ export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite/sqlite_history
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
-# Vim
-if [ -f "$XDG_CONFIG_HOME/vim/vimrc" ]; then
-	#shellcheck disable=SC2016
-	export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
-	#shellcheck disable=SC2016
-	export GVIMINIT='let $MYGVIMRC="$XDG_CONFIG_HOME/vim/gvimrc" | source $MYGVIMRC'
-fi
 # Xorg
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 # Zsh
