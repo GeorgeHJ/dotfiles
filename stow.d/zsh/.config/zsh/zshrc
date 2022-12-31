@@ -33,6 +33,7 @@ PS1="%B[%{$fg[green]%}%n%{$fg[green]%}%{$reset_color%}%B@%{$fg[green]%}%M %{$res
 
 # Shell options{{{
 unsetopt nomatch
+setopt interactivecomments
 
 # Initialise arrays for hook functions
 typeset -a precmd_functions preexec_functions
