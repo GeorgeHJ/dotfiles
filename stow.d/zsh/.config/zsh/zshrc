@@ -141,6 +141,8 @@ declare -A hash_dirs
 [[ -d "$XDG_DOWNLOAD_DIR" ]] && hash_dirs[downloads]="$XDG_DOWNLOAD_DIR"
 [[ -d "$XDG_MUSIC_DIR" ]] && hash_dirs[downloads]="$XDG_MUSIC_DIR"
 [[ -d "$XDG_DOCUMENTS_DIR/Notes" ]] && hash_dirs[notes]="$XDG_DOCUMENTS_DIR/Notes"
+[[ -d "$HOME/Repos" ]] && hash_dirs[repos]="$HOME/Repos"
+[[ -d "$HOME/Repos/Github" ]] && hash_dirs[github]="$HOME/Repos/Github"
 
 declare -A desc_dirs
 desc_dirs[bin]='Executable scripts'
@@ -152,6 +154,8 @@ desc_dirs[whipper_rips]='Whipper rips'
 desc_dirs[downloads]='Downloads'
 desc_dirs[music]='Music'
 desc_dirs[notes]='Notes'
+desc_dirs[repos]='Repositories'
+desc_dirs[github]='Github'
 
 # Loop over the associative array to build the directory hashes
 for key value in ${(kv)hash_dirs};
