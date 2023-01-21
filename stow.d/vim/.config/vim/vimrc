@@ -386,6 +386,7 @@ let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace']}
 "{{{ Markdown
 " See also: ftplugin/markdown/markdown.vim
 let g:vim_markdown_frontmatter=1
+let g:vim_markdown_math=1
 "}}}
 
 "{{{ Skeleton Files
