@@ -187,7 +187,7 @@ Plug 'https://github.com/vim-airline/vim-airline-themes'
 Plug 'https://github.com/vim-latex/vim-latex', { 'for': 'tex' }
 Plug 'https://github.com/vim-python/python-syntax', { 'for': ['python', 'vimwiki.markdown'] }
 Plug 'https://github.com/vim-utils/vim-man'
-Plug 'https://github.com/vimwiki/vimwiki', { 'branch': 'master' }
+Plug 'https://github.com/vimwiki/vimwiki', {'tag': 'v2.5'}
 Plug 'https://github.com/mattn/emmet-vim'
 Plug 'https://github.com/LnL7/vim-nix'
 Plug 'https://github.com/phelipetls/vim-hugo'
