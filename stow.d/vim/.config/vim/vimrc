@@ -420,6 +420,7 @@ nmap <leader>ar <plug>(ale_find_references)
 "{{{ FZF Plugin
 nmap <leader>f :FZF<CR>
 nmap <leader>u :Buffers<CR>
+nmap <leader>r :Rg<CR>
 "}}}
 "{{{ Misc
 nmap	<leader>g	:Goyo<CR>
