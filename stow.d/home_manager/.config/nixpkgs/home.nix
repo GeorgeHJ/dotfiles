@@ -32,7 +32,6 @@
     hugo
     libsixel
     ncspot
-    nushell
     par
     python310Packages.autopep8
     python310Packages.flake8
@@ -50,6 +49,4 @@
 
   programs.man.enable=false;
   programs.pandoc.enable=true;
-  programs.nushell.enable=true;
-  programs.starship.enable=true;
 }
