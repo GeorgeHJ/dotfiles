@@ -115,6 +115,9 @@ export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 if command -v pylint >/dev/null 2>&1; then
 	export PYLINTHOME="$XDG_CONFIG_HOME/pylint.d/"
 fi
+if command -v mypy >/dev/null 2>&1; then
+	export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
+fi
 # Sqlite
 export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite/sqlite_history
 # Terminfo
