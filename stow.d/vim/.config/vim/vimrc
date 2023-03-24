@@ -191,6 +191,7 @@ Plug 'https://github.com/vimwiki/vimwiki', {'tag': 'v2.5'}
 Plug 'https://github.com/mattn/emmet-vim'
 Plug 'https://github.com/LnL7/vim-nix'
 Plug 'https://github.com/phelipetls/vim-hugo'
+Plug 'https://github.com/jsborjesson/vim-uppercase-sql', {'for': 'sql'}
 if $XDG_SESSION_TYPE ==# 'wayland'
 	Plug 'https://github.com/jasonccox/vim-wayland-clipboard'
 endif
