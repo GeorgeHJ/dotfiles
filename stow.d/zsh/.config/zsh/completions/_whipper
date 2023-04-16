@@ -1,2 +1,7 @@
 #compdef whipper
 compdef _gnu_generic whipper
+compdef _gnu_generic 'whipper cd'
+compdef _gnu_generic 'whipper drive'
+compdef _gnu_generic 'whipper image'
+compdef _gnu_generic 'whipper mblookup'
+compdef _gnu_generic 'whipper offset'
