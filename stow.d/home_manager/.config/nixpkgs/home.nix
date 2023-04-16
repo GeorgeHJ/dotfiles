@@ -41,6 +41,8 @@
     shellcheck
     spotify-tui
     scss-lint
+    sqlfluff
+    pgformatter
     tuir
     vim-vint
     zellij
