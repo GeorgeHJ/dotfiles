@@ -31,6 +31,10 @@ PS1="%B[%{$fg[green]%}%n%{$fg[green]%}%{$reset_color%}%B@%{$fg[green]%}%M %{$res
 	eval "$(dircolors "$HOME/.config/dir_colors/dir_colors")"
 #}}}
 
+#{{{ VS Code Integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && source "/usr/lib/code/out/vs/workbench/contrib/terminal/browser/media/shellIntegration-rc.zsh"
+#}}}
+
 # Shell options{{{
 unsetopt nomatch
 setopt interactivecomments
