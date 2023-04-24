@@ -2,7 +2,7 @@
 # Apply my powerlevel9k/10k settings
 powerlevel9k(){
 case $TERM in
-	screen* | tmux* | xterm* | wezterm | foot)
+	screen* | tmux* | xterm* | wezterm | foot | kitty)
 		POWERLEVEL9K_MODE='nerdfont-complete'
 		;;
 	gvim*)
