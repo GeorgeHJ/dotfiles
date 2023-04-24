@@ -269,7 +269,7 @@ if has('autocmd')
 	augroup END
 endif
 " My Colour Scheme
-if has('gui_running') || &term =~? 'xterm-256color\|tmux-256color\|xterm-kitty'
+if has('gui_running') || &term =~? 'xterm-256color\|tmux-256color\|xterm-kitty\|kitty'
 	call NeoSolarizedSettings()
 elseif &term =~? 'wezterm\|foot'
 	let $TERM = 'wezterm'
