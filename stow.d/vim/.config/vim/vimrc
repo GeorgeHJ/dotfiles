@@ -195,6 +195,7 @@ Plug 'https://github.com/jsborjesson/vim-uppercase-sql', {'for': 'sql'}
 if $XDG_SESSION_TYPE ==# 'wayland'
 	Plug 'https://github.com/jasonccox/vim-wayland-clipboard'
 endif
+Plug 'https://github.com/karoliskoncevicius/vim-sendtowindow', {'for': ['sh', 'zsh', 'python']}
 call plug#end()
 "}}}
 
