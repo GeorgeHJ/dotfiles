@@ -424,13 +424,25 @@ nmap <leader>f :FZF<CR>
 nmap <leader>u :Buffers<CR>
 nmap <leader>r :Rg<CR>
 "}}}
+" {{{ Send to Window
+let g:sendtowindow_use_defaults=0
+nnoremap <leader>sl <Plug>SendRight
+xnoremap <leader>sl <Plug>SendRightV
+nnoremap <leader>sh <Plug>SendLeft
+xnoremap <leader>sh <Plug>SendLeftV
+nnoremap <leader>sk <Plug>SendUp
+xnoremap <leader>sk <Plug>SendUpV
+nnoremap <leader>sj <Plug>SendDown
+xnoremap <leader>sj <Plug>SendDownV
+" }}}
 "{{{ Misc
 nmap	<leader>g	:Goyo<CR>
 nmap	<leader>l	:Limelight!!<CR>
 nmap	<leader>md	:LivedownPreview<CR>
 nmap	<leader>n	:call ToggleNetrw()<CR>
-nmap	<leader>s	:set spell!<CR>
+nmap	<leader>ss	:set spell!<CR>
 nmap	<leader>c	:e ~/.config/vim/vimrc<CR>
+nmap	<leader>tp	:vert terminal ipython<CR>
 " }}}
 " }}}
 " }}}
