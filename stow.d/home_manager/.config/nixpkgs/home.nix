@@ -33,11 +33,11 @@
     libsixel
     ncspot
     par
-    python310Packages.autopep8
-    python310Packages.flake8
-    python310Packages.isort
-    python310Packages.pycodestyle
-    python310Packages.pydocstyle
+    python311Packages.autopep8
+    python311Packages.flake8
+    python311Packages.isort
+    python311Packages.pycodestyle
+    python311Packages.pydocstyle
     shellcheck
     spotify-tui
     scss-lint
