@@ -53,4 +53,5 @@
 
   programs.man.enable=false;
   programs.pandoc.enable=true;
+  programs.pyenv.enable=true;
 }
