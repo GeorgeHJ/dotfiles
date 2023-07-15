@@ -28,6 +28,7 @@
     cava
     ddgr
     dr14_tmeter
+    duckdb
     gh
     hugo
     libsixel
