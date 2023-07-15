@@ -44,6 +44,7 @@
     scss-lint
     sqlfluff
     pgformatter
+    tidy-viewer
     tuir
     vim-vint
     zellij
