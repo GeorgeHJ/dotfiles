@@ -47,6 +47,7 @@
     tidy-viewer
     tuir
     vim-vint
+    xdg-ninja
     zellij
     zsh-fast-syntax-highlighting
   ];
