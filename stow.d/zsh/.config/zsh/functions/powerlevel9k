@@ -2,7 +2,7 @@
 # Apply my powerlevel9k/10k settings
 powerlevel9k(){
 case $TERM in
-	screen* | tmux* | xterm* | wezterm | foot)
+	screen* | tmux* | xterm* | wezterm | foot | kitty)
 		POWERLEVEL9K_MODE='nerdfont-complete'
 		;;
 	gvim*)
@@ -12,7 +12,7 @@ esac
 
 ##{{{ Segment Settings
 POWERLEVEL9K_STATUS_VERBOSE="false"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs status)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs virtualenv status)
 POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode)
 POWERLEVEL9K_CONTEXT_TEMPLATE='%B%n%b'
@@ -51,6 +51,8 @@ POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND="15"
 POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND="10"
 POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND="15"
 POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND="yellow"
+POWERLEVEL9K_VIRTUALENV_FOREGROUND="blue"
+POWERLEVEL9K_VIRTUALENV_BACKGROUND="white"
 ##}}}
 
 unfunction powerlevel9k

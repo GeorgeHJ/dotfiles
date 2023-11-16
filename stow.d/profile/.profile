@@ -111,6 +111,8 @@ if command -v mpv >/dev/null 2>&1; then
 fi
 # Parallel
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
+# PyEnv
+export PYENV_ROOT="$HOME"/.local/lib/pyenv
 # PyLint
 if command -v pylint >/dev/null 2>&1; then
 	export PYLINTHOME="$XDG_CONFIG_HOME/pylint.d/"

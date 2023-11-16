@@ -34,6 +34,7 @@ TERM fbterm
 TERM gnome
 TERM gnome-256color
 TERM jfbterm
+TERM kitty
 TERM konsole
 TERM konsole-256color
 TERM kterm

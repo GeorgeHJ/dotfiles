@@ -12,3 +12,4 @@ stow.d/termux/.ssh/authorized_keys
 stow.d/tmux/.config/tmux/plugins/
 **/plug.vim
 **/plug.vim.old
+**/__pycache__

@@ -28,25 +28,31 @@
     cava
     ddgr
     dr14_tmeter
+    duckdb
     gh
     hugo
     libsixel
     ncspot
     par
-    python310Packages.autopep8
-    python310Packages.flake8
-    python310Packages.isort
-    python310Packages.pycodestyle
-    python310Packages.pydocstyle
+    python311Packages.autopep8
+    python311Packages.flake8
+    python311Packages.isort
+    python311Packages.pycodestyle
+    python311Packages.pydocstyle
     shellcheck
     spotify-tui
     scss-lint
+    sqlfluff
+    pgformatter
+    tidy-viewer
     tuir
     vim-vint
+    xdg-ninja
     zellij
     zsh-fast-syntax-highlighting
   ];
 
   programs.man.enable=false;
   programs.pandoc.enable=true;
+  programs.pyenv.enable=true;
 }

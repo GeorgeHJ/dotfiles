@@ -35,6 +35,14 @@ PS1="%B[%{$fg[green]%}%n%{$fg[green]%}%{$reset_color%}%B@%{$fg[green]%}%M %{$res
 [[ "$TERM_PROGRAM" == "vscode" ]] && source "/usr/lib/code/out/vs/workbench/contrib/terminal/browser/media/shellIntegration-rc.zsh"
 #}}}
 
+<<<<<<< HEAD
+=======
+
+#{{{ Kitty Integration
+[[ "$TERM" =~ ".*kitty" ]] && source "/usr/lib/kitty/shell-integration/zsh/kitty.zsh"
+#}}}
+
+>>>>>>> 6245cf895ea0774cc66518886eb952cb57e3ebc6
 # Shell options{{{
 unsetopt nomatch
 setopt interactivecomments
