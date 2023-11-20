@@ -1,0 +1,36 @@
+# Colour Settings
+color listnormal	color5 default
+color listnormal_unread color14 default
+color listfocus 	black color5 standout bold
+color listfocus_unread 	black color15 standout bold
+color info 		color15 color8
+
+# Highlighting
+
+# Article Highlights
+highlight article "https?://[^ ]+" blue default
+highlight article "mailto:[^ ]+" color9 default
+highlight article "gopher://[^ ]+" green default
+highlight article "irc://[^ ]+" yellow default
+highlight article "^(Feed|Title|Author|Link|Date|Links):" color14 default bold
+highlight article "\\[image [0-9][0-9]*\\]" cyan default bold
+highlight article "\\[[0-9][0-9]*\\]" color14 default bold
+
+
+# Icon Highlights
+highlight all " " red
+highlight all " " green
+highlight all " " green
+highlight all " " blue
+highlight all " " blue
+highlight all "暑" blue
+highlight all " " yellow
+highlight all " " yellow
+highlight all " " white
+highlight all " " color7
+highlight all " " color9
+highlight all " " magenta
+highlight all "(^   [0-9]|^  [0-9][0-9])" yellow default
+highlight all "(^   [0-9]|^  [0-9][0-9])│" color10 default
+highlight all "│" default default
+highlight all "█" black black
