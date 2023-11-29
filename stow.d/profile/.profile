@@ -5,8 +5,8 @@
 # shellcheck disable=1090
 
 [ "$XDG_CURRENT_DESKTOP" = "KDE" ] || export QT_QPA_PLATFORMTHEME="qt5ct"
-export VISUAL=/usr/bin/vim
-export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/nvim
+export EDITOR=/usr/bin/nvim
 
 [ -f "$HOME/.extend.profile" ] && . "$HOME/.extend.profile"
 
