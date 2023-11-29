@@ -69,49 +69,22 @@ return {
 	{
 		"preservim/vim-markdown",
 		init = function()
-			vim.g.vim_markdown_frontmatter=1
-			vim.g.vim_markdown_math=1
+			vim.g.vim_markdown_frontmatter = 1
+			vim.g.vim_markdown_math = 1
 		end
 
 	},
 	"tpope/vim-fugitive",
+	{
+		'goolord/alpha-nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		config = function()
+			require 'alpha'.setup(require 'alpha.themes.startify'.config)
+		end
+	},
 	"lewis6991/gitsigns.nvim",
 	"tpope/vim-repeat",
 	"tpope/vim-surround",
 	"tpope/vim-unimpaired",
-	{
-		"vimwiki/vimwiki",
-		init = function()
-			vim.g.vimwiki_ext2syntax = {
-				[".md"] = 'markdown',
-				['.markdown'] = 'markdown',
-				['.mdown'] = 'markdown'
-			}
-			vim.g.vimwiki_global_ext = 0
-			vim.g.vimwiki_auto_chdir = 1
-			vim.g.vimwiki_filetypes = {"markdown"}
-			vim.g.vimwiki_list = {
-				{
-					name = "Notes",
-					path = "~/Documents/Notes/",
-					index = "index",
-					ext = ".md",
-					syntax = "markdown",
-					auto_diary_index = 1,
-					diary_caption_level = -1,
-					links_space_char = "_",
-					auto_tags = 1
-				},
-			}
-			vim.cmd(
-				[[
-				augroup VimWikiDiary
-				autocmd!
-					autocmd BufNewFile ~/Documents/Notes/diary/* read !fortune|sed -e 's/\(^\)/\1> /'
-					autocmd BufNewFile ~/Documents/Notes/diary/* :g/^$/d
-					autocmd BufNewFile ~/Documents/Notes/diary/* :norm G2o
-				augroup END
-				]])
-		end,
-	}
+	"onsails/lspkind.nvim",
 }
