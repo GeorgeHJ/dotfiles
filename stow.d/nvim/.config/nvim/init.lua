@@ -1,4 +1,3 @@
 require "options"
-require "plugins"
-require "pluginlist"
+require "plugin_manager"
 require "keys"
