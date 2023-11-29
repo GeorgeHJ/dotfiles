@@ -1,5 +1,4 @@
 local on_attach = function(_, bufnr)
-
 	local l = vim.lsp.buf
 	local o = vim.o
 
@@ -30,13 +29,36 @@ local on_attach = function(_, bufnr)
 	nbufmap('<leader>s', require('telescope.builtin').lsp_document_symbols, "Document symbols")
 	nbufmap('<leader>S', require('telescope.builtin').lsp_dynamic_workspace_symbols, "Dynamic Workspace Symbols")
 
+	-- Format on save
+	vim.api.nvim_create_augroup("AutoFormat", { clear = true })
+	vim.api.nvim_create_autocmd("BufWritePre",
+		{
+			group = "AutoFormat",
+			callback = function()
+				l.format { async = false }
+			end
+		}
+	)
+	local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+	for type, icon in pairs(signs) do
+		local hl = "DiagnosticSign" .. type
+		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+	end
 end
+
+-- Populate loclist with the current buffer diagnostics
+vim.api.nvim_create_autocmd('DiagnosticChanged', {
+	callback = function(args)
+		vim.diagnostic.setloclist({ open = false })
+	end,
+})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 -- Mason setup
 require("mason").setup()
+require("mason-lspconfig").setup { ensure_installed = { "lua_ls", "pylsp" } }
 require("mason-lspconfig").setup_handlers({
 
 	function(server_name)
@@ -72,6 +94,9 @@ require("mason-lspconfig").setup_handlers({
 					mypy = {
 						enabled = true
 					},
+					isort = {
+						enabled = true
+					}
 				}
 			}
 		}
