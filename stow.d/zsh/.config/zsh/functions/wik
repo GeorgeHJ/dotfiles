@@ -6,8 +6,8 @@ function wik(){
 
 		case $wiki_no in
 				'')
-						vim -c "VimwikiIndex";;
+						nvim -c "VimwikiIndex";;
 				*)
-						vim -c "VimwikiIndex${wiki_no}"
+						nvim -c "VimwikiIndex${wiki_no}"
 		esac
 }
