@@ -1,3 +1,3 @@
-require "options"
-require "plugin_manager"
-require "keys"
+require "george.options"
+require "george.lazy"
+require "george.keys"
