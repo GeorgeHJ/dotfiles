@@ -39,19 +39,7 @@ local on_attach = function(_, bufnr)
 			end
 		}
 	)
-	local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
-	for type, icon in pairs(signs) do
-		local hl = "DiagnosticSign" .. type
-		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-	end
 end
-
--- Populate loclist with the current buffer diagnostics
-vim.api.nvim_create_autocmd('DiagnosticChanged', {
-	callback = function(args)
-		vim.diagnostic.setloclist({ open = false })
-	end,
-})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
