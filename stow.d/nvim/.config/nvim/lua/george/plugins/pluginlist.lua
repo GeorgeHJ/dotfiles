@@ -34,6 +34,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-buffer",
+			"onsails/lspkind.nvim",
 		}
 	},
 	{
@@ -63,14 +64,15 @@ return {
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 			"neovim/nvim-lspconfig",
+			"folke/neodev.nvim"
 		}
 	},
-	"folke/neodev.nvim",
 	{
 		"preservim/vim-markdown",
 		init = function()
 			vim.g.vim_markdown_frontmatter = 1
 			vim.g.vim_markdown_math = 1
+			vim.g.vim_markdown_folding_disabled = 1
 		end
 
 	},
@@ -83,8 +85,8 @@ return {
 		end
 	},
 	"lewis6991/gitsigns.nvim",
+	"romainl/vim-cool",
 	"tpope/vim-repeat",
 	"tpope/vim-surround",
 	"tpope/vim-unimpaired",
-	"onsails/lspkind.nvim",
 }
