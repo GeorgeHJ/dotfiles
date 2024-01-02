@@ -60,14 +60,6 @@ return {
 		end
 	},
 	{
-		"williamboman/mason.nvim",
-		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
-			"neovim/nvim-lspconfig",
-			"folke/neodev.nvim"
-		}
-	},
-	{
 		"preservim/vim-markdown",
 		init = function()
 			vim.g.vim_markdown_frontmatter = 1
