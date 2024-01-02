@@ -66,8 +66,10 @@ export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export TERMINAL=xfce4-terminal
 #Global alias file
 [ -f "$XDG_CONFIG_HOME/shells/alias" ] && . "$XDG_CONFIG_HOME/shells/alias"
-# Use vim as a man pager
-export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nonumber nomod nolist noma' -\""
+# Use nvim as a man pager
+if command -v nvim >/dev/null 2>&1;then
+	export MANPAGER="nvim -c Man!"
+fi
 # Set the configuration paths for lynx
 if command -v lynx >/dev/null 2>&1; then
 	export LYNX_CFG="$XDG_CONFIG_HOME/lynx/lynx.cfg"
