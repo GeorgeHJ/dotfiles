@@ -77,6 +77,17 @@ return {
 		end
 	},
 	"lewis6991/gitsigns.nvim",
+	{
+		"nvim-tree/nvim-tree.lua",
+		init = function()
+			vim.g.loaded = 1
+			vim.g.loaded_netrwPlugin = 1
+		end,
+		config = function()
+			require("nvim-tree").setup()
+			vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree" })
+		end
+	},
 	"romainl/vim-cool",
 	"tpope/vim-repeat",
 	"tpope/vim-surround",
