@@ -46,7 +46,9 @@ cmp.setup {
 		{ name = "luasnip" },
 		{ name = "path" },
 		{ name = "buffer" },
-		--	{ name = "otter" },
+		{ name = "otter" },
+		{ name = "pandoc_references" },
+		{ name = "latex_symbols" },
 	},
 	---@diagnostic disable-next-line: missing-fields
 	formatting = {
@@ -54,6 +56,9 @@ cmp.setup {
 			mode = "symbol_text",
 			maxwidth = 50,
 			ellipsis_char = "…",
+			menu = {
+				latex_symbols = "[tex]"
+			}
 		})
 
 	},

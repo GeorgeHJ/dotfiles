@@ -35,6 +35,8 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-buffer",
 			"onsails/lspkind.nvim",
+			"kdheepak/cmp-latex-symbols",
+			"jmbuhr/cmp-pandoc-references"
 		}
 	},
 	{
