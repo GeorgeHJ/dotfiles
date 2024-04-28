@@ -1,5 +1,7 @@
+"query: Unread Today:age <=1 and unread = \"yes\"" "Combined  "
 "query: Unread Articles:unread = \"yes\"" "Combined  "
 "query: Unread News:age <= 1 and unread = \"yes\" and tags =~ \"News  \"" "Combined  "
+"query: Unread Business: unread = \"yes\" and tags =~ \"Business  \"" "Combined  "
 "query: Old News:age > 1 and unread = \"yes\" and tags =~ \"News  \"" "Combined  "
 "query: Unread Tech News:unread = \"yes\" and tags =~ \"Tech News  \"" "Combined  "
 "query: Unwatched Videos:unread = \"yes\" and tags =~ \"Youtube  \"" "Combined  "
