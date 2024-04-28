@@ -18,7 +18,7 @@ highlight article "\\[[0-9][0-9]*\\]" color14 default bold
 
 
 # Icon Highlights
-highlight all " " red
+highlight all " " color9
 highlight all " " green
 highlight all " " green
 highlight all " " blue
@@ -28,7 +28,7 @@ highlight all " " yellow
 highlight all " " yellow
 highlight all " " white
 highlight all " " color7
-highlight all " " color9
+highlight all " " red
 highlight all " " magenta
 highlight all "(^   [0-9]|^  [0-9][0-9])" yellow default
 highlight all "(^   [0-9]|^  [0-9][0-9])│" color10 default
