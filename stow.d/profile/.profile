@@ -5,8 +5,8 @@
 # shellcheck disable=1090
 
 [ "$XDG_CURRENT_DESKTOP" = "KDE" ] || export QT_QPA_PLATFORMTHEME="qt5ct"
-export VISUAL=/usr/bin/vim
-export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/nvim
+export EDITOR=/usr/bin/nvim
 
 [ -f "$HOME/.extend.profile" ] && . "$HOME/.extend.profile"
 
@@ -66,8 +66,10 @@ export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export TERMINAL=xfce4-terminal
 #Global alias file
 [ -f "$XDG_CONFIG_HOME/shells/alias" ] && . "$XDG_CONFIG_HOME/shells/alias"
-# Use vim as a man pager
-export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nonumber nomod nolist noma' -\""
+# Use nvim as a man pager
+if command -v nvim >/dev/null 2>&1;then
+	export MANPAGER="nvim -c Man!"
+fi
 # Set the configuration paths for lynx
 if command -v lynx >/dev/null 2>&1; then
 	export LYNX_CFG="$XDG_CONFIG_HOME/lynx/lynx.cfg"

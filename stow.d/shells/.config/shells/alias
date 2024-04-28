@@ -31,3 +31,8 @@ alias reboot='reboot --no-wall'
 if [ "$TERM" = 'kitty' ] || [ "$TERM" = xterm-kitty ] || [ "$TERMINFO" = /usr/lib/kitty/terminfo ]; then
 	alias im='kitty +kitten icat'
 fi
+
+# Nvim alias
+if command -V nvim >/dev/null 2>&1; then
+	alias vim=nvim
+fi

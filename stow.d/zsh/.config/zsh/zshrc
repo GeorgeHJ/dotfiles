@@ -331,7 +331,7 @@ autoload zle-keymap-select; zle -N zle-keymap-select
 [[ -f "$HOME/.config/shells/functions" ]] && source "$HOME/.config/shells/functions"
 # Pacman command not found hook
 if
-	[[ -a '/usr/share/doc/pkgfile/command-not-found.zsh' ]]
+	[[ -f '/usr/share/doc/pkgfile/command-not-found.zsh' ]]
 then
 	source /usr/share/doc/pkgfile/command-not-found.zsh
 fi

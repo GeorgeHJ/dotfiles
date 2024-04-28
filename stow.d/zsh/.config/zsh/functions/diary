@@ -11,11 +11,11 @@ function diary() {
 				esac
 				case $opts in
 						i)
-								vim -c "VimwikiDiaryIndex $wiki_no"; return;;
+								nvim -c "VimwikiDiaryIndex $wiki_no"; return;;
 						t)
-								vim -c "VimwikiMakeTomorrowDiaryNote $wiki_no"; return;;
+								nvim -c "VimwikiMakeTomorrowDiaryNote $wiki_no"; return;;
 						y)
-								vim -c "VimwikiMakeYesterdayDiaryNote $wiki_no"; return;;
+								nvim -c "VimwikiMakeYesterdayDiaryNote $wiki_no"; return;;
 				esac
 				echo $OPTARG
 		done
@@ -23,10 +23,10 @@ function diary() {
 		if [[ -z $opts ]]; then
 				case $1 in
 						'')
-								vim -c "VimwikiMakeDiaryNote"; return;;
+								nvim -c "VimwikiMakeDiaryNote"; return;;
 						*)
 								date -d "$1" > /dev/null &&
-										vim ~/Documents/Notes/diary/$(date -d "$1" +%Y-%m-%d).md;;
+										nvim ~/Documents/Notes/diary/$(date -d "$1" +%Y-%m-%d).md;;
 				esac
 		fi
 }
