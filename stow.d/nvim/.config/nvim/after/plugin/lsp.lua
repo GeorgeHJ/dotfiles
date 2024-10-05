@@ -1,8 +1,8 @@
 local on_attach = function(_, bufnr)
 	local l = vim.lsp.buf
-	local o = vim.o
+	local bo = vim.bo
 
-	o.omnifunc = "lua.vim.lsp.omniunc"
+	bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
 	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
 		l.format()
