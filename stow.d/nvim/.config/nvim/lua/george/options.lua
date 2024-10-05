@@ -8,3 +8,4 @@ o.omnifunc = "syntaxcomplete#Complete"
 o.cursorline = true
 o.scrolloff = 5
 o.undofile = true
+o.inccommand = "nosplit"
