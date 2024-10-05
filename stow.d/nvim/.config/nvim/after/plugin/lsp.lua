@@ -73,14 +73,53 @@ require("mason-lspconfig").setup_handlers({
 			capabilities = capabilities,
 			pylsp = {
 				plugins = {
-					ruff = {
-						enabled = true
-					},
 					mypy = {
 						enabled = true
 					},
+					rope = {
+						enabled = true,
+						autoimport = {
+							enabled = true
+						}
+					},
 					isort = {
-						enabled = true
+						enabled = false
+					},
+					ruff = {
+						enabled = false
+					},
+					pylint = {
+						enabled = false
+					},
+					flake8 = {
+						enabled = false
+					},
+					pycodestyle = {
+						enabled = false
+					},
+				}
+			}
+		}
+	end,
+
+	["ruff"] = function()
+		require('lspconfig').ruff.setup {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			init_options = {
+				settings = {
+					lint = {
+						select = {
+							"I", -- Import-related checks (isort)
+							"E", -- pycodestyle errors
+							"W", -- pycodestyle warnings
+							"F", -- Pyflakes checks (error prevention)
+							"B", -- flake8-bugbear best practices
+							"ANN", -- Type annotations enforcement
+							"D", -- Docstring conventions (PEP 257)
+							"C4", -- Comprehensions
+							"C90", -- mccabe
+						}
 					}
 				}
 			}
