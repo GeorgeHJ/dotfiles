@@ -13,8 +13,8 @@ return {
 			setlocal formatoptions=l
 			setlocal noexpandtab
 			setlocal spell
-			map j gj
-			map k gk
+			nnoremap j gj
+			nnoremap k gk
 			set mouse=
 			lua require('lualine').hide()
 			Limelight
