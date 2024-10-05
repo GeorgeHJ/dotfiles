@@ -56,6 +56,10 @@ return {
 	},
 	{
 		"folke/which-key.nvim",
+		dependencies = {
+			{"echasnovski/mini.nvim", version = false},
+			"nvim-tree/nvim-web-devicons"
+		},
 		init = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300

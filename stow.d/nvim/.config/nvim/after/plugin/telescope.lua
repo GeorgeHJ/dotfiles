@@ -32,7 +32,8 @@ local function project_files()
 	end
 end
 
-nbufmap('<leader>ff', project_files, "Find Files")
+nbufmap('<leader>fg', project_files, "Find Project Files")
+nbufmap('<leader>ff', builtin.find_files, "Find Files")
 nbufmap('<leader>fr', builtin.live_grep, "Live Grep")
 nbufmap('<leader>fu', builtin.buffers, "Search Buffers")
 nbufmap('<leader>fm', builtin.man_pages, "Search Man Pages")
