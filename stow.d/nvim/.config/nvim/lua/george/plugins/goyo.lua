@@ -43,6 +43,9 @@ return {
 		endif
 			
 		]])
+
+			local k = vim.keymap
+			k.set("n", "<leader>o", ":Goyo<cr>", { noremap = true, silent = true, desc = "Toggle Goyo" })
 		end
 
 	}
