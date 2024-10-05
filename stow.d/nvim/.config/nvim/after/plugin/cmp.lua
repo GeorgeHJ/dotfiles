@@ -49,6 +49,7 @@ cmp.setup {
 		{ name = "otter" },
 		{ name = "pandoc_references" },
 		{ name = "latex_symbols" },
+		{ name = "vim-dadbod-completion" }
 	},
 	---@diagnostic disable-next-line: missing-fields
 	formatting = {
