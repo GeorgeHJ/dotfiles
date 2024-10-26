@@ -1,8 +1,9 @@
 #! /data/data/com.termux/files/usr/bin/sh
 # Fetch preferred font and use it for termux
-Url="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Regular/complete/JetBrains%20Mono%20Regular%20Nerd%20Font%20Complete.ttf"
-File="JetBrains Mono Regular Nerd Font Complete.ttf"
+Url="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip"
+File="JetBrainsMono.zip"
 Dest="$HOME/.termux/$File"
+Extract="$HOME/.termux/JetBrainsMonoNerdFont-Regular.ttf"
 
 main() {
 	sw_update
@@ -14,8 +15,10 @@ main() {
 }
 
 font() {
-	wget -O "$Dest" "$Url"
-	ln -sf "$Dest" "$HOME/.termux/font.ttf"
+	wget -O "$Dest" "$Url" &&
+	unzip "$Dest" "JetBrainsMonoNerdFont-Regular.ttf" && 
+	ln -sf "$Extract" "$HOME/.termux/font.ttf" &&
+	rm "$Dest"
 }
 
 sw_update() {
