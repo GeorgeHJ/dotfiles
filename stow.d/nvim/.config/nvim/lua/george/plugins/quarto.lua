@@ -7,7 +7,7 @@ return {
 			'neovim/nvim-lspconfig',
 			'nvim-treesitter/nvim-treesitter'
 		},
-		filetype = "quarto",
+		ft = "quarto",
 		config = function()
 			require("quarto").setup()
 		end
