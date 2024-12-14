@@ -51,7 +51,7 @@ return {
 	{
 		"folke/which-key.nvim",
 		dependencies = {
-			{"echasnovski/mini.nvim", version = false},
+			{ "echasnovski/mini.nvim", version = false },
 			"nvim-tree/nvim-web-devicons"
 		},
 		init = function()
@@ -69,7 +69,6 @@ return {
 		end
 
 	},
-	"tpope/vim-fugitive",
 	{
 		'goolord/alpha-nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
