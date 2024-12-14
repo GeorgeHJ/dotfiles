@@ -1,0 +1,3 @@
+[submodule "stow.d/vifm-kanagawa/.config/vifm/vifm_devicons"]
+	path = stow.d/vifm-kanagawa/.config/vifm/vifm_devicons
+	url = https://github.com/thimc/vifm_devicons
