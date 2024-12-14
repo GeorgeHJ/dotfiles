@@ -14,7 +14,6 @@ local on_attach = function(_, bufnr)
 
 	-- Leader mappings
 	nbufmap('<leader>r', l.rename, "Rename")
-	nbufmap('<leader>a', l.code_action, "Code Action")
 	nbufmap('<leader>D', l.type_definition, "Type Definition")
 
 	-- Normal mode mappings
