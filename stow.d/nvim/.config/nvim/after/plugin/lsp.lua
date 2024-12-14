@@ -91,6 +91,9 @@ require("mason-lspconfig").setup_handlers({
 					pylint = {
 						enabled = false
 					},
+					pyflakes = {
+						enabled = false
+					},
 					flake8 = {
 						enabled = false
 					},
