@@ -125,4 +125,11 @@ require("mason-lspconfig").setup_handlers({
 			}
 		}
 	end,
+
+	["bashls"] = function()
+		require('lspconfig').bashls.setup {
+			on_attach = on_attach,
+			capabilities = capabilities,
+		}
+	end,
 })
