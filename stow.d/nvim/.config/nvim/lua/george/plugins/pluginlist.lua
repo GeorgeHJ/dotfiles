@@ -15,6 +15,7 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons"
 		},
@@ -24,6 +25,10 @@ return {
 				theme = 'kanagawa',
 			})
 		end
+	},
+	{
+		"vifm/vifm.vim",
+		event = "VeryLazy"
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -40,24 +45,13 @@ return {
 		}
 	},
 	{
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.2",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-			},
-		}
-	},
-	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 	},
 	{
 		"folke/which-key.nvim",
 		dependencies = {
-			{"echasnovski/mini.nvim", version = false},
+			{ "echasnovski/mini.nvim", version = false },
 			"nvim-tree/nvim-web-devicons"
 		},
 		init = function()
@@ -67,6 +61,7 @@ return {
 	},
 	{
 		"preservim/vim-markdown",
+		ft = "markdown",
 		init = function()
 			vim.g.vim_markdown_frontmatter = 1
 			vim.g.vim_markdown_math = 1
@@ -74,7 +69,6 @@ return {
 		end
 
 	},
-	"tpope/vim-fugitive",
 	{
 		'goolord/alpha-nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -85,6 +79,8 @@ return {
 	"lewis6991/gitsigns.nvim",
 	{
 		"nvim-tree/nvim-tree.lua",
+		cmd = "NvimTreeToggle",
+		keys = "<leader>n",
 		init = function()
 			vim.g.loaded = 1
 			vim.g.loaded_netrwPlugin = 1
@@ -94,8 +90,32 @@ return {
 			vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree" })
 		end
 	},
-	"romainl/vim-cool",
-	"tpope/vim-repeat",
-	"tpope/vim-surround",
-	"tpope/vim-unimpaired",
+	{
+		"norcalli/nvim-colorizer.lua",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-tree").setup()
+			vim.keymap.set("n", "<leader>cc", ":ColorizerToggle<CR>", { desc = "Toggle Colorizer" })
+		end
+	},
+	{
+		"romainl/vim-cool",
+		event = "VeryLazy",
+	},
+	{
+		"tpope/vim-fugitive",
+		event = "VeryLazy",
+	},
+	{
+		"tpope/vim-repeat",
+		event = "VeryLazy",
+	},
+	{
+		"tpope/vim-surround",
+		event = "VeryLazy",
+	},
+	{
+		"tpope/vim-unimpaired",
+		event = "VeryLazy",
+	}
 }

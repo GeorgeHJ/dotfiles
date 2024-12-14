@@ -2,6 +2,7 @@ return {
 	{
 		"junegunn/goyo.vim",
 		dependencies = { "junegunn/limelight.vim" },
+		cmd = "Goyo",
 		init = function()
 			vim.cmd([[
 		function! s:goyo_enter()
