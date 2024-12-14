@@ -15,6 +15,7 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons"
 		},
@@ -71,6 +72,7 @@ return {
 	},
 	{
 		"preservim/vim-markdown",
+		ft = "markdown",
 		init = function()
 			vim.g.vim_markdown_frontmatter = 1
 			vim.g.vim_markdown_math = 1
@@ -89,6 +91,8 @@ return {
 	"lewis6991/gitsigns.nvim",
 	{
 		"nvim-tree/nvim-tree.lua",
+		cmd = "NvimTreeToggle",
+		keys = "<leader>n",
 		init = function()
 			vim.g.loaded = 1
 			vim.g.loaded_netrwPlugin = 1
@@ -98,8 +102,24 @@ return {
 			vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree" })
 		end
 	},
-	"romainl/vim-cool",
-	"tpope/vim-repeat",
-	"tpope/vim-surround",
-	"tpope/vim-unimpaired",
+	{
+		"romainl/vim-cool",
+		event = "VeryLazy",
+	},
+	{
+		"tpope/vim-fugitive",
+		event = "VeryLazy",
+	},
+	{
+		"tpope/vim-repeat",
+		event = "VeryLazy",
+	},
+	{
+		"tpope/vim-surround",
+		event = "VeryLazy",
+	},
+	{
+		"tpope/vim-unimpaired",
+		event = "VeryLazy",
+	}
 }
