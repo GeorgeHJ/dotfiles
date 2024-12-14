@@ -1,6 +1,6 @@
 return {
 	"mfussenegger/nvim-lint",
-	event = { "BufReadPre", "BufNewFile" },
+	event = { "BufReadPre", "BufNewFile", "InsertLeave" },
 	config = function()
 		local lint = require("lint")
 		vim.keymap.set("n", "<leader>l",
