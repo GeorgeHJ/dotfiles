@@ -28,7 +28,7 @@ return {
 	},
 	{
 		"vifm/vifm.vim",
-		cmd = { "Vifm", "EditVifm", "Vifm", "PeditVifm", "SplitVifm", "VsplitVifm", "DiffVifm", "TabVifm" }
+		event = "VeryLazy"
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -88,6 +88,14 @@ return {
 		config = function()
 			require("nvim-tree").setup()
 			vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree" })
+		end
+	},
+	{
+		"norcalli/nvim-colorizer.lua",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-tree").setup()
+			vim.keymap.set("n", "<leader>cc", ":ColorizerToggle<CR>", { desc = "Toggle Colorizer" })
 		end
 	},
 	{
