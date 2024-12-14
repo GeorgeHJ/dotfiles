@@ -36,3 +36,18 @@ fi
 if command -V nvim >/dev/null 2>&1; then
 	alias vim=nvim
 fi
+
+# 24 bit colour aliases
+case "$TERM" in
+	xterm-kitty)
+		alias vifm='TERM=kitty-direct vifm'
+		;;
+	 tmux-256color)
+		alias vifm='TERM=tmux-direct vifm'
+		;;
+	 xterm-256color)
+		alias vifm='TERM=tmux-direct vifm'
+		;;
+	*)
+		;;
+esac
