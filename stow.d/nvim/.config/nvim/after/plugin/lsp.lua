@@ -27,16 +27,6 @@ local on_attach = function(_, bufnr)
 	nbufmap('<leader>s', require('telescope.builtin').lsp_document_symbols, "Document symbols")
 	nbufmap('<leader>S', require('telescope.builtin').lsp_dynamic_workspace_symbols, "Dynamic Workspace Symbols")
 
-	-- Format on save
-	-- 	vim.api.nvim_create_augroup("AutoFormat", { clear = true })
-	-- 	vim.api.nvim_create_autocmd("BufWritePre",
-	-- 		{
-	-- 			group = "AutoFormat",
-	-- 			callback = function()
-	-- 				l.format { async = false }
-	-- 			end
-	-- 		}
-	-- )
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
