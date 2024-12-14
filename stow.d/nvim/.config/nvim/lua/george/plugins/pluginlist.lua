@@ -26,6 +26,10 @@ return {
 		end
 	},
 	{
+		"vifm/vifm.vim",
+		cmd = { "Vifm", "EditVifm", "Vifm", "PeditVifm", "SplitVifm", "VsplitVifm", "DiffVifm", "TabVifm" }
+	},
+	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			"L3MON4D3/LuaSnip",
