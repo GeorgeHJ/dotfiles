@@ -276,8 +276,25 @@ filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ gpicview %c,
         \ {View in shotwell}
         \ shotwell,
-fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-         \ identify %f
+
+" Displaying pictures in terminal
+if $KITTY_WINDOW_ID!=''
+	fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.svg,*.ico
+	\ kitty +kitten icat --silent --transfer-mode=stream --place=%pwx%ph@%pxx%py %c >/dev/tty </dev/tty %N
+	\ %pc
+	\ kitty +kitten icat  --clear --silent >/dev/tty </dev/tty %N
+elseif $TERM=='wezterm'
+	fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.svg,*.ico
+	\ imgcat --height %ph --width %pw %c %pd
+	\ %pc
+elseif $TERM=='foot'
+	fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.svg,*.ico
+	\ img2sixel --width 800 %c %pd
+	\ %pc
+else
+	fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+	\ imgt %px %py %pw %ph %c
+endif
 
 " OpenRaster
 filextype *.ora
