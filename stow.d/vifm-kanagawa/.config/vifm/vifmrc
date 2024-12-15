@@ -1,14 +1,16 @@
-" vim: filetype=vifm :
+" vim: filetype=vifm foldmethod=marker :
 " Sample configuration file for vifm (last updated: 3 April, 2023)
 " You can edit this file by hand.
 " The " character at the beginning of a line comments out the line.
 " Blank lines are ignored.
 " The basic format for each item is shown with an example.
 
+"{{{ Main Settings
 " ------------------------------------------------------------------------------
 " Main settings
 " ------------------------------------------------------------------------------
 
+" vicmd {{{
 " Command used to edit files in various contexts.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
@@ -24,20 +26,24 @@ elseif $EDITOR != ''
     echo 'Note: using `'.$EDITOR.'` as an editor'
     let &vicmd = $EDITOR
 endif
+"}}}
 
+" Syscalls {{{
 " This makes vifm perform file operations on its own instead of relying on
 " standard utilities like `cp`.  While using `cp` and alike is a more universal
 " solution, it's also much slower when processing large amounts of files and
 " doesn't support progress measuring.
 set syscalls
+"}}}
 
-" Trash Directory
+" Trash Directory {{{
 " The default is to move files that are deleted with dd or :d to
 " the trash directory.  If you change this you will not be able to move
 " files by deleting them and then using p to put the file in the new location.
 " I recommend not changing this until you are familiar with vifm.
 " This probably shouldn't be an option.
 set trash
+"}}}
 
 " What should be saved automatically on restarting vifm.  Drop "savedirs"
 " value if you don't want vifm to remember last visited directories for you.
@@ -100,10 +106,12 @@ endif
 
 " Set custom status line look
 set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
-
+"}}}
+" Colorscheme {{{
 " List of color schemes to try (picks the first one supported by the terminal)
 colorscheme Kanagawa Default-256 Default
-
+"}}}
+" Marks {{{
 " ------------------------------------------------------------------------------
 " Bookmarks
 " ------------------------------------------------------------------------------
@@ -112,7 +120,8 @@ colorscheme Kanagawa Default-256 Default
 
 mark b ~/bin/
 mark h ~/
-
+"}}}
+" Commands{{{
 " ------------------------------------------------------------------------------
 " Commands
 " ------------------------------------------------------------------------------
@@ -141,7 +150,8 @@ command! make !!make %a
 command! mkcd :mkdir %a | cd %a
 command! vgrep vim "+grep %a"
 command! reload :write | restart full
-
+"}}}
+" Filetypes{{{
 " ------------------------------------------------------------------------------
 " File types association
 " ------------------------------------------------------------------------------
@@ -439,7 +449,8 @@ filetype * xdg-open
 " filetype * open
 " For Windows:
 " filetype * explorer %"f &
-
+"}}}
+" Panel{{{
 " ------------------------------------------------------------------------------
 " Panel configuration examples
 " ------------------------------------------------------------------------------
@@ -452,7 +463,8 @@ filetype * xdg-open
 
 " Filter-out build and temporary files
 " filter! {*.lo,*.o,*.d,*.class,*.pyc,*.pyo,.*~}
-
+"}}}
+" Mappings{{{
 " ------------------------------------------------------------------------------
 " Sample keyboard mappings
 " ------------------------------------------------------------------------------
@@ -551,7 +563,8 @@ nnoremap <a-i> :sync<cr>
 nnoremap <a-o> :sync %c<cr>
 " Swap panes
 nnoremap <c-u> <c-w>x
-
+"}}}
+" Customization{{{
 " ------------------------------------------------------------------------------
 " Various customization examples
 " ------------------------------------------------------------------------------
