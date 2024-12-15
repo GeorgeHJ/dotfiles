@@ -1,0 +1,72 @@
+" Kanagawa Wave
+" by George Hamilton-Jones
+
+highlight clear
+
+highlight  Border      gui=none               guifg=#7d9bd7		ctermfg=blue    guibg=#292937	ctermbg=235
+highlight  BrokenLink  gui=bold               guifg=#e82323		ctermfg=red		guibg=#1e1e27	ctermbg=233
+highlight  CmdLine     gui=none               guifg=#dbd6b9		ctermfg=230		guibg=#1e1e27	ctermbg=233
+highlight  CurrLine    gui=reverse,bold
+highlight  Device      gui=bold               ctermfg=red       guibg=#1e1e27	ctermbg=233
+highlight  Directory   gui=bold               cterm=bold		guifg=#7d9bd7	ctermfg=blue    guibg=#1e1e27	ctermbg=233
+highlight  ErrorMsg    gui=none               guifg=#e82323		ctermfg=red     guibg=#1e1e27	ctermbg=233
+highlight  Executable  gui=bold               ctermfg=green     guibg=#1e1e27	ctermbg=233
+highlight  Fifo        gui=bold               ctermfg=cyan      guibg=#1e1e27	ctermbg=233
+highlight  Link        gui=bold               ctermfg=cyan      guibg=#1e1e27	ctermbg=233
+highlight  OtherLine   gui=bold               cterm=bold 		guifg=#1e1e27	ctermfg=black     guibg=#908d7f	ctermbg=8
+highlight  Selected    gui=bold,reverse       cterm=bold,reverse 	guifg=#947eb7
+highlight  Socket      gui=bold               cterm=bold		guifg=#947eb7   guibg=#292937	ctermbg=235
+highlight  StatusLine  gui=none               cterm=none 		guifg=#908d7f   guibg=#292937	ctermbg=235
+highlight  SuggestBox  gui=none               cterm=none 		guifg=#908d7f   guibg=#292937	ctermbg=235
+highlight  TopLine     gui=none               cterm=none 		guifg=#dbd6b9	ctermfg=230      guibg=#292937	ctermbg=235
+highlight  TopLineSel  gui=none               cterm=none 		guifg=#dbd6b9 	ctermfg=230     guibg=#292937	ctermbg=235
+highlight  WildMenu    gui=underline,reverse  cterm=none		guifg=#f1943b 	guibg=#1e1e27	ctermbg=233
+highlight  Win         gui=none               cterm=none 		guifg=#dbd6b9	ctermfg=230     guibg=#1e1e27	ctermbg=233
+
+if $USER == 'root'
+    highlight  Border      gui=none  ctermfg=black      ctermbg=red
+    highlight  StatusLine  gui=none  ctermfg=white      ctermbg=red
+    highlight  TopLine     gui=none  ctermfg=white      ctermbg=red
+endif
+
+"{{{ Status line
+"--------------------------------------------------------------------------
+" Set custom status line look
+"--------------------------------------------------------------------------
+
+" fancy line using powerline glyphs and nerdfont symbols
+" needs a patched font
+" set statusline=" %-26t %=    %A  %7u:%-7g    %-5s   %d "
+"         
+"
+highlight User1	gui=bold	cterm=bold	guibg=#7d9bdf	ctermbg=blue	guifg=#292937	ctermfg=235
+highlight User2 gui=reverse	cterm=reverse	guibg=#7d9bdf	ctermbg=blue	guifg=#292937	ctermfg=235	"  
+highlight User3 gui=none	cterm=none	guibg=#7d9bdf	ctermbg=blue	guifg=#292937	ctermfg=235	"  
+highlight User4 gui=none	cterm=none		guibg=#292937	ctermbg=235	guifg=#dbd6b9	ctermfg=230	 " reset
+highlight User5 gui=bold	cterm=bold		guibg=#292937	ctermbg=235	guifg=#dbd6b9	ctermfg=230	 " bold
+highlight User6	gui=none	cterm=none	guibg=#7d9bdf	ctermbg=blue	guifg=#292937	ctermfg=235
+" "
+let &statusline = "%1* %-16t %2*%4*"     	" file name
+let &statusline .= "%=  %2*%6*  %A %3*"
+let &statusline .= "%4* %7u:%-7g    %-5s "
+let &statusline .= "%2*%6*  %d "
+" ------------------------------------------------------------------------------
+"}}}
+
+" Temporary or Backup Files
+highlight /^.*(#|\.aux|\.bak|\.bbl|\.blg|\.cache|\.class|\.incomplete|\.lof|\.log|\.lol|\.lot|\.o|\.out|\.part|\.pyc|\.swp|\.temp|\.tmp|\.toc|~)$/I cterm=none ctermfg=10 ctermbg=default guifg=#98bb6c guibg=default
+
+" NEF Files (Nikon RAW Images)
+highlight /^.*\.(NEF|nef)$/I cterm=none ctermfg=136 ctermbg=default guifg=#e0af68 guibg=default
+
+" Common Documentation and Code Files
+highlight /^.*(1|Dockerfile|Makefile|README|README.markdown|README.txt|Rakefile|\.c|\.cc|\.cfg|\.conf|\.cpp|\.csv|\.cxx|\.go|\.h|\.hpp|\.ini|\.md|\.n3|\.nfo|\.nt|\.objc|\.owl|\.rdf|\.sql|\.sqlite|\.tex|\.torrent|\.ttl|\.xml|\.yml|build.xml|rc|readme.txt)$/I cterm=none ctermfg=14 ctermbg=default guifg=#7e9cd8 guibg=default
+
+" Image Files
+highlight /^.*\.(CR2|JPG|PNG|bmp|cgm|dl|emf|eps|gif|ico|jpeg|jpg|mng|pbm|pcx|pgm|png|ppm|svg|svgz|tga|tif|tiff|xbm|xcf|xpm|xwd|yuv)$/I cterm=none ctermfg=3 ctermbg=default guifg=#dca561 guibg=default
+
+" Archives and Compressed Files
+highlight /^.*\.(7z|Z|ace|apk|arj|bz|bz2|cpio|deb|dz|gem|gz|jar|lz|lzh|lzma|rar|rpm|rz|tar|taz|tbz|tbz2|tgz|tlz|txz|tz|xz|z|zip|zoo|zst)$/I cterm=none ctermfg=61 ctermbg=default guifg=#957fb8 guibg=default
+
+" Media Files
+highlight /^.*\.(MOV|aac|anx|asf|au|avi|axa|axv|divx|flac|flc|fli|flv|gl|m2ts|m2v|m4a|m4v|mid|midi|mka|mkv|mov|mp3|mp4|mp4v|mpc|mpeg|mpg|nuv|oga|ogg|ogm|ogv|ogx|opus|qt|ra|rm|rmvb|spx|vob|wav|webm|wmv|xspf)$/I cterm=none ctermfg=203 ctermbg=default guifg=#e46876 guibg=default
