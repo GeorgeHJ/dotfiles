@@ -28,7 +28,8 @@ return {
 	},
 	{
 		"vifm/vifm.vim",
-		event = "VeryLazy"
+		event = "VeryLazy",
+		ft = "vifm"
 	},
 	{
 		"hrsh7th/nvim-cmp",
