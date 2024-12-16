@@ -46,7 +46,7 @@ case "$TERM" in
 		alias vifm='TERM=tmux-direct vifm'
 		;;
 	 xterm-256color)
-		alias vifm='TERM=tmux-direct vifm'
+		alias vifm='TERM=xterm-direct vifm'
 		;;
 	*)
 		;;
