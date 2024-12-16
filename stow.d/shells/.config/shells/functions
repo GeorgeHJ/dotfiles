@@ -25,7 +25,20 @@ tmux*)
 esac
 
 vicd() {
+case "$TERM" in
+	xterm-kitty)
+	dst="$(TERM=kitty-direct command vifm --choose-dir - "$@")"
+		;;
+	 tmux-256color)
+	dst="$(TERM=tmux-direct command vifm --choose-dir - "$@")"
+		;;
+	 xterm-256color)
+	dst="$(TERM=xterm-direct command vifm --choose-dir - "$@")"
+		;;
+	*)
 	dst="$(command vifm --choose-dir - "$@")"
+		;;
+esac
 	if [ -z "$dst" ]; then
 		echo 'Directory picking cancelled/failed'
 		return 1
