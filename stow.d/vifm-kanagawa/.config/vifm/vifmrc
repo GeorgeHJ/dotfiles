@@ -288,7 +288,7 @@ filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ shotwell,
 
 " Displaying pictures in terminal
-if $KITTY_WINDOW_ID!=''
+if $KITTY_WINDOW_ID!='' || $TERM == 'xterm-kitty' || $TERM == 'kitty-direct' || $TERM =='xterm-ghostty'
 	fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.svg,*.ico
 	\ kitty +kitten icat --silent --transfer-mode=stream --place=%pwx%ph@%pxx%py %c >/dev/tty </dev/tty %N
 	\ %pc
