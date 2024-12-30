@@ -1,6 +1,7 @@
 **/*.zwc
 **/.zcompcache
 **/zsh/.zcompdump
+**/zsh/.zcompdump*
 **/zsh/zplug/
 **/*.ttf
 **/wget-log
