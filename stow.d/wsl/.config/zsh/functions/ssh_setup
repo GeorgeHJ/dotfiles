@@ -1,0 +1,9 @@
+#! /usr/bin/env zsh
+function ssh_setup()
+{
+	eval $(ssh-agent) 2&> /dev/null
+
+	for file in ~/.ssh/*; do
+		[[ ! "$file" =~ known_hosts && ! "$file" =~ '.pub' ]] && ssh-add "$file"
+	done
+}
