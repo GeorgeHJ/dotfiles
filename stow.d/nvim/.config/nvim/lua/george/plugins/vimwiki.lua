@@ -1,6 +1,8 @@
 return {
 	"vimwiki/vimwiki",
 	event = "VeryLazy",
+	ft = "markdown",
+	cmd = "VimwikiIndex",
 	init = function()
 		vim.g.vimwiki_ext2syntax = {
 			[".md"] = 'markdown',
