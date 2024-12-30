@@ -25,7 +25,7 @@ case $unamea in
 		POWERLEVEL9K_OS_ICON_FOREGROUND="green";;
 	*ARCH*|*arch*)
 		POWERLEVEL9K_OS_ICON_FOREGROUND="blue";;
-	*DEBIAN*)
+	*DEBIAN*|*WSL*)
 		POWERLEVEL9K_OS_ICON_FOREGROUND="red";;
 esac
 ##}}}
