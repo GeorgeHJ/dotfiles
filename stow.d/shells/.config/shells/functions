@@ -1,6 +1,11 @@
 #! /bin/sh
 # Shared functions for shells, written in POSIX compliant shell
 
+# Source drop-in function files
+for func_file in "$XDG_CONFIG_HOME"/shells/function.d/*; do
+	test -r $func_file && . "$func_file"
+done
+
 # An fzf menu for man pages
 case $TERM in
 # Use splits with tmux
