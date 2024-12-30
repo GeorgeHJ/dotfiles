@@ -39,7 +39,7 @@ fi
 
 # 24 bit colour aliases
 case "$TERM" in
-	xterm-kitty)
+	xterm-kitty | xterm-ghostty)
 		alias vifm='TERM=kitty-direct vifm'
 		;;
 	 tmux-256color)
