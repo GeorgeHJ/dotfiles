@@ -7,6 +7,7 @@
 **/wget-log
 **/vifminfo.json*
 stow.d/home_manager/.config/nixpkgs/result
+stow.d/nvim/.config/nvim/spell/*
 stow.d/termux/.termux/shell
 stow.d/termux/.ssh/known_hosts
 stow.d/termux/.ssh/authorized_keys
