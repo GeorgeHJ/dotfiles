@@ -349,6 +349,10 @@ if
 	[[ -f '/usr/share/doc/pkgfile/command-not-found.zsh' ]]
 then
 	source /usr/share/doc/pkgfile/command-not-found.zsh
+elif
+	[[ -a '/etc/zsh_command_not_found' ]]
+then
+	source /etc/zsh_command_not_found
 fi
 
 if
@@ -367,6 +371,8 @@ if [[ $unamea == *Android* ]] ;then
 else
 	[[ -f "/usr/share/fzf/completion.zsh" ]] && source /usr/share/fzf/completion.zsh
 	[[ -f "/usr/share/fzf/key-bindings.zsh" ]] && source /usr/share/fzf/key-bindings.zsh
+	[[ -f "/usr/share/doc/fzf/examples/completion.zsh" ]] && source /usr/share/doc/fzf/examples/completion.zsh
+	[[ -f "/usr/share/doc/fzf/examples/key-bindings.zsh" ]] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 fi
 # Preview alt-c directories with tree
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
@@ -404,8 +410,8 @@ elif [[ -f "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestio
 fi
 if [[ -f /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
 	source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-elif [[ -f "$HOME/.local/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]];then
-	source "$HOME/.local/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+elif [[ -f "/home/george/.local/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]];then
+	source "/home/george/.local/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 elif [[ -f "$HOME/.nix-profile/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh" ]];then
 		source "$HOME/.nix-profile/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh"
 fi
