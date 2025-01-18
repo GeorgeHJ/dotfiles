@@ -29,7 +29,10 @@ return {
 	{
 		"vifm/vifm.vim",
 		event = "VeryLazy",
-		ft = "vifm"
+		ft = "vifm",
+		init = function()
+			vim.g.vifm_exec = "TERM=libvterm-direct vifm"
+		end
 	},
 	{
 		"hrsh7th/nvim-cmp",
