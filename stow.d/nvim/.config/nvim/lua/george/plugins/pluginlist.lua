@@ -77,7 +77,6 @@ return {
 			require 'alpha'.setup(require 'alpha.themes.startify'.config)
 		end
 	},
-	"lewis6991/gitsigns.nvim",
 	{
 		"nvim-tree/nvim-tree.lua",
 		cmd = "NvimTreeToggle",
