@@ -45,7 +45,13 @@ cmp.setup {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },
-		{ name = "buffer" },
+		{
+			name = "buffer", option = {
+			get_bufnrs = function()
+				return vim.api.nvim_list_bufs()
+			end
+			}
+		},
 		{ name = "otter" },
 		{ name = "pandoc_references" },
 		{ name = "latex_symbols" },
