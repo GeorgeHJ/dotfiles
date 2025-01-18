@@ -94,11 +94,10 @@ return {
 		end
 	},
 	{
-		"norcalli/nvim-colorizer.lua",
+		"brenoprata10/nvim-highlight-colors",
 		event = "VeryLazy",
-		config = function()
-			require("nvim-tree").setup()
-			vim.keymap.set("n", "<leader>cc", ":ColorizerToggle<CR>", { desc = "Toggle Colorizer" })
+		config = function ()
+			require("nvim-highlight-colors").setup()
 		end
 	},
 	{
