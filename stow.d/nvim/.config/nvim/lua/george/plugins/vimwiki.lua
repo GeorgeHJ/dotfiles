@@ -2,7 +2,11 @@ return {
 	"vimwiki/vimwiki",
 	event = "VeryLazy",
 	ft = "markdown",
-	cmd = "VimwikiIndex",
+	cmd = {
+		"VimwikiIndex", "VimwikiDiaryIndex",
+		"VimwikiMakeDiaryNote", "VimwikiYesterdayDiaryNote",
+		"VimwikiTomorrowDiaryNote"
+	},
 	init = function()
 		vim.g.vimwiki_ext2syntax = {
 			[".md"] = 'markdown',
