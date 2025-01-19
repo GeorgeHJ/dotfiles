@@ -29,25 +29,10 @@ return {
 	{
 		"vifm/vifm.vim",
 		event = "VeryLazy",
-		ft = "vifm"
-	},
-	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
-			"rafamadriz/friendly-snippets",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-buffer",
-			"onsails/lspkind.nvim",
-			"kdheepak/cmp-latex-symbols",
-			"jmbuhr/cmp-pandoc-references"
-		}
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
+		ft = "vifm",
+		init = function()
+			vim.g.vifm_exec = "TERM=libvterm-direct vifm"
+		end
 	},
 	{
 		"folke/which-key.nvim",
@@ -77,7 +62,6 @@ return {
 			require 'alpha'.setup(require 'alpha.themes.startify'.config)
 		end
 	},
-	"lewis6991/gitsigns.nvim",
 	{
 		"nvim-tree/nvim-tree.lua",
 		cmd = "NvimTreeToggle",
@@ -92,11 +76,10 @@ return {
 		end
 	},
 	{
-		"norcalli/nvim-colorizer.lua",
+		"brenoprata10/nvim-highlight-colors",
 		event = "VeryLazy",
-		config = function()
-			require("nvim-tree").setup()
-			vim.keymap.set("n", "<leader>cc", ":ColorizerToggle<CR>", { desc = "Toggle Colorizer" })
+		config = function ()
+			require("nvim-highlight-colors").setup()
 		end
 	},
 	{
