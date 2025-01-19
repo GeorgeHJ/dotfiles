@@ -35,24 +35,6 @@ return {
 		end
 	},
 	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
-			"rafamadriz/friendly-snippets",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-buffer",
-			"onsails/lspkind.nvim",
-			"kdheepak/cmp-latex-symbols",
-			"jmbuhr/cmp-pandoc-references"
-		}
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-	},
-	{
 		"folke/which-key.nvim",
 		dependencies = {
 			{ "echasnovski/mini.nvim", version = false },
