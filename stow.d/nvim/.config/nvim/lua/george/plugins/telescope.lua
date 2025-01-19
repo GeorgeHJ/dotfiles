@@ -18,8 +18,8 @@ return {
 				extensions = {
 					fzf = {
 						fuzzy = true,
-						override_generic_sorter = true,
-						override_file_sorter = true,
+						override_generic_sorter = false,
+						override_file_sorter = false,
 					}
 				}
 			})
