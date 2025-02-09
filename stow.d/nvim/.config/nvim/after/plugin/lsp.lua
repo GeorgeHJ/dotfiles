@@ -26,7 +26,6 @@ local on_attach = function(_, bufnr)
 	nbufmap('gr', require('telescope.builtin').lsp_references, "Find references")
 	nbufmap('<leader>s', require('telescope.builtin').lsp_document_symbols, "Document symbols")
 	nbufmap('<leader>S', require('telescope.builtin').lsp_dynamic_workspace_symbols, "Dynamic Workspace Symbols")
-
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -60,35 +59,40 @@ require("mason-lspconfig").setup_handlers({
 		require('lspconfig').pylsp.setup {
 			on_attach = on_attach,
 			capabilities = capabilities,
-			pylsp = {
-				plugins = {
-					mypy = {
-						enabled = true
-					},
-					rope = {
-						enabled = true,
-						autoimport = {
-							enabled = true
-						}
-					},
-					isort = {
-						enabled = false
-					},
-					ruff = {
-						enabled = false
-					},
-					pylint = {
-						enabled = false
-					},
-					pyflakes = {
-						enabled = false
-					},
-					flake8 = {
-						enabled = false
-					},
-					pycodestyle = {
-						enabled = false
-					},
+			settings = {
+				pylsp = {
+					plugins = {
+						pylsp_mypy = {
+							enabled = true,
+							live_mode = true,
+							strict = true,
+							dmypy = false
+						},
+						rope = {
+							enabled = true,
+							autoimport = {
+								enabled = true
+							}
+						},
+						isort = {
+							enabled = false
+						},
+						ruff = {
+							enabled = false
+						},
+						pylint = {
+							enabled = false
+						},
+						pyflakes = {
+							enabled = false
+						},
+						flake8 = {
+							enabled = false
+						},
+						pycodestyle = {
+							enabled = false
+						},
+					}
 				}
 			}
 		}
