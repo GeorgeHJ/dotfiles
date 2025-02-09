@@ -38,7 +38,3 @@ endfunction
 
 " ALE Settings
 let b:ale_enabled=0
-
-" Markdown Fixes
-let g:vim_markdown_auto_insert_bullets = 0
-let g:vim_markdown_new_list_item_indent = 0
