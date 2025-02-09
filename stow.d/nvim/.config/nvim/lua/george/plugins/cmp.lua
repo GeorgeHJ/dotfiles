@@ -9,12 +9,14 @@ return {
 		"hrsh7th/cmp-buffer",
 		"onsails/lspkind.nvim",
 		"kdheepak/cmp-latex-symbols",
-		"jmbuhr/cmp-pandoc-references"
+		"jmbuhr/cmp-pandoc-references",
+		"windwp/nvim-autopairs"
 	},
 	config = function()
 		local cmp = require('cmp')
 		local luasnip = require('luasnip')
 		local lspkind = require('lspkind')
+		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
 		require("luasnip.loaders.from_vscode").lazy_load()
 		luasnip.config.setup {}
@@ -83,6 +85,7 @@ return {
 				})
 
 			},
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		}
 	end
 }
