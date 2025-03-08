@@ -2,6 +2,7 @@
 # vim: foldmethod=marker
 
 # Direnv{{{
+[[ -z $TMUX ]] || typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 eval "$(direnv hook zsh)"
 # }}}
 
