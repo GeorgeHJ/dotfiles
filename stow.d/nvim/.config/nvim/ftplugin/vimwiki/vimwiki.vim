@@ -8,7 +8,7 @@ map <leader>bl :VimwikiBacklinks<CR>
 " mardown reflinks
 augroup md_reflinks
 	autocmd!
-	autocmd BufWrite *.md call vimwiki#markdown_base#scan_reflinks()
+	autocmd BufWrite *.md  if exists('b:vimwiki_base_dir') | call vimwiki#markdown_base#scan_reflinks()
 augroup end
 
 augroup vimwiki_md
