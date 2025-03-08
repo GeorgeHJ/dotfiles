@@ -8,7 +8,7 @@ map <leader>bl :VimwikiBacklinks<CR>
 " mardown reflinks
 augroup md_reflinks
 	autocmd!
-	autocmd BufWrite *.md call vimwiki#markdown_base#scan_reflinks()
+	autocmd BufWrite *.md  if exists('b:vimwiki_base_dir') | call vimwiki#markdown_base#scan_reflinks()
 augroup end
 
 augroup vimwiki_md
@@ -38,7 +38,3 @@ endfunction
 
 " ALE Settings
 let b:ale_enabled=0
-
-" Markdown Fixes
-let g:vim_markdown_auto_insert_bullets = 0
-let g:vim_markdown_new_list_item_indent = 0

@@ -15,7 +15,7 @@ return {
 		}
 		vim.g.vimwiki_global_ext = 0
 		vim.g.vimwiki_auto_chdir = 1
-		vim.g.vimwiki_filetypes = { "markdown" }
+		vim.treesitter.language.register("markdown", "vimwiki")
 		vim.g.vimwiki_list = {
 			{
 				name = "Notes",
@@ -29,6 +29,7 @@ return {
 				auto_tags = 1
 			},
 		}
+
 		vim.cmd(
 			[[
 				augroup VimWikiDiary
@@ -38,5 +39,5 @@ return {
 					autocmd BufNewFile ~/Documents/Notes/diary/* :norm G2o
 				augroup END
 				]])
-	end,
+	end
 }

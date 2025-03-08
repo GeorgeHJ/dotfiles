@@ -46,16 +46,6 @@ return {
 		end
 	},
 	{
-		"preservim/vim-markdown",
-		ft = "markdown",
-		init = function()
-			vim.g.vim_markdown_frontmatter = 1
-			vim.g.vim_markdown_math = 1
-			vim.g.vim_markdown_folding_disabled = 1
-		end
-
-	},
-	{
 		'goolord/alpha-nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		config = function()
@@ -78,7 +68,7 @@ return {
 	{
 		"brenoprata10/nvim-highlight-colors",
 		event = "VeryLazy",
-		config = function ()
+		config = function()
 			require("nvim-highlight-colors").setup()
 		end
 	},
@@ -101,5 +91,11 @@ return {
 	{
 		"tpope/vim-unimpaired",
 		event = "VeryLazy",
-	}
+	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true
+	},
+	{}
 }
