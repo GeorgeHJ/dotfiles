@@ -170,6 +170,7 @@ declare -A hash_dirs
 
 declare -A desc_dirs
 desc_dirs[bin]='Executable scripts'
+desc_dirs[birkbeck]='Birkbeck University'
 desc_dirs[config]='Configuration directory'
 desc_dirs[go]='Go Language Workspace'
 desc_dirs[zsh]='Zsh directory'
