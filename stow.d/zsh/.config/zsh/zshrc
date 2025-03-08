@@ -162,6 +162,7 @@ declare -A hash_dirs
 [[ -d "$HOME/Repos/Github" ]] && hash_dirs[github]="$HOME/Repos/Github"
 [[ -d "$GOPATH" ]] && hash_dirs[go]="$GOPATH"
 [[ -d "$XDG_MUSIC_DIR" ]] && hash_dirs[music]="$XDG_MUSIC_DIR"
+[[ -d "$XDG_CONFIG_HOME/nvim" ]] && hash_dirs[nvim]="$XDG_CONFIG_HOME/nvim"
 [[ -d "$XDG_DOCUMENTS_DIR/Notes" ]] && hash_dirs[notes]="$XDG_DOCUMENTS_DIR/Notes"
 [[ -d "$HOME/Repos" ]] && hash_dirs[repos]="$HOME/Repos"
 [[ -d "$XDG_CONFIG_HOME/vim" ]] && hash_dirs[vim]="$XDG_CONFIG_HOME/vim"
@@ -177,6 +178,7 @@ desc_dirs[downloads]='Downloads'
 desc_dirs[github]='Github'
 desc_dirs[go]='Go Language Workspace'
 desc_dirs[music]='Music'
+desc_dirs[nvim]='Neovim configurations'
 desc_dirs[notes]='Notes'
 desc_dirs[repos]='Repositories'
 desc_dirs[vim]='Vim configurations'
