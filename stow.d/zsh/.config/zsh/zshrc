@@ -33,6 +33,7 @@ setopt hist_find_no_dups
 #{{{ Fallback PS1
 autoload -U colors && colors
 PS1="%B[%{$fg[green]%}%n%{$fg[green]%}%{$reset_color%}%B@%{$fg[green]%}%M %{$reset_color%}%B%~]%{$reset_color%}%#%(?..%{$fg[red]%} %?)%b "
+[[ -n $CONTAINER_ID ]] && PS1="$fg[magenta]◆$reset_color ${PS1}"
 #}}}
 
 #{{{ Dircolors
