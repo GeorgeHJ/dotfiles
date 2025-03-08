@@ -29,6 +29,7 @@ return {
 				auto_tags = 1
 			},
 		}
+
 		vim.cmd(
 			[[
 				augroup VimWikiDiary
@@ -38,5 +39,5 @@ return {
 					autocmd BufNewFile ~/Documents/Notes/diary/* :norm G2o
 				augroup END
 				]])
-	end,
+	end
 }
