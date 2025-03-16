@@ -152,6 +152,11 @@ autoload run-help
 alias help=run-help
 # }}}
 
+#{{{ CDPATH
+
+cdpath=(~/.config)
+# }}}
+
 #{{{ Named Directories
 declare -A hash_dirs
 [[ -d $HOME/.local/bin ]] && hash_dirs[bin]="$HOME/.local/bin"
