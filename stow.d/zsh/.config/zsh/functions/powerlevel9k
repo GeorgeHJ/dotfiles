@@ -9,10 +9,22 @@ case $TERM in
 		POWERLEVEL9K_MODE='default'
 		;;
 esac
+# Custom distrobox segment
+#
+function prompt_distrobox()
+{
+	[[ -z $CONTAINER_ID ]] && return
+
+	local distrobox_icon=" "
+	local id=$CONTAINER_ID
+
+	p10k segment -i $distrobox_icon -f black -b blue -t $id
+}
+
 
 ##{{{ Segment Settings
 POWERLEVEL9K_STATUS_VERBOSE="false"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs virtualenv status)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(distrobox os_icon context dir dir_writable vcs virtualenv status)
 POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode)
 POWERLEVEL9K_CONTEXT_TEMPLATE='%B%n%b'

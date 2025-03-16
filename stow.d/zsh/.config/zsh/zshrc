@@ -2,6 +2,7 @@
 # vim: foldmethod=marker
 
 # Direnv{{{
+[[ -z $TMUX ]] || typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 eval "$(direnv hook zsh)"
 # }}}
 
@@ -32,6 +33,7 @@ setopt hist_find_no_dups
 #{{{ Fallback PS1
 autoload -U colors && colors
 PS1="%B[%{$fg[green]%}%n%{$fg[green]%}%{$reset_color%}%B@%{$fg[green]%}%M %{$reset_color%}%B%~]%{$reset_color%}%#%(?..%{$fg[red]%} %?)%b "
+[[ -n $CONTAINER_ID ]] && PS1="$fg[magenta]◆$reset_color ${PS1}"
 #}}}
 
 #{{{ Dircolors
@@ -150,35 +152,43 @@ autoload run-help
 alias help=run-help
 # }}}
 
+#{{{ CDPATH
+
+cdpath=(~/.config)
+# }}}
+
 #{{{ Named Directories
 declare -A hash_dirs
 [[ -d $HOME/.local/bin ]] && hash_dirs[bin]="$HOME/.local/bin"
-[[ -d "$GOPATH" ]] && hash_dirs[go]="$GOPATH"
+[[ -d "$XDG_DOCUMENTS_DIR/University/Birkbeck" ]] && hash_dirs[birkbeck]="$XDG_DOCUMENTS_DIR/University/Birkbeck"
 [[ -d $XDG_CONFIG_HOME ]] && hash_dirs[config]="$XDG_CONFIG_HOME"
-[[ -d "$XDG_CONFIG_HOME/zsh" ]] && hash_dirs[zsh]="$XDG_CONFIG_HOME/zsh"
-[[ -d "$XDG_CONFIG_HOME/vim" ]] && hash_dirs[vim]="$XDG_CONFIG_HOME/vim"
-[[ -d "$XDG_DATA_HOME/whipper/rips" ]] && hash_dirs[whipper_rips]="$XDG_DATA_HOME/whipper/rips"
 [[ -d "$XDG_DOCUMENTS_DIR" ]] && hash_dirs[doc]="$XDG_DOCUMENTS_DIR"
 [[ -d "$XDG_DOWNLOAD_DIR" ]] && hash_dirs[downloads]="$XDG_DOWNLOAD_DIR"
+[[ -d "$HOME/.local/src/Repos/Github" ]] && hash_dirs[github]="$HOME/.local/src/Repos/Github"
+[[ -d "$GOPATH" ]] && hash_dirs[go]="$GOPATH"
 [[ -d "$XDG_MUSIC_DIR" ]] && hash_dirs[music]="$XDG_MUSIC_DIR"
+[[ -d "$XDG_CONFIG_HOME/nvim" ]] && hash_dirs[nvim]="$XDG_CONFIG_HOME/nvim"
 [[ -d "$XDG_DOCUMENTS_DIR/Notes" ]] && hash_dirs[notes]="$XDG_DOCUMENTS_DIR/Notes"
-[[ -d "$XDG_DOCUMENTS_DIR/University/Birkbeck" ]] && hash_dirs[birkbeck]="$XDG_DOCUMENTS_DIR/University/Birkbeck"
-[[ -d "$HOME/Repos" ]] && hash_dirs[repos]="$HOME/Repos"
-[[ -d "$HOME/Repos/Github" ]] && hash_dirs[github]="$HOME/Repos/Github"
+[[ -d "$HOME/.local/src/Repos" ]] && hash_dirs[repos]="$HOME/.local/src/Repos"
+[[ -d "$XDG_CONFIG_HOME/vim" ]] && hash_dirs[vim]="$XDG_CONFIG_HOME/vim"
+[[ -d "$XDG_DATA_HOME/whipper/rips" ]] && hash_dirs[whipper_rips]="$XDG_DATA_HOME/whipper/rips"
+[[ -d "$XDG_CONFIG_HOME/zsh" ]] && hash_dirs[zsh]="$XDG_CONFIG_HOME/zsh"
 
 declare -A desc_dirs
 desc_dirs[bin]='Executable scripts'
+desc_dirs[birkbeck]='Birkbeck University'
 desc_dirs[config]='Configuration directory'
-desc_dirs[go]='Go Language Workspace'
-desc_dirs[zsh]='Zsh directory'
-desc_dirs[vim]='Vim configurations'
-desc_dirs[whipper_rips]='Whipper rips'
 desc_dirs[doc]='Documents'
 desc_dirs[downloads]='Downloads'
+desc_dirs[github]='Github'
+desc_dirs[go]='Go Language Workspace'
 desc_dirs[music]='Music'
+desc_dirs[nvim]='Neovim configurations'
 desc_dirs[notes]='Notes'
 desc_dirs[repos]='Repositories'
-desc_dirs[github]='Github'
+desc_dirs[vim]='Vim configurations'
+desc_dirs[whipper_rips]='Whipper rips'
+desc_dirs[zsh]='Zsh directory'
 
 # Loop over the associative array to build the directory hashes
 for key value in ${(kv)hash_dirs};
