@@ -6,25 +6,26 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
 })
 
 local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+local severity = vim.diagnostic.severity
 vim.diagnostic.config({
 	signs = {
 		text = {
-			[vim.diagnostic.severity.ERROR] = signs.Error,
-			[vim.diagnostic.severity.WARN] = signs.Warn,
-			[vim.diagnostic.severity.HINT] = signs.Hint,
-			[vim.diagnostic.severity.INFO] = signs.Info
+			[severity.ERROR] = signs.Error,
+			[severity.WARN] = signs.Warn,
+			[severity.HINT] = signs.Hint,
+			[severity.INFO] = signs.Info
 		},
 		numhl = {
-			[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-			[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
-			[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-			[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo"
+			[severity.ERROR] = "DiagnosticSignError",
+			[severity.WARN] = "DiagnosticSignWarn",
+			[severity.HINT] = "DiagnosticSignHint",
+			[severity.INFO] = "DiagnosticSignInfo"
 		},
 		texthl = {
-			[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-			[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
-			[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-			[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo"
+			[severity.ERROR] = "DiagnosticSignError",
+			[severity.WARN] = "DiagnosticSignWarn",
+			[severity.HINT] = "DiagnosticSignHint",
+			[severity.INFO] = "DiagnosticSignInfo"
 		}
 	}
 })
