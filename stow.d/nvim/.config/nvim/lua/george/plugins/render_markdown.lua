@@ -37,19 +37,22 @@ return {
 				}
 			}
 		)
-		vim.cmd([[
-		  highlight RenderMarkdownH1 guifg=#7d9bd7 gui=bold
-		  highlight RenderMarkdownH2 guifg=#7d9bd7 gui=bold
-		  highlight RenderMarkdownH3 guifg=#7d9bd7 gui=bold
-		  highlight RenderMarkdownH4 guifg=#7d9bd7 gui=bold
-		  highlight RenderMarkdownH5 guifg=#7d9bd7 gui=bold
-		  highlight RenderMarkdownH6 guifg=#7d9bd7 gui=bold
-		  highlight RenderMarkdownH1Bg guifg=#7d9bd7 guibg=#242435 gui=bold
-		  highlight RenderMarkdownH2Bg guifg=#7d9bd7 guibg=#242435 gui=bold
-		  highlight RenderMarkdownH3Bg guifg=#7d9bd7 guibg=#242435 gui=bold
-		  highlight RenderMarkdownH4Bg guifg=#7d9bd7 guibg=#242435 gui=bold
-		  highlight RenderMarkdownH5Bg guifg=#7d9bd7 guibg=#242435 gui=bold
-		  highlight RenderMarkdownH6Bg guifg=#7d9bd7 guibg=#242435 gui=bold
-		]])
+		local heading_color = "#7d9bd7"
+		local heading_bg = "#242435"
+
+		for i = 1, 6 do
+			-- Heading text
+			vim.api.nvim_set_hl(
+				0,
+				"RenderMarkdownH" .. i,
+				{ fg = heading_color, bold = true }
+			)
+			-- Headings with background
+			vim.api.nvim_set_hl(
+				0,
+				"RenderMarkdownH" .. i .. "Bg",
+				{ fg = heading_color, bg = heading_bg, bold = true }
+			)
+		end
 	end
 }
