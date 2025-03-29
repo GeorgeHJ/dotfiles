@@ -10,11 +10,11 @@ return {
 				file_types = { "markdown", "vimwiki" },
 				bullet = { right_pad = 2 },
 				checkbox = {
-					unchecked = { icon = "" },
-					checked = { icon = "" },
+					unchecked = { icon = " " },
+					checked = { icon = " " },
 					custom = {
-						begun = { raw = "[.]", rendered = "󰄗" },
-						progressed = { raw = "[o]", rendered = "󰡖" }
+						begun = { raw = "[.]", rendered = "󰄗 ", highlight = "Special" },
+						progressed = { raw = "[o]", rendered = "󰡖 ", highlight = "Special" }
 					}
 				},
 				heading = {
