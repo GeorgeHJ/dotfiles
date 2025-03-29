@@ -6,7 +6,26 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
 })
 
 local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
+local severity = vim.diagnostic.severity
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[severity.ERROR] = signs.Error,
+			[severity.WARN] = signs.Warn,
+			[severity.HINT] = signs.Hint,
+			[severity.INFO] = signs.Info
+		},
+		numhl = {
+			[severity.ERROR] = "DiagnosticSignError",
+			[severity.WARN] = "DiagnosticSignWarn",
+			[severity.HINT] = "DiagnosticSignHint",
+			[severity.INFO] = "DiagnosticSignInfo"
+		},
+		texthl = {
+			[severity.ERROR] = "DiagnosticSignError",
+			[severity.WARN] = "DiagnosticSignWarn",
+			[severity.HINT] = "DiagnosticSignHint",
+			[severity.INFO] = "DiagnosticSignInfo"
+		}
+	}
+})
