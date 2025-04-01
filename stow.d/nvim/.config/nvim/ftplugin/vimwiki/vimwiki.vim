@@ -30,6 +30,3 @@ function! VimwikiLinkHandler(link)
 		return 1
 	endif
 endfunction
-
-" ALE Settings
-let b:ale_enabled=0
