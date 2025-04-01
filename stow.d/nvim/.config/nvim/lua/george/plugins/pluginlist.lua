@@ -89,10 +89,6 @@ return {
 		event = "VeryLazy",
 	},
 	{
-		"tpope/vim-unimpaired",
-		event = "VeryLazy",
-	},
-	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = true

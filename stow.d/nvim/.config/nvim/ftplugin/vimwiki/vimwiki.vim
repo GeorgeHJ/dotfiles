@@ -11,11 +11,6 @@ augroup md_reflinks
 	autocmd BufWrite *.md  if exists('b:vimwiki_base_dir') | call vimwiki#markdown_base#scan_reflinks()
 augroup end
 
-augroup vimwiki_md
-	autocmd!
-	autocmd BufEnter *.md setlocal syntax=markdown
-augroup end
-
 function! VimwikiLinkHandler(link)
 	" Use Vim to open external files with the 'vfile:' scheme.  E.g.:
 	"   1) [[vfile:~/Code/PythonProject/abc123.py]]
@@ -35,6 +30,3 @@ function! VimwikiLinkHandler(link)
 		return 1
 	endif
 endfunction
-
-" ALE Settings
-let b:ale_enabled=0

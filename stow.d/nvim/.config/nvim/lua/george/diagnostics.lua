@@ -8,6 +8,7 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
 local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
 local severity = vim.diagnostic.severity
 vim.diagnostic.config({
+	virtual_text = true ,
 	signs = {
 		text = {
 			[severity.ERROR] = signs.Error,
