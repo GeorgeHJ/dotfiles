@@ -5,7 +5,7 @@ end
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.2",
+		tag = "0.1.8",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{
@@ -18,8 +18,8 @@ return {
 				extensions = {
 					fzf = {
 						fuzzy = true,
-						override_generic_sorter = false,
-						override_file_sorter = false,
+						override_generic_sorter = true,
+						override_file_sorter = true,
 					}
 				}
 			})
