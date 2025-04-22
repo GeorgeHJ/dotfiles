@@ -3,7 +3,7 @@
 
 # Direnv{{{
 [[ -z $TMUX ]] || typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-eval "$(direnv hook zsh)"
+command -V direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 # }}}
 
 # {{{ P10k Instant Prompt
