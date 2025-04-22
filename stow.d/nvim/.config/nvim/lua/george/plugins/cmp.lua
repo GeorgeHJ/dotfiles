@@ -68,10 +68,26 @@ return {
 					end
 				}
 				},
-				{ name = "otter" },
-				{ name = "pandoc_references" },
-				{ name = "latex_symbols" },
-				{ name = "vim-dadbod-completion" }
+				cmp.setup.filetype({ "markdown", "vimwiki" },
+					{
+						sources = {
+							{ name = "latex_symbols" },
+						}
+					}),
+				cmp.setup.filetype("quarto",
+					{
+						sources = {
+							{ name = "otter" },
+							{ name = "pandoc_references" },
+						}
+					}),
+
+				cmp.setup.filetype("sql",
+					{
+						sources = {
+							{ name = "vim-dadbod-completion" }
+						}
+					})
 			},
 			---@diagnostic disable-next-line: missing-fields
 			formatting = {
