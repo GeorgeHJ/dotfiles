@@ -1,7 +1,8 @@
 return {
 	"williamboman/mason.nvim",
+	version = "1.11.0",
 	dependencies = {
-		"williamboman/mason-lspconfig.nvim",
+		{ "williamboman/mason-lspconfig.nvim", version= "1.32.0" },
 		"neovim/nvim-lspconfig",
 		"folke/neodev.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim"
@@ -13,7 +14,9 @@ return {
 				ensure_installed = { "shfmt",
 					"shellcheck",
 					"ruff",
-					"mypy" }
+					"mypy",
+					"bash-language-server"
+				}
 			}
 		)
 		require("mason-lspconfig").setup(
