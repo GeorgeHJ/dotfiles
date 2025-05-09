@@ -128,4 +128,11 @@ require("mason-lspconfig").setup_handlers({
 			capabilities = capabilities,
 		}
 	end,
+
+	["marksman"] = function ()
+	require('lspconfig').marksman.setup {
+			on_attach = on_attach,
+			capabilities = capabilities,
+		}
+	end
 })
