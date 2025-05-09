@@ -21,6 +21,23 @@ return {
 		require("luasnip.loaders.from_vscode").lazy_load()
 		luasnip.config.setup {}
 
+		-- Buffer source configuration
+		local buffer_source = {
+			name = "buffer",
+			option = {
+				get_bufnrs = function()
+					return vim.api.nvim_list_bufs()
+				end
+			}
+		}
+
+		-- Common sources used in most configurations
+		local common_sources = {
+			{ name = "nvim_lsp" },
+			{ name = "luasnip" },
+			{ name = "path" },
+			buffer_source,
+		}
 		---@diagnostic disable-next-line: missing-fields
 		cmp.setup {
 			snippet = {
@@ -57,51 +74,41 @@ return {
 					end
 				end, { "i", "s" }),
 			},
-			sources = {
-				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
-				{ name = "path" },
-				{
-					name = "buffer", option = {
-					get_bufnrs = function()
-						return vim.api.nvim_list_bufs()
-					end
-				}
-				},
-				cmp.setup.filetype({ "markdown", "vimwiki" },
-					{
-						sources = {
-							{ name = "latex_symbols" },
-						}
-					}),
-				cmp.setup.filetype("quarto",
-					{
-						sources = {
-							{ name = "otter" },
-							{ name = "pandoc_references" },
-						}
-					}),
-
-				cmp.setup.filetype("sql",
-					{
-						sources = {
-							{ name = "vim-dadbod-completion" }
-						}
-					})
-			},
-			---@diagnostic disable-next-line: missing-fields
+			sources = common_sources,
 			formatting = {
 				format = lspkind.cmp_format({
 					mode = "symbol_text",
 					maxwidth = 50,
 					ellipsis_char = "…",
 					menu = {
-						latex_symbols = "[tex]"
+						latex_symbols = "[  ]"
 					}
 				})
 
-			},
-			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+			}
 		}
+		cmp.setup.filetype({ "markdown", "vimwiki" },
+			{
+				sources = {
+					{ name = "latex_symbols" },
+					unpack(common_sources)
+				}
+			})
+		cmp.setup.filetype("sql",
+			{
+				sources = {
+					{ name = "vim-dadbod-completion" },
+					unpack(common_sources)
+				}
+			})
+		cmp.setup.filetype("quarto",
+			{
+				sources = {
+					{ name = "otter" },
+					{ name = "pandoc_references" },
+					unpack(common_sources)
+				}
+			})
+		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 	end
 }
