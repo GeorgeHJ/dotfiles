@@ -91,14 +91,14 @@ return {
 			{
 				sources = {
 					{ name = "latex_symbols" },
-					table.unpack(common_sources)
+					unpack(common_sources)
 				}
 			})
 		cmp.setup.filetype("sql",
 			{
 				sources = {
 					{ name = "vim-dadbod-completion" },
-					table.unpack(common_sources)
+					unpack(common_sources)
 				}
 			})
 		cmp.setup.filetype("quarto",
@@ -106,7 +106,7 @@ return {
 				sources = {
 					{ name = "otter" },
 					{ name = "pandoc_references" },
-					table.unpack(common_sources)
+					unpack(common_sources)
 				}
 			})
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
