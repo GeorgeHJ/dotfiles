@@ -9,11 +9,11 @@ return {
 		require("mason").setup()
 		require("mason-tool-installer").setup(
 			{
-				ensure_installed = { "shfmt",
+				ensure_installed = {
+					"shfmt",
 					"shellcheck",
 					"ruff",
 					"mypy",
-					"bash-language-server"
 				}
 			}
 		)
