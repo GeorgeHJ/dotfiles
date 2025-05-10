@@ -19,8 +19,13 @@ return {
 		)
 		require("mason-lspconfig").setup(
 			{
-				ensure_installed = { "lua_ls",
-					"pylsp" }
+				ensure_installed = {
+					"lua_ls",
+					"pylsp",
+					"bashls",
+					"marksman"
+				},
+				automatic_enable = false
 			}
 		)
 	end
