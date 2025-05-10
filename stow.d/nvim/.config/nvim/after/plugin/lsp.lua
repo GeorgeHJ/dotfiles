@@ -31,108 +31,68 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
--- Mason setup
-require("mason-lspconfig").setup_handlers({
-
-	function(server_name)
-		require("lspconfig")[server_name].setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-		}
-	end,
-
-	["lua_ls"] = function()
-		require("neodev").setup()
-		require('lspconfig').lua_ls.setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-			settings = {
-				Lua = {
-					workspace = { checkThirdParty = false },
-					telemetry = { enable = false },
+vim.lsp.enable("lua_ls")
+vim.lsp.config("lua_ls", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		Lua = {
+			workspace = { checkThirdParty = false },
+			telemetry = { enable = false },
+		},
+	},
+}
+)
+vim.lsp.enable("pylsp")
+vim.lsp.config("pylsp", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		pylsp = {
+			plugins = {
+				pylsp_mypy = {
+					enabled = true,
+					live_mode = true,
+					strict = true,
+					dmypy = false
 				},
-			},
-		}
-	end,
-
-	["pylsp"] = function()
-		require('lspconfig').pylsp.setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-			settings = {
-				pylsp = {
-					plugins = {
-						pylsp_mypy = {
-							enabled = true,
-							live_mode = true,
-							strict = true,
-							dmypy = false
-						},
-						rope = {
-							enabled = true,
-							autoimport = {
-								enabled = true
-							}
-						},
-						isort = {
-							enabled = false
-						},
-						ruff = {
-							enabled = false
-						},
-						pylint = {
-							enabled = false
-						},
-						pyflakes = {
-							enabled = false
-						},
-						flake8 = {
-							enabled = false
-						},
-						pycodestyle = {
-							enabled = false
-						},
+				rope = {
+					enabled = true,
+					autoimport = {
+						enabled = true
 					}
-				}
+				},
+				isort = { enabled = false },
+				ruff = { enabled = false },
+				pylint = { enabled = false },
+				pyflakes = { enabled = false },
+				flake8 = { enabled = false },
+				pycodestyle = { enabled = false },
 			}
 		}
-	end,
-
-	["ruff"] = function()
-		require('lspconfig').ruff.setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-			init_options = {
-				settings = {
-					lint = {
-						select = {
-							"I", -- Import-related checks (isort)
-							"E", -- pycodestyle errors
-							"W", -- pycodestyle warnings
-							"F", -- Pyflakes checks (error prevention)
-							"B", -- flake8-bugbear best practices
-							"ANN", -- Type annotations enforcement
-							"D", -- Docstring conventions (PEP 257)
-							"C4", -- Comprehensions
-							"C90", -- mccabe
-						}
-					}
-				}
-			}
-		}
-	end,
-
-	["bashls"] = function()
-		require('lspconfig').bashls.setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-		}
-	end,
-
-	["marksman"] = function ()
-	require('lspconfig').marksman.setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-		}
-	end
+	}
 })
+vim.lsp.enable("ruff")
+vim.lsp.config("ruff", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	init_options = {
+		settings = {
+			lint = {
+				select = {
+					"I", -- Import-related checks (isort)
+					"E", -- pycodestyle errors
+					"W", -- pycodestyle warnings
+					"F", -- Pyflakes checks (error prevention)
+					"B", -- flake8-bugbear best practices
+					"ANN", -- Type annotations enforcement
+					"D", -- Docstring conventions (PEP 257)
+					"C4", -- Comprehensions
+					"C90", -- mccabe
+				}
+			}
+		}
+	}
+})
+vim.lsp.enable("bashls")
+vim.lsp.enable("marksman")
