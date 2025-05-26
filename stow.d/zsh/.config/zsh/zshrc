@@ -121,7 +121,7 @@ zmodload zsh/complist
 # }}}
 
 #{{{ Extra functions
-autoload diary wik
+autoload diary wik wake
 # }}}
 
 #{{{ compinstall and compinit options
