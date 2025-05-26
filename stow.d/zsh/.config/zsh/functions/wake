@@ -2,5 +2,5 @@
 # Use systemd-inhibit to prevent sleep for a long running process in the shell
 
 function wake(){
-	systemd-inhibit --what=sleep --who=${USER} --why=Job $@
+	systemd-inhibit --what=sleep --who=${USER} --why=$1 $@
 }
