@@ -3,8 +3,6 @@ return {
 		"numToStr/Comment.nvim",
 		config = function()
 			require("Comment").setup()
-			local ft = require('Comment.ft')
-			ft({'vimwiki','md'}, {'<!--\\ %s\\ -->', '<!--\\ %s\\ -->'})
 		end
 	},
 	{
@@ -71,7 +69,7 @@ return {
 		"brenoprata10/nvim-highlight-colors",
 		event = "VeryLazy",
 		config = function()
-			require("nvim-highlight-colors").setup()
+			require("nvim-highlight-colors").setup({})
 		end
 	},
 	{
@@ -105,5 +103,9 @@ return {
 				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 			},
 		}
+	},
+	{
+		"ron-rs/ron.vim",
+		event = "VeryLazy",
 	}
 }

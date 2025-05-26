@@ -37,7 +37,15 @@ vim.lsp.config("lua_ls", {
 	capabilities = capabilities,
 	settings = {
 		Lua = {
-			workspace = { checkThirdParty = false },
+			diagnostics = {
+				globals = { "vim" }
+			},
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					vim.env.VIMRUNTIME
+				}
+			},
 			telemetry = { enable = false },
 		},
 	},
