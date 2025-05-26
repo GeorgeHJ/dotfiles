@@ -173,11 +173,13 @@ declare -A hash_dirs
 [[ -d "$XDG_CONFIG_HOME/vim" ]] && hash_dirs[vim]="$XDG_CONFIG_HOME/vim"
 [[ -d "$XDG_DATA_HOME/whipper/rips" ]] && hash_dirs[whipper_rips]="$XDG_DATA_HOME/whipper/rips"
 [[ -d "$XDG_CONFIG_HOME/zsh" ]] && hash_dirs[zsh]="$XDG_CONFIG_HOME/zsh"
+[[ -d "$XDG_DATA_HOME" ]] && hash_dirs[data]="$XDG_DATA_HOME"
 
 declare -A desc_dirs
 desc_dirs[bin]='Executable scripts'
 desc_dirs[birkbeck]='Birkbeck University'
 desc_dirs[config]='Configuration directory'
+desc_dirs[data]='Application data directory'
 desc_dirs[doc]='Documents'
 desc_dirs[downloads]='Downloads'
 desc_dirs[github]='Github'
