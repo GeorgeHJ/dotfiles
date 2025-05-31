@@ -4,9 +4,6 @@ local wk = require("which-key")
 
 local on_attach = function(_, bufnr)
 	local l = vim.lsp.buf
-	local bo = vim.bo
-
-	bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
 	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
 		l.format()
@@ -34,8 +31,7 @@ local on_attach = function(_, bufnr)
 	})
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 vim.lsp.enable("lua_ls")
 vim.lsp.config("lua_ls", {
