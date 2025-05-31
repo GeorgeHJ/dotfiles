@@ -15,3 +15,5 @@ stow.d/tmux/.config/tmux/plugins/
 **/plug.vim
 **/plug.vim.old
 **/__pycache__
+**/beets**/library.db
+**/beets**/state.pickle

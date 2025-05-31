@@ -11,24 +11,24 @@ highlight  BrokenLink  gui=bold               guifg=#e82323		guibg=#1e1e27
 						\ cterm=none		  ctermfg=red		ctermbg=233
 highlight  CmdLine     gui=none               guifg=#dbd6b9		guibg=#1e1e27
 						\ cterm=none	      ctermfg=230		ctermbg=233
-highlight  Device      gui=bold                      			guibg=#1e1e27	
+highlight  Device      gui=bold               guifg=#e82323		guibg=#1e1e27	
 						\ cterm=bold		  ctermfg=red		ctermbg=233
 highlight  Directory   gui=bold               guifg=#7d9bd7		guibg=#1e1e27
 						\ cterm=bold		  ctermfg=blue    	ctermbg=233
 highlight  ErrorMsg    gui=none               guifg=#e82323		guibg=#1e1e27
 						\ cterm=none	   	  ctermfg=red     	ctermbg=233
-highlight  Executable  gui=bold                   				guibg=#1e1e27
+highlight  Executable  gui=bold               guifg=#759369    	guibg=#1e1e27
 						\ cterm=bold		  ctermfg=green		ctermbg=233
-highlight  Fifo        gui=bold                                 guibg=#1e1e27	
+highlight  Fifo        gui=bold               guifg=#699488 	guibg=#1e1e27	
 						\ cterm=none		  ctermfg=cyan	    ctermbg=233
-highlight  Link        gui=bold                    				guibg=#1e1e27
+highlight  Link        gui=bold               guifg=#699488     guibg=#1e1e27
 						\ cterm=bold		  ctermfg=cyan		ctermbg=233
 highlight  OtherLine   gui=bold               guifg=#1e1e27		guibg=#908d7f
 						\ cterm=bold 		  ctermfg=black     ctermbg=8
 highlight  Selected    gui=bold,reverse       guifg=#947eb7
 						\ cterm=bold,reverse  ctermfg=magenta	
 highlight  Socket      gui=bold               guifg=#947eb7   	guibg=#292937
-						\ cterm=bold							ctermbg=235
+						\ cterm=bold		  ctermfg=magenta	ctermbg=235
 highlight  StatusLine  gui=none               guifg=#908d7f   	guibg=#292937
 						\ cterm=none 							ctermbg=235
 highlight  SuggestBox  gui=none               guifg=#908d7f   	guibg=#292937
