@@ -1,0 +1,18 @@
+#!/bin/sh
+
+checkdeps() {
+	if ! command -v ffmpeg >/dev/null 2>&1; then
+		echo "ffmpeg is not installed. Please install it to use this script."
+		exit 1
+	fi
+	if ! command -v lame >/dev/null 2>&1; then
+		echo "lame is not installed. Please install it to use this script."
+		exit 1
+	fi
+}
+
+main() {
+	checkdeps
+	ffmpeg -i "$1" -f wav - | lame -V 1 --noreplaygain - "$2"
+}
+main "$@"
