@@ -77,10 +77,6 @@ if command -v lynx >/dev/null 2>&1; then
 fi
 # Quick Start Settings for Par
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
-# fzf options
-if command -v fzf >/dev/null 2>&1; then
-	export FZF_DEFAULT_OPTS="--color=16,fg+:14"
-fi
 # IPython configuration directory
 if command -v ipython >/dev/null 2>&1; then
 	export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
