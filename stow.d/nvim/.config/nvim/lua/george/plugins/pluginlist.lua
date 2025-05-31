@@ -43,6 +43,17 @@ return {
 		init = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
+		end,
+		config = function()
+			local wk = require("which-key")
+			wk.add({
+				{ "<leader>z", "<cmd>set spell!<cr>", desc = "Toggle Spellcheck", mode = "n", silent = true, noremap = true },
+				{
+					mode = { "n", "v" },
+					{ "<C-y>", '"+y<cr>', desc = "Yank to Clipboard",    group = "Clipboard", silent = true, noremap = true },
+					{ "<C-p>", '"+p<cr>', desc = "Paste from Clipboard", group = "Clipboard", silent = true, noremap = true },
+				}
+			})
 		end
 	},
 	{
