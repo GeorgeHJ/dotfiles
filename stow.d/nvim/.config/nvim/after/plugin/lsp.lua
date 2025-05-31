@@ -105,6 +105,10 @@ vim.lsp.config("ruff", {
 	}
 })
 vim.lsp.enable("bashls")
+vim.lsp.config("bashls", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
 vim.lsp.enable("marksman")
 vim.lsp.config("marksman", {
 	on_attach = on_attach,
