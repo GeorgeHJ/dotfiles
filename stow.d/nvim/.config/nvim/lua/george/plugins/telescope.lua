@@ -3,7 +3,6 @@ local function nbufmap(keys, func, desc)
 end
 
 return {
-	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
 		dependencies = {
@@ -11,7 +10,8 @@ return {
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
-			}
+			},
+			"rachartier/tiny-code-action.nvim",
 		},
 		config = function()
 			require("telescope").setup({
@@ -50,20 +50,4 @@ return {
 			nbufmap('<leader>fu', builtin.buffers, "Search Buffers")
 			nbufmap('<leader>fm', builtin.man_pages, "Search Man Pages")
 		end
-	},
-	{
-		"rachartier/tiny-code-action.nvim",
-		dependencies = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-telescope/telescope.nvim" },
-		},
-		event = "LspAttach",
-		config = function()
-			require('tiny-code-action').setup()
-			local action_opts = {}
-			vim.keymap.set("n", "<leader>a", function()
-				require("tiny-code-action").code_action(action_opts)
-			end, { noremap = true, silent = true, desc = "Code Action" })
-		end
-	}
 }
