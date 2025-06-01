@@ -1,33 +1,30 @@
-local tb = require("telescope.builtin")
-local ta = require("tiny-code-action")
-local wk = require("which-key")
-
 local on_attach = function(_, bufnr)
 	local l = vim.lsp.buf
+	local tb = require("telescope.builtin")
+	local ta = require("tiny-code-action")
+	local wk = require("which-key")
 
 	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
 		l.format()
 	end, {})
 
-	local nbufmap = function(keys, func, desc)
-		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-	end
-
-	-- Normal mode mappings
-	nbufmap('K', l.hover, "Hover")
-	nbufmap('grn', l.rename, "Rename")
-
-	-- Telescope integration mappings
-	nbufmap('gd', tb.lsp_definitions, "Go to Definition")
-	nbufmap('gD', tb.lsp_type_definitions, "Go to Declation")
-	nbufmap('grr', tb.lsp_references, "Find references")
-	nbufmap('gri', tb.lsp_implementations, "Go to Implemenation")
-	nbufmap('gO', tb.lsp_document_symbols, "Document symbols")
-
-	-- Code actions
 	wk.add({
-		mode = { "n", "v" },
-		{ "gra", ta.code_action, desc = "Code Action", buffer = bufnr }
+		{
+			mode = { "n" },
+			-- Normal mode mappings
+			{ 'K',   l.hover,                 desc = "Hover",               buffer = bufnr },
+			{ 'grn', l.rename,                desc = "Rename",              buffer = bufnr },
+			-- Telescope integration mappings
+			{ 'gd',  tb.lsp_definitions,      desc = "Go to Definition",    buffer = bufnr },
+			{ 'gD',  tb.lsp_type_definitions, desc = "Go to Declation",     buffer = bufnr },
+			{ 'grr', tb.lsp_references,       desc = "Find references",     buffer = bufnr },
+			{ 'gri', tb.lsp_implementations,  desc = "Go to Implemenation", buffer = bufnr },
+			{ 'gO',  tb.lsp_document_symbols, desc = "Document symbols",    buffer = bufnr }
+		}, {
+			-- Code actions
+			mode = { "n", "v" },
+			{ "gra", ta.code_action, desc = "Code Action", buffer = bufnr }
+		}
 	})
 end
 
