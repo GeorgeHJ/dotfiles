@@ -50,8 +50,8 @@ return {
 				{ "<leader>z", "<cmd>set spell!<cr>", desc = "Toggle Spellcheck", mode = "n", silent = true, noremap = true },
 				{
 					mode = { "n", "v" },
-					{ "<C-y>", '"+y<cr>', desc = "Yank to Clipboard",    group = "Clipboard", silent = true, noremap = true },
-					{ "<C-p>", '"+p<cr>', desc = "Paste from Clipboard", group = "Clipboard", silent = true, noremap = true },
+					{ "<C-y>", '"+y<cr>', desc = "Yank to Clipboard",    icon="", silent = true, noremap = true },
+					{ "<C-p>", '"+p<cr>', desc = "Paste from Clipboard", icon="", silent = true, noremap = true },
 				}
 			})
 		end
