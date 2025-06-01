@@ -1,35 +1,34 @@
 local on_attach = function(_, bufnr)
 	local l = vim.lsp.buf
-	local bo = vim.bo
-
-	bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+	local tb = require("telescope.builtin")
+	local ta = require("tiny-code-action")
+	local wk = require("which-key")
 
 	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
 		l.format()
 	end, {})
 
-	local nbufmap = function(keys, func, desc)
-		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-	end
-
-	-- Leader mappings
-	nbufmap('<leader>r', l.rename, "Rename")
-	nbufmap('<leader>D', l.type_definition, "Type Definition")
-
-	-- Normal mode mappings
-	nbufmap('gd', l.definition, "Go to Definition")
-	nbufmap('gD', l.declaration, "Go to Declation")
-	nbufmap('gI', l.implementation, "Go to Implemenation")
-	nbufmap('K', l.hover, "Hover")
-
-	-- Telescope integration mappings
-	nbufmap('gr', require('telescope.builtin').lsp_references, "Find references")
-	nbufmap('<leader>s', require('telescope.builtin').lsp_document_symbols, "Document symbols")
-	nbufmap('<leader>S', require('telescope.builtin').lsp_dynamic_workspace_symbols, "Dynamic Workspace Symbols")
+	wk.add({
+		{
+			mode = { "n" },
+			-- Normal mode mappings
+			{ 'K',   l.hover,                 desc = "Hover",               buffer = bufnr },
+			{ 'grn', l.rename,                desc = "Rename",              buffer = bufnr },
+			-- Telescope integration mappings
+			{ 'gd',  tb.lsp_definitions,      desc = "Go to Definition",    buffer = bufnr },
+			{ 'gD',  tb.lsp_type_definitions, desc = "Go to Declation",     buffer = bufnr },
+			{ 'grr', tb.lsp_references,       desc = "Find references",     buffer = bufnr },
+			{ 'gri', tb.lsp_implementations,  desc = "Go to Implemenation", buffer = bufnr },
+			{ 'gO',  tb.lsp_document_symbols, desc = "Document symbols",    buffer = bufnr }
+		}, {
+			-- Code actions
+			mode = { "n", "v" },
+			{ "gra", ta.code_action, desc = "Code Action", buffer = bufnr }
+		}
+	})
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 vim.lsp.enable("lua_ls")
 vim.lsp.config("lua_ls", {
@@ -103,4 +102,12 @@ vim.lsp.config("ruff", {
 	}
 })
 vim.lsp.enable("bashls")
+vim.lsp.config("bashls", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
 vim.lsp.enable("marksman")
+vim.lsp.config("marksman", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+})

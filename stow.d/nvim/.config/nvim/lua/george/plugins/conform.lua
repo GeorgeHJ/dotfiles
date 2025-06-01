@@ -12,7 +12,9 @@ return {
 		conform.setup(
 			{
 				formatters_by_ft = {
-					sh = { "shfmt" }
+					sh = { "shfmt" },
+					markdown = {"mdformat"},
+					vimwiki = {"mdformat"},
 				},
 				conform_opts
 			}
@@ -25,5 +27,6 @@ return {
 		vim.keymap.set({ "n", "v" }, "<leader>F", function()
 			conform.format(conform_opts)
 		end, { desc = "Format file or range (in visual mode)" })
+		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 	end
 }
