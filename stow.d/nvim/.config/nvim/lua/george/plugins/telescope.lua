@@ -1,7 +1,3 @@
-local function nbufmap(keys, func, desc)
-	vim.keymap.set('n', keys, func, { desc = desc })
-end
-
 return {
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
@@ -12,6 +8,7 @@ return {
 				build = "make",
 			},
 			"rachartier/tiny-code-action.nvim",
+			"folke/which-key.nvim"
 		},
 		config = function()
 			require("telescope").setup({
@@ -44,10 +41,14 @@ return {
 				end
 			end
 
-			nbufmap('<leader>fg', project_files, "Find Project Files")
-			nbufmap('<leader>ff', builtin.find_files, "Find Files")
-			nbufmap('<leader>fr', builtin.live_grep, "Live Grep")
-			nbufmap('<leader>fu', builtin.buffers, "Search Buffers")
-			nbufmap('<leader>fm', builtin.man_pages, "Search Man Pages")
-		end
+		local wk = require("which-key")
+		wk.add({
+			mode = { "n" },
+			{ '<leader>fg', project_files, desc = "Find Project Files" },
+			{ '<leader>ff', builtin.find_files, desc = "Find Files" },
+			{ '<leader>fr', builtin.live_grep, desc = "Live Grep", icon = {icon = "", hl = "WhichKeyIconGreen"} },
+			{ '<leader>fu', builtin.buffers, desc = "Search Buffers" },
+			{ '<leader>fm', builtin.man_pages, desc = "Search Man Pages" }
+		})
+	end
 }
