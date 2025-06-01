@@ -14,6 +14,8 @@ return {
 					"shellcheck",
 					"ruff",
 					"mypy",
+					"markdownlint",
+					"mdformat"
 				}
 			}
 		)

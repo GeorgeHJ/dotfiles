@@ -12,7 +12,9 @@ return {
 		conform.setup(
 			{
 				formatters_by_ft = {
-					sh = { "shfmt" }
+					sh = { "shfmt" },
+					markdown = {"mdformat"},
+					vimwiki = {"mdformat"},
 				},
 				conform_opts
 			}
