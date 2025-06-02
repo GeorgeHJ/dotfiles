@@ -1,9 +1,5 @@
 
-# Dark 256 color solarized theme for the color GNU ls utility.
-# Used and tested with dircolors (GNU coreutils) 8.5
-#
-# @author  {@link http://sebastian.tramp.name Sebastian Tramp}
-# @license http://sam.zoy.org/wtfpl/  Do What The Fuck You Want To Public License (WTFPL)
+# Kanagawa Wave Theme for the GNU ls utility.
 #
 # More Information at
 # https://github.com/seebi/dircolors-solarized
@@ -112,7 +108,7 @@ TERM foot
 NORMAL 00;38;5;12 # normal content "base0" color code
 #FILE 00 # regular file: use no color at all
 RESET 0 # reset to "normal" color
-DIR 01;38;5;33 # directory 01;34
+DIR 01;34 # directory 01;34
 LINK 00;38;5;37 # symbolic link. (If you set this to 'target' instead of a
  # numerical value, the color is as for the file pointed to.)
 MULTIHARDLINK 00 # regular file with more than one link
