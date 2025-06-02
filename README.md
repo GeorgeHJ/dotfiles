@@ -56,6 +56,8 @@ place.
                 └── script
 ```
 
+We can extend this approach to script-only packages.
+
 ## Important Packages
 
 The following packages are *important* have have dedicated documentation:
