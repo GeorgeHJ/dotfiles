@@ -1,5 +1,13 @@
 # My Dotfiles
 
+<!--toc:start-->
+* [My Dotfiles](#my-dotfiles)
+  * [Dependencies](#dependencies)
+  * [Structure](#structure)
+  * [Scripts](#scripts)
+  * [Important Packages](#important-packages)
+<!--toc:end-->
+
 ## Dependencies
 
 To manage dotfiles easily, requires the following tools:
