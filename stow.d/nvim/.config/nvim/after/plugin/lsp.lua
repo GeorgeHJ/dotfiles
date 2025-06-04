@@ -1,39 +1,40 @@
-local on_attach = function(_, bufnr)
-	local l = vim.lsp.buf
-	local tb = require("telescope.builtin")
-	local ta = require("tiny-code-action")
-	local wk = require("which-key")
+vim.api.nvim_create_augroup("LSP", { clear = true })
+vim.api.nvim_create_autocmd({ "LspAttach" }, {
+	group = "LSP",
+	callback = function(args)
+		local bufnr = args.buf
+		local l = vim.lsp.buf
+		local tb = require("telescope.builtin")
+		local ta = require("tiny-code-action")
+		local wk = require("which-key")
 
-	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-		l.format()
-	end, {})
-
-	wk.add({
-		{
-			mode = { "n" },
-			-- Normal mode mappings
-			{ 'K',   l.hover,                 desc = "Hover",               buffer = bufnr },
-			{ 'grn', l.rename,                desc = "Rename",              buffer = bufnr },
-			-- Telescope integration mappings
-			{ 'gd',  tb.lsp_definitions,      desc = "Go to Definition",    buffer = bufnr },
-			{ 'gD',  tb.lsp_type_definitions, desc = "Go to Declation",     buffer = bufnr },
-			{ 'grr', tb.lsp_references,       desc = "Find references",     buffer = bufnr },
-			{ 'gri', tb.lsp_implementations,  desc = "Go to Implemenation", buffer = bufnr },
-			{ 'gO',  tb.lsp_document_symbols, desc = "Document symbols",    buffer = bufnr }
-		}, {
+		wk.add({
+			{
+				mode = { "n" },
+				-- Normal mode mappings
+				{ 'K',   l.hover,                 desc = "Hover",               buffer = bufnr },
+				{ 'grn', l.rename,                desc = "Rename",              buffer = bufnr },
+				-- Telescope integration mappings
+				{ 'gd',  tb.lsp_definitions,      desc = "Go to Definition",    buffer = bufnr },
+				{ 'gD',  tb.lsp_type_definitions, desc = "Go to Declation",     buffer = bufnr },
+				{ 'grr', tb.lsp_references,       desc = "Find references",     buffer = bufnr },
+				{ 'gri', tb.lsp_implementations,  desc = "Go to Implemenation", buffer = bufnr },
+				{ 'gO',  tb.lsp_document_symbols, desc = "Document symbols",    buffer = bufnr }
+			}, {
 			-- Code actions
 			mode = { "n", "v" },
 			{ "gra", ta.code_action, desc = "Code Action", buffer = bufnr }
 		}
-	})
-end
-
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		})
+	end
+}
+)
+vim.lsp.config("*", {
+	capabilities = require("cmp_nvim_lsp").default_capabilities()
+})
 
 vim.lsp.enable("lua_ls")
 vim.lsp.config("lua_ls", {
-	on_attach = on_attach,
-	capabilities = capabilities,
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -52,8 +53,6 @@ vim.lsp.config("lua_ls", {
 )
 vim.lsp.enable("pylsp")
 vim.lsp.config("pylsp", {
-	on_attach = on_attach,
-	capabilities = capabilities,
 	settings = {
 		pylsp = {
 			plugins = {
@@ -81,8 +80,6 @@ vim.lsp.config("pylsp", {
 })
 vim.lsp.enable("ruff")
 vim.lsp.config("ruff", {
-	on_attach = on_attach,
-	capabilities = capabilities,
 	init_options = {
 		settings = {
 			lint = {
@@ -102,12 +99,4 @@ vim.lsp.config("ruff", {
 	}
 })
 vim.lsp.enable("bashls")
-vim.lsp.config("bashls", {
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
 vim.lsp.enable("marksman")
-vim.lsp.config("marksman", {
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
