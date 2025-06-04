@@ -8,8 +8,8 @@ return {
 			{
 				formatters_by_ft = {
 					sh = { "shfmt" },
-					markdown = {"mdformat"},
-					vimwiki = {"mdformat"},
+					markdown = { "mdformat" },
+					vimwiki = { "mdformat" },
 				},
 				default_format_opts = {
 					lsp_format = "last"
