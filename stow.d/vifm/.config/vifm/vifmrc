@@ -591,6 +591,10 @@ nnoremap <c-u> <c-w>x
 " Activate screen/tmux support
 screen!
 
+command! FZFfind	:set noquickview | :execute 'goto "'.system('find 2> /dev/null | fzf --tmux --prompt=Find\>  2>/dev/tty ').'"%IU' | redraw
+nnoremap <c-f> :FZFfind<cr>
+	command! FZFcd	:set noquickview | :execute 'cd "'.system('find -type d -maxdepth 2 2> /dev/null | fzf --tmux --prompt=cd\> --preview="tree -C {}" 2>/dev/tty ').'"%IU' | redraw
+nnoremap <a-c> :FZFcd<cr>
 " ------------------------------------------------------------------------------
 " Icon decorations example
 " ------------------------------------------------------------------------------
