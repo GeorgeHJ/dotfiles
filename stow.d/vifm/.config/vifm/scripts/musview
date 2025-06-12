@@ -34,34 +34,34 @@ italic_start="\\033[3;37m"
 
 # Add colour coding and remarks
 if
-	[[ 10#"$DYNAMICRANGE" -ge "14" ]]
+	(( 10#"$DYNAMICRANGE" >= "14" ))
 then
 	DYNAMICRANGE="\\033[01;37;42m$DYNAMICRANGE\\033[0m"
 	DRCOMMENT="${italic_start}Good!\\033[0m"
 elif
-	[[ 10#"$DYNAMICRANGE" -ge "8" ]] && [[ 10#"$DYNAMICRANGE" -lt "14"  ]]
+	(( 10#"$DYNAMICRANGE" >= "8" )) && (( 10#"$DYNAMICRANGE" < "14"  ))
 then
 	DYNAMICRANGE="\\033[01;37;43m$DYNAMICRANGE\\033[0m"
 	DRCOMMENT="${italic_start}Transition!\\033[0m"
 elif
-	[[ 10#"$DYNAMICRANGE" -ge "1" ]] && [[ 10#"$DYNAMICRANGE" -le "7"  ]]
+	(( 10#"$DYNAMICRANGE" >= "1" )) && (( 10#"$DYNAMICRANGE" <= "7"  ))
 then
 	DYNAMICRANGE="\\033[01;37;41m$DYNAMICRANGE\\033[0m"
 	DRCOMMENT="${italic_start}Bad!\\033[0m"
 fi
 if
-	[[ 10#"$ALBUMDR" -ge "14" ]]
+	(( 10#"$ALBUMDR" >= "14" ))
 then
 	ALBUMDR="\\033[01;37;42m$ALBUMDR\\033[0m"
 	ALBUMDRCOMMENT="${italic_start}Good!\\033[0m"
 
 elif
-	[[ 10#"$ALBUMDR" -ge "8" ]] && [[ 10#"$ALBUMDR" -lt "14"  ]]
+	(( 10#"$ALBUMDR" >= "8" )) && (( 10#"$ALBUMDR" < "14"  ))
 then
 	ALBUMDR="\\033[01;37;43m$ALBUMDR\\033[0m"
 	ALBUMDRCOMMENT="${italic_start}Transition!\\033[0m"
 elif
-	[[ 10#"$ALBUMDR" -ge "1"  ]] && [[ 10#"$ALBUMDR" -le "7"  ]]
+	(( 10#"$ALBUMDR" >= "1"  )) && (( 10#"$ALBUMDR" <= "7"  ))
 then 
 	ALBUMDR="\\033[01;37;41m$ALBUMDR\\033[0m"
 	ALBUMDRCOMMENT="${italic_start}Bad!\\033[0m"
