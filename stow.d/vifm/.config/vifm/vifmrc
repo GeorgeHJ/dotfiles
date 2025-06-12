@@ -118,7 +118,7 @@ colorscheme Kanagawa Default-256 Default
 
 " :mark mark /full/directory/path [filename]
 
-mark b ~/bin/
+mark b ~/.local/bin/
 mark h ~/
 "}}}
 " Commands{{{
