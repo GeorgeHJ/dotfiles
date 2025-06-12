@@ -252,6 +252,8 @@ filextype {*.xhtml,*.html,*.htm},<text/html>
         \ {Open with firefox}
         \ firefox %f &,
 filetype {*.xhtml,*.html,*.htm},<text/html> links, lynx
+fileviewer *.html,*.htm
+	\ w3m %c | fmt --width=%pw -s
 
 " Object
 filetype {*.o},<application/x-object> nm %f | less
@@ -280,6 +282,9 @@ filextype {.kra}
 filextype {.blend}
         \ {Open in Blender}
         \ blender %c,
+filextype {*.gif}
+	\ {View in mpv}
+	\ mpv --quiet --loop-file=inf --geometry=50%%:50%% --alpha=blend --background="#002B36" %f &,
 filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ {View in sxiv}
         \ sxiv %f,
