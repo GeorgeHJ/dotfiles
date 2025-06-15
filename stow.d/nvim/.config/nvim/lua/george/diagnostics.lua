@@ -17,7 +17,31 @@ local highlights = {
 	[severity.INFO] = "DiagnosticSignInfo"
 }
 vim.diagnostic.config({
-	virtual_text = true,
+	virtual_text = {
+		format = function(diagnostic)
+			-- Get cursor position safely
+			local ok, cursor = pcall(vim.api.nvim_win_get_cursor, 0)
+			if not ok then return diagnostic.message end
+			local current_line = cursor[1] - 1
+			if diagnostic.lnum == current_line then
+				return ""
+			end
+			return diagnostic.message
+		end,
+		prefix = function(diagnostic)
+			-- Get cursor position safely
+			local ok, cursor = pcall(vim.api.nvim_win_get_cursor, 0)
+			if not ok then return "■" end -- fallback prefix
+			local current_line = cursor[1] - 1
+			if diagnostic.lnum == current_line then
+				return ""
+			end
+			-- Return the specific prefix character
+			return "■"
+		end,
+	},
+	underline = true,
+	virtual_lines = { current_line = true },
 	signs = {
 		text = {
 			[severity.ERROR] = signs.Error,
@@ -27,5 +51,14 @@ vim.diagnostic.config({
 		},
 		numhl = highlights,
 		texthl = highlights,
-	}
+	},
+})
+-- Refresh virtual text when cursor moves
+vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+	callback = function()
+		local diagnostics = vim.diagnostic.get(0)
+		if #diagnostics > 0 then
+			vim.diagnostic.show()
+		end
+	end,
 })
