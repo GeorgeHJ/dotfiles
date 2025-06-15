@@ -12,8 +12,7 @@ ls.add_snippets(
 		s("--",
 			{ t({ "---", "" }),
 				t("date_created: "), func(date),
-				t({ '', 'vimwiki_tags: ":' }), i(1), t(':"'),
-				t({ "", "tags: [" }), i(2), t("]"),
+				t({ "", "tags: [" }), i(1), t("]"),
 				t({ "", "---", "" }),
 				i(9)
 			}
