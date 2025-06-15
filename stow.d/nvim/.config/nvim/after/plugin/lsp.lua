@@ -30,7 +30,8 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 }
 )
 vim.lsp.config("*", {
-	capabilities = require("cmp_nvim_lsp").default_capabilities()
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+	offset_encoding = "utf-8"
 })
 
 vim.lsp.enable("lua_ls")
