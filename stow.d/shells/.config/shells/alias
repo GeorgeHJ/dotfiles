@@ -9,6 +9,7 @@ alias mutt='neomutt'
 alias song_edit='beet edit "$(beet list | fzf | cut -d'-' -f3)"'
 alias yt='ddgr --url-handler linkhandler \!yt'
 alias yt-audio='yt-dlp -x --split-chapters'
+alias calcurse-caldav="CALCURSE_CALDAV_PASSWORD=\$(pass mailbox-calcurse) calcurse-caldav"
 
 alias neofetch='neofetch --block_range 0 15'
 
