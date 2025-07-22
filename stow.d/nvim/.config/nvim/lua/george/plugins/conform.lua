@@ -8,8 +8,8 @@ return {
 			{
 				formatters_by_ft = {
 					sh = { "shfmt" },
-					markdown = { "mdformat" },
-					vimwiki = { "mdformat" },
+					markdown = { "markdownlint", "trim_newlines", "trim_whitespace" },
+					vimwiki = { "markdownlint", "trim_newlines", "trim_whitespace" },
 				},
 				default_format_opts = {
 					lsp_format = "last"

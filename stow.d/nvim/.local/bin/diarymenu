@@ -1,0 +1,47 @@
+#! /usr/bin/env bash
+
+# This script is used to create a diary menu for the user.
+
+NOTES_DIR=~/Documents/Notes/diary
+BAT_CMD="echo {} | sed -e 's/$/\.md/' -e 's|^|$NOTES_DIR/|' | xargs bat --color=always -l markdown"
+
+check_deps(){
+	# Check if the directory exists
+	if [ ! -d "$NOTES_DIR" ]; then
+		echo "Directory $NOTES_DIR does not exist."
+		exit 1
+	fi
+
+	# Check if fzf is installed
+	if ! command -v fzf &> /dev/null; then
+		echo "fzf could not be found. Please install it first."
+		exit 1
+	fi
+
+	# Check if bat is installed
+	if ! command -v bat &> /dev/null; then
+		echo "bat could not be found. Please install it first."
+		exit 1
+	fi
+}
+
+get_dates(){
+	find $NOTES_DIR -type f -name "*.md" |\
+	grep -Po '\d{4}-\d{2}-\d{2}' | sort
+}
+
+date_to_file(){
+	sed -e "s/$/\.md/" -e "s|^|$NOTES_DIR/|"
+	}
+
+menu(){
+	get_dates | fzf --preview="$BAT_CMD" -e -m --tmux 80% --preview-window=70% | awk '{print $0}'
+}
+
+main(){
+	check_deps
+	choice="$(menu | date_to_file)"
+	[[ -n $choice ]] && nvim "$choice" || exit 0
+}
+
+main

@@ -13,6 +13,6 @@ checkdeps() {
 
 main() {
 	checkdeps
-	ffmpeg -i "$1" -f wav - | lame -V 1 --noreplaygain - "$2"
+	ffmpeg -i "$1" -f wav - | lame -V 0 --noreplaygain - "$2"
 }
 main "$@"

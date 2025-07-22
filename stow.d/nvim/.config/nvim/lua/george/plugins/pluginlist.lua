@@ -4,7 +4,7 @@ return {
 		config = function()
 			require("Comment").setup()
 			local ft = require("Comment.ft")
-			ft({ "vimwiki", "markdown" }, "<!--%s-->")
+			ft({ "vimwiki", "markdown" }, {"<!--%s-->", "<!--%s-->"})
 		end
 	},
 	{

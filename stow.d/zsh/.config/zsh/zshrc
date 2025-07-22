@@ -431,7 +431,7 @@ elif [[ -f "/home/george/.local/share/zsh/plugins/fast-syntax-highlighting/fast-
 elif [[ -f "$HOME/.nix-profile/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh" ]];then
 		source "$HOME/.nix-profile/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh"
 fi
-if [[ $(tput colors) == "256" ]];then
+if [[ $(tput colors) -ge "256" ]];then
 	autoload powerlevel9k; powerlevel9k
 	if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]];then
 		source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
