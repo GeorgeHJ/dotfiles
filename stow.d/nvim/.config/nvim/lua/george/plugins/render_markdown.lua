@@ -22,8 +22,8 @@ return {
 						date = {
 							pattern = "^# %d%d%d%d%-%d%d%-%d%d",
 							icon = " ",
-							foreground = "PreProc",
-							background = "PreProc"
+							foreground = "RenderMarkdownDateH1",
+							background = "RenderMarkdownDateH1"
 						},
 						time = {
 							pattern = "^## %d%d%:%d%d",
@@ -39,6 +39,7 @@ return {
 		local heading_color = "#7d9bd7"
 		local heading_bg = "#242435"
 
+		vim.api.nvim_set_hl(0, "RenderMarkdownDateH1", { fg = "#e06674", bold = true })
 		for i = 1, 6 do
 			-- Heading text
 			vim.api.nvim_set_hl(
