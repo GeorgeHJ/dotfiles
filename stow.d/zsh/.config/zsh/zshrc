@@ -152,11 +152,6 @@ autoload run-help
 alias help=run-help
 # }}}
 
-#{{{ CDPATH
-
-cdpath=(~/.config)
-# }}}
-
 #{{{ Named Directories
 declare -A hash_dirs
 [[ -d $HOME/.local/bin ]] && hash_dirs[bin]="$HOME/.local/bin"
@@ -170,6 +165,7 @@ declare -A hash_dirs
 [[ -d "$XDG_CONFIG_HOME/nvim" ]] && hash_dirs[nvim]="$XDG_CONFIG_HOME/nvim"
 [[ -d "$XDG_DOCUMENTS_DIR/Notes" ]] && hash_dirs[notes]="$XDG_DOCUMENTS_DIR/Notes"
 [[ -d "$HOME/.local/src/Repos" ]] && hash_dirs[repos]="$HOME/.local/src/Repos"
+[[ -d "$HOME/.local/src/" ]] && hash_dirs[src]="$HOME/.local/src/"
 [[ -d "$XDG_CONFIG_HOME/vim" ]] && hash_dirs[vim]="$XDG_CONFIG_HOME/vim"
 [[ -d "$XDG_DATA_HOME/whipper/rips" ]] && hash_dirs[whipper_rips]="$XDG_DATA_HOME/whipper/rips"
 [[ -d "$XDG_CONFIG_HOME/zsh" ]] && hash_dirs[zsh]="$XDG_CONFIG_HOME/zsh"
@@ -188,6 +184,7 @@ desc_dirs[music]='Music'
 desc_dirs[nvim]='Neovim configurations'
 desc_dirs[notes]='Notes'
 desc_dirs[repos]='Repositories'
+desc_dirs[src]='Code'
 desc_dirs[vim]='Vim configurations'
 desc_dirs[whipper_rips]='Whipper rips'
 desc_dirs[zsh]='Zsh directory'
