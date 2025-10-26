@@ -52,29 +52,14 @@ vim.lsp.config("lua_ls", {
 	},
 }
 )
-vim.lsp.enable("pylsp")
-vim.lsp.config("pylsp", {
+vim.lsp.enable("basedpyright")
+vim.lsp.config("basedpyright", {
 	settings = {
-		pylsp = {
-			plugins = {
-				pylsp_mypy = {
-					enabled = true,
-					live_mode = true,
-					strict = true,
-					dmypy = false
-				},
-				rope = {
-					enabled = true,
-					autoimport = {
-						enabled = true
-					}
-				},
-				isort = { enabled = false },
-				ruff = { enabled = false },
-				pylint = { enabled = false },
-				pyflakes = { enabled = false },
-				flake8 = { enabled = false },
-				pycodestyle = { enabled = false },
+		basedpyright = {
+			analysis = {
+				diagnosticMode = "workspace",
+				disableOrganizeImports = true,
+				typeCheckingMode = "strict",
 			}
 		}
 	}
