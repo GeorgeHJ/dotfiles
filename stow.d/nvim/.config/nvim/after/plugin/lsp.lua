@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 				{ 'gd',  tb.lsp_definitions,      desc = "Go to Definition",    buffer = bufnr },
 				{ 'gD',  tb.lsp_type_definitions, desc = "Go to Declation",     buffer = bufnr },
 				{ 'grr', tb.lsp_references,       desc = "Find references",     buffer = bufnr },
-				{ 'gri', tb.lsp_implementations,  desc = "Go to Implemenation", buffer = bufnr },
+				{ 'gri', tb.lsp_implementations,  desc = "Go to Implementation", buffer = bufnr },
 				{ 'gO',  tb.lsp_document_symbols, desc = "Document symbols",    buffer = bufnr }
 			}, {
 			-- Code actions
