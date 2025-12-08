@@ -8,6 +8,11 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 		local ta = require("tiny-code-action")
 		local wk = require("which-key")
 
+		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+		if client:supports_method("textDocument/inlayHint") then
+			vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+		end
+
 		wk.add({
 			{
 				mode = { "n" },
