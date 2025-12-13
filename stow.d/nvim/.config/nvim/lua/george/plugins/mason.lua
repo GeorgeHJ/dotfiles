@@ -25,7 +25,8 @@ return {
 					"lua_ls",
 					"pylsp",
 					"bashls",
-					"marksman"
+					"marksman",
+					"basedpyright"
 				},
 				automatic_enable = false
 			}

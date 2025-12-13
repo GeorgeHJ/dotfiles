@@ -8,6 +8,11 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 		local ta = require("tiny-code-action")
 		local wk = require("which-key")
 
+		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+		if client:supports_method("textDocument/inlayHint") then
+			vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+		end
+
 		wk.add({
 			{
 				mode = { "n" },
@@ -18,7 +23,7 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 				{ 'gd',  tb.lsp_definitions,      desc = "Go to Definition",    buffer = bufnr },
 				{ 'gD',  tb.lsp_type_definitions, desc = "Go to Declation",     buffer = bufnr },
 				{ 'grr', tb.lsp_references,       desc = "Find references",     buffer = bufnr },
-				{ 'gri', tb.lsp_implementations,  desc = "Go to Implemenation", buffer = bufnr },
+				{ 'gri', tb.lsp_implementations,  desc = "Go to Implementation", buffer = bufnr },
 				{ 'gO',  tb.lsp_document_symbols, desc = "Document symbols",    buffer = bufnr }
 			}, {
 			-- Code actions
