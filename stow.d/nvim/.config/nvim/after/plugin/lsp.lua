@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 				{ 'grn', l.rename,                desc = "Rename",              buffer = bufnr },
 				-- Telescope integration mappings
 				{ 'gd',  tb.lsp_definitions,      desc = "Go to Definition",    buffer = bufnr },
-				{ 'gD',  tb.lsp_type_definitions, desc = "Go to Declation",     buffer = bufnr },
+				{ 'gD',  tb.lsp_type_definitions, desc = "Go to Declaration",     buffer = bufnr },
 				{ 'grr', tb.lsp_references,       desc = "Find references",     buffer = bufnr },
 				{ 'gri', tb.lsp_implementations,  desc = "Go to Implementation", buffer = bufnr },
 				{ 'gO',  tb.lsp_document_symbols, desc = "Document symbols",    buffer = bufnr }
