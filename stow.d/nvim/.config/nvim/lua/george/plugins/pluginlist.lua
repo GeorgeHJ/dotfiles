@@ -25,6 +25,9 @@ return {
 			require("lualine").setup({
 				icons_enabled = true,
 				theme = 'kanagawa',
+				sections = {
+					lualine_x = {'lsp_status', 'encoding', 'fileformat', 'filetype'}
+				}
 			})
 		end
 	},
