@@ -15,7 +15,7 @@ return {
 			{ "<leader>n", desc = "Toggle Nvim Tree" }
 		},
 		init = function()
-			vim.g.loaded = 1
+			vim.g.loaded_netrw = 1
 			vim.g.loaded_netrwPlugin = 1
 		end,
 		config = function()
