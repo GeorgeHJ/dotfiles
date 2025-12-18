@@ -1,5 +1,6 @@
 return {
 	"lewis6991/gitsigns.nvim",
+	dependencies = { "folke/which-key.nvim" },
 	config = function()
 		require('gitsigns').setup {
 			signs                        = {
@@ -40,53 +41,63 @@ return {
 			},
 			on_attach                    = function(bufnr)
 				local gs = package.loaded.gitsigns
+				local wk = require("which-key")
 
-				local function map(mode, keys, func, opts)
-					opts = opts or {}
-					opts.buffer = bufnr
-					vim.keymap.set(mode, keys, func, opts)
-				end
-
-				local nbufmap = function(keys, func, desc)
-					vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-				end
-
-				-- Navigation
-				nbufmap(']c',
-					function()
-						if vim.wo.diff then return ']c' end
-						vim.schedule(function() gs.next_hunk() end)
-						return '<Ignore>'
-					end,
-					"Next hunk"
-				)
-
-				nbufmap('[c',
-					function()
-						if vim.wo.diff then return '[c' end
-						vim.schedule(function() gs.prev_hunk() end)
-						return '<Ignore>'
-					end,
-					"Prevous hunk"
-				)
-
-				-- Actions
-				nbufmap('<leader>hs', gs.stage_hunk, "Stage Hunk")
-				nbufmap('<leader>hr', gs.reset_hunk, "Reset Hunk")
-				map('v', '<leader>hs', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
-				map('v', '<leader>hr', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
-				nbufmap('<leader>hS', gs.stage_buffer, "Stage Buffer")
-				nbufmap('<leader>hu', gs.undo_stage_hunk, "Undo Stage Hunk")
-				nbufmap('<leader>hR', gs.reset_buffer, "Reset Buffer")
-				nbufmap('<leader>hp', gs.preview_hunk, "Preview Hunk")
-				nbufmap('<leader>hb', function() gs.blame_line { full = true } end, "Blame Line")
-				nbufmap('<leader>tb', gs.toggle_current_line_blame, "Toggle Current Line Blame")
-				nbufmap('<leader>hd', gs.diffthis, "Diff This")
-				nbufmap('<leader>hD', function() gs.diffthis('~') end, "Diff This")
-				nbufmap('<leader>td', gs.toggle_deleted, "Toggle Deleted")
-
-				-- Text object
-				map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+				wk.add({
+					{
+						icon = { icon = "󰊢", color = "cyan" },
+						mode = { "n" },
+						-- Navigation
+						{
+							']c',
+							function()
+								if vim.wo.diff
+								then
+									vim.cmd.normal({ ']c', bang = true })
+								else
+									vim.schedule(function() gs.next_hunk() end)
+								end
+							end,
+							desc = "Next hunk",
+							buffer = bufnr
+						},
+						{
+							'[c',
+							function()
+								if vim.wo.diff
+								then
+									vim.cmd.normal({ '[c', bang = true })
+								else
+									vim.schedule(function() gs.prev_hunk() end)
+								end
+							end,
+							desc = "Previous hunk",
+							buffer = bufnr
+						},
+						{'<leader>h', group = "Git"},
+						-- Actions
+						{ '<leader>hs', gs.stage_hunk,                                desc = "Stage hunk",        buffer = bufnr },
+						{ '<leader>hr', gs.reset_hunk,                                desc = "Reset hunk",        buffer = bufnr },
+						{ '<leader>hS', gs.stage_buffer,                              desc = "Stage buffer",      buffer = bufnr },
+						{ '<leader>hu', gs.undo_stage_hunk,                           desc = "Undo stage hunk",   buffer = bufnr },
+						{ '<leader>hR', gs.reset_buffer,                              desc = "Reset buffer",      buffer = bufnr },
+						{ '<leader>hp', gs.preview_hunk,                              desc = "Preview hunk",      buffer = bufnr },
+						{ '<leader>hb', function() gs.blame_line { full = true } end, desc = "Blame line",        buffer = bufnr },
+						{ '<leader>tb', gs.toggle_current_line_blame,                 desc = "Toggle line blame", buffer = bufnr },
+						{ '<leader>hd', gs.diffthis,                                  desc = "Diff this",         buffer = bufnr },
+						{ '<leader>hD', function() gs.diffthis('~') end,              desc = "Diff this ~",       buffer = bufnr },
+						{ '<leader>td', gs.toggle_deleted,                            desc = "Toggle deleted",    buffer = bufnr },
+					},
+					{
+						mode = { "v" },
+						{ '<leader>hs', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end, desc = "Stage hunk", buffer = bufnr },
+						{ '<leader>hr', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end, desc = "Reset hunk", buffer = bufnr },
+					},
+					{
+						mode = { "o", "x" },
+						{ 'ih', ':<C-U>Gitsigns select_hunk<CR>', desc = "Select hunk", buffer = bufnr },
+					}
+				})
 			end
 		}
 	end

@@ -43,6 +43,7 @@ return {
 
 		local wk = require("which-key")
 		wk.add({
+			{'<leader>f', group="Telescope", icon = {icon = "", color = "green"}},
 			mode = { "n" },
 			{ '<leader>fg', project_files, desc = "Find Project Files" },
 			{ '<leader>ff', builtin.find_files, desc = "Find Files" },
