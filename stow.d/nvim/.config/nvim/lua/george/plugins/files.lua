@@ -9,6 +9,7 @@ return {
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
+		dependencies = { "folke/which-key.nvim" },
 		cmd = "NvimTreeToggle",
 		keys = "<leader>n",
 		init = function()
@@ -17,7 +18,11 @@ return {
 		end,
 		config = function()
 			require("nvim-tree").setup()
-			vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree" })
+			local wk = require("which-key")
+			wk.add({
+				mode = { "n" },
+				{ '<leader>n', "<cmd>NvimTreeToggle<cr>", desc = "Toggle Nvim Tree" }
+			})
 		end
 	},
 }
