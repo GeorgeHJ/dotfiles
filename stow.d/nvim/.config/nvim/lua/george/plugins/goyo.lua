@@ -1,7 +1,7 @@
 return {
 	{
 		"junegunn/goyo.vim",
-		dependencies = { "junegunn/limelight.vim" },
+		dependencies = { "junegunn/limelight.vim", "folke/which-key.nvim"},
 		cmd = "Goyo",
 		init = function()
 			vim.cmd([[
@@ -45,8 +45,14 @@ return {
 			
 		]])
 
-			local k = vim.keymap
-			k.set("n", "<leader>og", ":Goyo<cr>", { noremap = true, silent = true, desc = "Toggle Goyo" })
+			local wk = require("which-key")
+			wk.add({
+				mode = { "n" },
+				{ '<leader>o',  group = "Toggles" },
+				icon = { icon = "", color = "yellow" },
+				{ "<leader>og", "<cmd>Goyo<cr>",  desc = "Toggle Goyo" }
+			}
+			)
 		end
 
 	}

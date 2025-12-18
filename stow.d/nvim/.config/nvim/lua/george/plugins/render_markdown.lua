@@ -36,23 +36,35 @@ return {
 				}
 			}
 		)
-		local heading_color = "#7d9bd7"
-		local heading_bg = "#242435"
+		local custom_hl = function()
+			local heading_color = "#7d9bd7"
+			local heading_bg = "#242435"
 
-		vim.api.nvim_set_hl(0, "RenderMarkdownDateH1", { fg = "#e06674", bold = true })
-		for i = 1, 6 do
-			-- Heading text
-			vim.api.nvim_set_hl(
-				0,
-				"RenderMarkdownH" .. i,
-				{ fg = heading_color, bold = true }
-			)
-			-- Headings with background
-			vim.api.nvim_set_hl(
-				0,
-				"RenderMarkdownH" .. i .. "Bg",
-				{ fg = heading_color, bg = heading_bg, bold = true }
-			)
+			vim.api.nvim_set_hl(0, "RenderMarkdownDateH1", { fg = "#e06674", bold = true })
+			for i = 1, 6 do
+				-- Heading text
+				vim.api.nvim_set_hl(
+					0,
+					"RenderMarkdownH" .. i,
+					{ fg = heading_color, bold = true }
+				)
+				-- Headings with background
+				vim.api.nvim_set_hl(
+					0,
+					"RenderMarkdownH" .. i .. "Bg",
+					{ fg = heading_color, bg = heading_bg, bold = true }
+				)
+			end
 		end
+		custom_hl()
+		vim.api.nvim_create_autocmd(
+			"ColorScheme",
+			{
+				pattern = "*",
+				callback = function()
+					custom_hl()
+				end
+			}
+		)
 	end
 }
