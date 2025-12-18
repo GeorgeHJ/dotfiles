@@ -48,8 +48,7 @@ return {
 			local wk = require("which-key")
 			wk.add({
 				mode = { "n" },
-				{ '<leader>o',  group = "Toggles" },
-				icon = { icon = "", color = "yellow" },
+				{ '<leader>o', group = "Toggles", icon = { icon = "", color = "yellow" } },
 				{ "<leader>og", "<cmd>Goyo<cr>",  desc = "Toggle Goyo" }
 			}
 			)
