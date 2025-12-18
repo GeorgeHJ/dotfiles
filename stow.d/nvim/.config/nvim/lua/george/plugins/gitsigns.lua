@@ -74,7 +74,7 @@ return {
 							desc = "Previous hunk",
 							buffer = bufnr
 						},
-						{'<leader>h', group = "git"},
+						{'<leader>h', group = "Git"},
 						-- Actions
 						{ '<leader>hs', gs.stage_hunk,                                desc = "Stage hunk",        buffer = bufnr },
 						{ '<leader>hr', gs.reset_hunk,                                desc = "Reset hunk",        buffer = bufnr },
