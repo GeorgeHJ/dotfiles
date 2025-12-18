@@ -11,7 +11,9 @@ return {
 		"nvim-tree/nvim-tree.lua",
 		dependencies = { "folke/which-key.nvim" },
 		cmd = "NvimTreeToggle",
-		keys = "<leader>n",
+		keys = {
+			{ "<leader>n", desc = "Toggle Nvim Tree" }
+		},
 		init = function()
 			vim.g.loaded = 1
 			vim.g.loaded_netrwPlugin = 1
