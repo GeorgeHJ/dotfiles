@@ -1,6 +1,6 @@
 -- Populate loclist with the current buffer diagnostics
 vim.api.nvim_create_autocmd('DiagnosticChanged', {
-	callback = function(args)
+	callback = function()
 		local ft = vim.bo.ft
 		if ft ~= "vimwiki" then
 			vim.diagnostic.setloclist({ open = false })
