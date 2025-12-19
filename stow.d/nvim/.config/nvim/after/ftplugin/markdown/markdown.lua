@@ -1,13 +1,15 @@
-vim.cmd([[
-	setlocal wrap linebreak nolist
-	setlocal formatoptions-=l
-	setlocal foldlevel=4
-	setlocal textwidth=80
-	setlocal expandtab
-	setlocal shiftwidth=2
-	setlocal tabstop=2
-	setlocal softtabstop=2
-	nnoremap j gj
-	nnoremap k gk
-	setlocal commentstring=<!--%s-->
-]])
+local opt = vim.opt_local
+
+opt.wrap = true
+opt.linebreak = true
+opt.list = false
+opt.formatoptions:remove('l')
+opt.foldlevel = 4
+opt.textwidth = 80
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.commentstring = "<!--%s-->"
+vim.keymap.set('n', 'j', 'gj', { buffer = true })
+vim.keymap.set('n', 'k', 'gk', { buffer = true })
