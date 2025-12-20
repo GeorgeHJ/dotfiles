@@ -49,7 +49,9 @@ return {
 					mode = { "n", "v" },
 					{ "<C-y>", '"+y', desc = "Yank to Clipboard",    icon="", silent = true, noremap = true },
 					{ "<C-p>", '"+p', desc = "Paste from Clipboard", icon="", silent = true, noremap = true },
-				}
+				},
+				mode = "n",
+				{ "<leader>w", group = "Vimwiki", icon = { icon = "󰠮", color = "purple" } }
 			})
 		end
 	},

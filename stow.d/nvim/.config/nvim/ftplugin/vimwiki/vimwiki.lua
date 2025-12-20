@@ -18,7 +18,6 @@ wk.add( {
 	{"j", "gj", buffer = true},
 	{"k", "gk", buffer = true},
 	{ "<leader>bl", "<cmd>VimwikiBacklinks<cr>", desc = "Vimwiki Backlinks", icon = { icon = "󰠮", color = "purple"}, buffer = true },
-	{"<leader>w", group= "Vimwiki", icon = { icon = "󰠮", color = "purple"}}
 	})
 
 local augroup = vim.api.nvim_create_augroup("md_reflinks", { clear = true })
