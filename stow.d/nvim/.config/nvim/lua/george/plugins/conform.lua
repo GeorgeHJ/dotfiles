@@ -10,6 +10,7 @@ return {
 					sh = { "shfmt" },
 					markdown = { "markdownlint", "trim_newlines", "trim_whitespace" },
 					vimwiki = { "markdownlint", "trim_newlines", "trim_whitespace" },
+					lua = { "stylua" },
 				},
 				default_format_opts = {
 					lsp_format = "last"

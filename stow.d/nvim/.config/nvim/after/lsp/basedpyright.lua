@@ -1,11 +1,11 @@
 return {
-	settings = {
-		basedpyright = {
-			analysis = {
-				diagnosticMode = "workspace",
-				disableOrganizeImports = true,
-				typeCheckingMode = "strict",
-			}
-		}
-	}
+  settings = {
+    basedpyright = {
+      analysis = {
+        diagnosticMode = "workspace",
+        disableOrganizeImports = true,
+        typeCheckingMode = "strict",
+      },
+    },
+  },
 }

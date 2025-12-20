@@ -9,3 +9,4 @@ o.cursorline = true
 o.scrolloff = 5
 o.undofile = true
 o.inccommand = "nosplit"
+o.list = true

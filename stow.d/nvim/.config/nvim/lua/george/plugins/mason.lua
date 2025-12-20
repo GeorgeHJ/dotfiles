@@ -15,7 +15,8 @@ return {
 					"ruff",
 					"mypy",
 					"markdownlint",
-					"mdformat"
+					"mdformat",
+					"stylua",
 				}
 			}
 		)

@@ -1,0 +1,62 @@
+local opt = vim.opt_local
+local ok, wk = pcall(require, "which-key")
+
+opt.wrap = true
+opt.linebreak = true
+opt.list = false
+opt.formatoptions:remove("l")
+opt.foldlevel = 4
+opt.textwidth = 80
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.commentstring = "<!--%s-->"
+
+if ok then
+  wk.add({
+    mode = "n",
+    { "j", "gj", buffer = true },
+    { "k", "gk", buffer = true },
+    {
+      "<leader>bl",
+      "<cmd>VimwikiBacklinks<cr>",
+      desc = "Vimwiki Backlinks",
+      icon = { icon = "󰠮", color = "purple" },
+      buffer = true,
+    },
+  })
+end
+
+local augroup = vim.api.nvim_create_augroup("md_reflinks", { clear = true })
+vim.api.nvim_create_autocmd("BufWrite", {
+  group = augroup,
+  pattern = "*.md",
+  callback = function()
+    if vim.b.vimwiki_base_dir then
+      vim.fn["vimwiki#markdown_base#scan_reflinks"]()
+    end
+  end,
+})
+
+vim.cmd([[
+function! VimwikiLinkHandler(link)
+	" Use Vim to open external files with the 'vfile:' scheme.  E.g.:
+	"   1) [[vfile:~/Code/PythonProject/abc123.py]\]
+	"   2) [[vfile:./|Wiki Home]\]
+	let link = a:link
+	if link =~# '^vfile:'
+		let link = link[1:]
+	else
+		return 0
+	endif
+	let link_infos = vimwiki#base#resolve_link(link)
+	if link_infos.filename ==? ''
+		echomsg 'Vimwiki Error: Unable to resolve link!'
+		return 0
+	else
+		exe 'tabnew ' . fnameescape(link_infos.filename)
+		return 1
+	endif
+endfunction
+]])
