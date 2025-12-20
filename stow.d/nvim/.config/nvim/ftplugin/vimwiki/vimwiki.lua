@@ -1,5 +1,5 @@
 local opt = vim.opt_local
-local wk = require("which-key")
+local ok, wk = pcall(require, "which-key")
 
 opt.wrap = true
 opt.linebreak = true
@@ -13,12 +13,20 @@ opt.tabstop = 2
 opt.softtabstop = 2
 opt.commentstring = "<!--%s-->"
 
-wk.add( {
-	mode = "n",
-	{"j", "gj", buffer = true},
-	{"k", "gk", buffer = true},
-	{ "<leader>bl", "<cmd>VimwikiBacklinks<cr>", desc = "Vimwiki Backlinks", icon = { icon = "󰠮", color = "purple"}, buffer = true },
-	})
+if ok then
+  wk.add({
+    mode = "n",
+    { "j", "gj", buffer = true },
+    { "k", "gk", buffer = true },
+    {
+      "<leader>bl",
+      "<cmd>VimwikiBacklinks<cr>",
+      desc = "Vimwiki Backlinks",
+      icon = { icon = "󰠮", color = "purple" },
+      buffer = true,
+    },
+  })
+end
 
 local augroup = vim.api.nvim_create_augroup("md_reflinks", { clear = true })
 vim.api.nvim_create_autocmd("BufWrite", {
