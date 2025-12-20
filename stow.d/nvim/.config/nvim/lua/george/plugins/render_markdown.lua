@@ -57,10 +57,13 @@ return {
 			end
 		end
 		custom_hl()
+
+		local theme_augroup = vim.api.nvim_create_augroup("theme-tweaks", { clear = true })
 		vim.api.nvim_create_autocmd(
 			"ColorScheme",
 			{
 				pattern = "*",
+				group = theme_augroup,
 				callback = function()
 					custom_hl()
 				end
