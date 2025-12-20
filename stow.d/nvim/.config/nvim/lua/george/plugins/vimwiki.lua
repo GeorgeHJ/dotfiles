@@ -30,14 +30,18 @@ return {
 			},
 		}
 
-		vim.cmd(
-			[[
-				augroup VimWikiDiary
-				autocmd!
-					autocmd BufNewFile ~/Documents/Notes/diary/* read !fortune|sed -e 's/\(^\)/\1> /'
-					autocmd BufNewFile ~/Documents/Notes/diary/* :g/^$/d
-					autocmd BufNewFile ~/Documents/Notes/diary/* :norm G2o
-				augroup END
-				]])
-	end
+		local diary_augroup = vim.api.nvim_create_augroup("VimWikiDiary", { clear = true })
+		vim.api.nvim_create_autocmd(
+			"BufNewFile",
+			{
+				pattern = vim.fn.expand("~") .. "/Documents/Notes/diary/*",
+				group = diary_augroup,
+				callback = function()
+					vim.cmd([[read !fortune|sed -e 's/\(^\)/\1> /']])
+					vim.cmd([[g/^$/d]])
+					vim.cmd([[norm G2o]])
+				end,
+			}
+		)
+	end,
 }
