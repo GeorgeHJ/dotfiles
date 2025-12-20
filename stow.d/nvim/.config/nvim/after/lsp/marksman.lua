@@ -1,3 +1,3 @@
 return {
-	filetypes = { "markdown", "vimwiki" },
+  filetypes = { "markdown", "vimwiki" },
 }

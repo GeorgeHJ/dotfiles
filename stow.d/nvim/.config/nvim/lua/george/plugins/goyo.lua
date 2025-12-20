@@ -1,10 +1,10 @@
 return {
-	{
-		"junegunn/goyo.vim",
-		dependencies = { "junegunn/limelight.vim", "folke/which-key.nvim"},
-		cmd = "Goyo",
-		init = function()
-			vim.cmd([[
+  {
+    "junegunn/goyo.vim",
+    dependencies = { "junegunn/limelight.vim", "folke/which-key.nvim" },
+    cmd = "Goyo",
+    init = function()
+      vim.cmd([[
 		function! s:goyo_enter()
 			set nocursorline
 			set noshowmode
@@ -45,13 +45,12 @@ return {
 			
 		]])
 
-			local wk = require("which-key")
-			wk.add({
-				mode = { "n" },
-				{ '<leader>o', group = "Toggles", icon = { icon = "", color = "yellow" } },
-				{ "<leader>og", "<cmd>Goyo<cr>",  desc = "Toggle Goyo" }
-			})
-		end
-
-	}
+      local wk = require("which-key")
+      wk.add({
+        mode = { "n" },
+        { "<leader>o", group = "Toggles", icon = { icon = "", color = "yellow" } },
+        { "<leader>og", "<cmd>Goyo<cr>", desc = "Toggle Goyo" },
+      })
+    end,
+  },
 }

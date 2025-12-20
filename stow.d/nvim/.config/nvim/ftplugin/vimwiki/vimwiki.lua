@@ -4,7 +4,7 @@ local wk = require("which-key")
 opt.wrap = true
 opt.linebreak = true
 opt.list = false
-opt.formatoptions:remove('l')
+opt.formatoptions:remove("l")
 opt.foldlevel = 4
 opt.textwidth = 80
 opt.expandtab = true
@@ -21,16 +21,15 @@ wk.add( {
 	})
 
 local augroup = vim.api.nvim_create_augroup("md_reflinks", { clear = true })
-vim.api.nvim_create_autocmd(
-	"BufWrite", {
-		group = augroup,
-		pattern = "*.md",
-		callback = function()
-			if vim.b.vimwiki_base_dir then
-				vim.fn['vimwiki#markdown_base#scan_reflinks']()
-			end
-		end,
-	})
+vim.api.nvim_create_autocmd("BufWrite", {
+  group = augroup,
+  pattern = "*.md",
+  callback = function()
+    if vim.b.vimwiki_base_dir then
+      vim.fn["vimwiki#markdown_base#scan_reflinks"]()
+    end
+  end,
+})
 
 vim.cmd([[
 function! VimwikiLinkHandler(link)

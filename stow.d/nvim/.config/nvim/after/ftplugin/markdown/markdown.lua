@@ -11,5 +11,5 @@ opt.shiftwidth = 2
 opt.tabstop = 2
 opt.softtabstop = 2
 opt.commentstring = "<!--%s-->"
-vim.keymap.set('n', 'j', 'gj', { buffer = true })
-vim.keymap.set('n', 'k', 'gk', { buffer = true })
+vim.keymap.set("n", "j", "gj", { buffer = true })
+vim.keymap.set("n", "k", "gk", { buffer = true })
