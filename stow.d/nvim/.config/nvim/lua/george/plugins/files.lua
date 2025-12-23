@@ -4,7 +4,7 @@ return {
     event = "VeryLazy",
     ft = "vifm",
     init = function()
-      vim.g.vifm_exec = "TERM=libvterm-direct vifm"
+      vim.g.vifm_exec = "TERM=kitty-direct vifm"
     end,
   },
   {
