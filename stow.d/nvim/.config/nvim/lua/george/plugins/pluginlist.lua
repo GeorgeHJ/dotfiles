@@ -32,30 +32,6 @@ return {
     end,
   },
   {
-    "folke/which-key.nvim",
-    dependencies = {
-      { "echasnovski/mini.nvim", version = false },
-      "nvim-tree/nvim-web-devicons",
-    },
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-    config = function()
-      local wk = require("which-key")
-      wk.add({
-        { "<leader>z", "<cmd>set spell!<cr>", desc = "Toggle Spellcheck", mode = "n", silent = true, noremap = true },
-        {
-          mode = { "n", "v" },
-          { "<C-y>", '"+y', desc = "Yank to Clipboard", icon = "", silent = true, noremap = true },
-          { "<C-p>", '"+p', desc = "Paste from Clipboard", icon = "", silent = true, noremap = true },
-        },
-        mode = "n",
-        { "<leader>w", group = "Vimwiki", icon = { icon = "󰠮", color = "purple" } },
-      })
-    end,
-  },
-  {
     "goolord/alpha-nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
@@ -88,7 +64,11 @@ return {
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    config = true,
+    config = function()
+      local npairs = require("nvim-autopairs")
+      npairs.setup({})
+      npairs.get_rules("`")[1].not_filetypes = { "vimwiki", "markdown" }
+    end,
   },
   {
     "folke/lazydev.nvim",
