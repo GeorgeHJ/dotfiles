@@ -88,7 +88,11 @@ return {
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    config = true,
+    config = function ()
+      local npairs = require("nvim-autopairs")
+      npairs.setup({})
+      npairs.get_rules("`")[1].not_filetypes = { "vimwiki", "markdown" }
+    end,
   },
   {
     "folke/lazydev.nvim",
