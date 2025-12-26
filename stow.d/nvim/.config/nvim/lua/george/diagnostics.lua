@@ -58,30 +58,11 @@ vim.diagnostic.config({
   },
 })
 -- Refresh virtual text when cursor moves
-local refresh_timer = nil
-local last_line = -1
-
 vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
   callback = function()
-    local current_line = vim.fn.line(".")
-
-    if current_line == last_line then
-      return
-    end
-
-    last_line = current_line
-
-    if refresh_timer then
-      vim.fn.timer_stop(refresh_timer)
-    end
-
-    refresh_timer = vim.fn.timer_start(50, function()
-
     local diagnostics = vim.diagnostic.get(0)
     if #diagnostics > 0 then
       vim.diagnostic.show()
     end
-    refresh_timer = nil
-    end)
   end,
 })
