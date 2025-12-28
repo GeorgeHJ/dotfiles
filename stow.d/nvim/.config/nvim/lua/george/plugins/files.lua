@@ -38,7 +38,11 @@ return {
       vim.api.nvim_create_autocmd("User", {
         pattern = { "FugitiveChanged", "GitSignsUpdate" },
         group = augroup,
-        command = "NvimTreeRefresh",
+        callback = function()
+          vim.schedule(function()
+            vim.cmd("NvimTreeRefresh")
+          end)
+        end
       })
 
       local wk = require("which-key")
