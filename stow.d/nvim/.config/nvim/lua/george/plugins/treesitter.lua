@@ -14,6 +14,7 @@ return {
         "markdown",
         "markdown_inline",
         "yaml",
+        "html",
       },
       sync_install = false,
       ignore_install = {},
