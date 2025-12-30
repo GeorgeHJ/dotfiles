@@ -19,7 +19,32 @@ return {
       vim.g.loaded_netrwPlugin = 1
     end,
     config = function()
-      require("nvim-tree").setup()
+      require("nvim-tree").setup({
+        diagnostics = {
+          enable = true,
+          severity = {
+            min = vim.diagnostic.severity.WARN,
+          },
+          icons = {
+            error = "󰅚 ",
+            warning = "󰀪 ",
+            hint = "󰌶 ",
+            info = " ",
+          },
+        },
+      })
+
+      local augroup = vim.api.nvim_create_augroup("NvimTreeEvents", { clear = true })
+      vim.api.nvim_create_autocmd("User", {
+        pattern = { "FugitiveChanged", "GitSignsUpdate" },
+        group = augroup,
+        callback = function()
+          vim.schedule(function()
+            vim.cmd("NvimTreeRefresh")
+          end)
+        end
+      })
+
       local wk = require("which-key")
       wk.add({
         mode = { "n" },
