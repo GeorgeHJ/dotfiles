@@ -19,6 +19,11 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
         -- Normal mode mappings
         { "K", l.hover, desc = "Hover", buffer = bufnr },
         { "grn", l.rename, desc = "Rename", buffer = bufnr },
+        { "<leader>oi", desc = "Toggle Inlay Hints",
+          callback = function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
+          end,
+          { buffer = bufnr } },
         -- Telescope integration mappings
         { "gd", tb.lsp_definitions, desc = "Go to Definition", buffer = bufnr },
         { "gD", tb.lsp_type_definitions, desc = "Go to Declaration", buffer = bufnr },
