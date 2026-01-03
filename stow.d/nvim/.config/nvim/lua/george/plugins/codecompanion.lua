@@ -45,16 +45,14 @@ return {
               modes = { n = "<LocalLeader>ca" },
               description = "Accept all suggested changes",
             },
-            stop = {
-              modes = { n = "q" },
-              index = 4,
-              callback = "keymaps.stop",
-              description = "Stop request",
-            },
           },
         },
       },
     })
+    require("which-key").add({
+      "<LocalLeader>c",
+      group = "CodeCompanion",
+      icon = { icon = "󱜙", color = "blue" },
+    })
   end,
 }
-
