@@ -3,7 +3,9 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    "folke/which-key.nvim",
   },
+  event = "VeryLazy",
   config = function()
     require("codecompanion").setup({
       adapters = {
@@ -50,9 +52,11 @@ return {
       },
     })
     require("which-key").add({
-      "<LocalLeader>c",
-      group = "CodeCompanion",
-      icon = { icon = "󱜙", color = "blue" },
+      {
+        "<LocalLeader>c",
+        group = "CodeCompanion",
+        icon = { icon = "󱜙", color = "blue" },
+      }
     })
   end,
 }
