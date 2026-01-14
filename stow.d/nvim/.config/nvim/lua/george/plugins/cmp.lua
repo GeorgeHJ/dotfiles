@@ -17,8 +17,6 @@ return {
     local lspkind = require("lspkind")
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
-    luasnip.config.setup({})
-
     -- Buffer source configuration
     local buffer_source = {
       name = "buffer",
