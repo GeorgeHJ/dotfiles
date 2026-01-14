@@ -10,11 +10,11 @@ return {
 
     ls.config.setup({})
 
+    from_vscode.lazy_load()
     from_lua.load(
       {
         paths = vim.fn.stdpath("config") .. "/snippets"
       }
     )
-    from_vscode.lazy_load()
   end
 }
