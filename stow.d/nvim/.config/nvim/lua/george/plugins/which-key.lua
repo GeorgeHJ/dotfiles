@@ -19,6 +19,7 @@ return {
       },
       mode = "n",
       { "<leader>w", group = "Vimwiki", icon = { icon = "󰠮", color = "purple" } },
+        { "<leader>o", group = "Toggles", icon = { icon = "", color = "yellow" } },
     })
   end,
 }
