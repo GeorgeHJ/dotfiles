@@ -82,25 +82,6 @@ return {
         }),
       },
     })
-    cmp.setup.filetype({ "markdown", "vimwiki" }, {
-      sources = {
-        { name = "latex_symbols" },
-        unpack(common_sources),
-      },
-    })
-    cmp.setup.filetype("sql", {
-      sources = {
-        { name = "vim-dadbod-completion" },
-        unpack(common_sources),
-      },
-    })
-    cmp.setup.filetype("quarto", {
-      sources = {
-        { name = "otter" },
-        { name = "pandoc_references" },
-        unpack(common_sources),
-      },
-    })
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
   end,
 }
