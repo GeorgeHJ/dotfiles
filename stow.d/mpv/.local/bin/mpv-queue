@@ -1,0 +1,16 @@
+#! /usr/bin/env bash
+SOCKET=/tmp/mpvsocket
+
+if [ -S "$SOCKET" ] && ! pgrep -f "mpv.*$SOCKET" > /dev/null; then
+    rm -f "$SOCKET"
+fi
+
+if [[ -S $SOCKET ]]; then
+	echo "loadfile $1 append-play" | socat - "$SOCKET"
+else
+	mpv --input-ipc-server="${SOCKET}" \
+		--prefetch-playlist \
+		--cache \
+        --demuxer-max-bytes=500M \
+		"$1" &
+fi
