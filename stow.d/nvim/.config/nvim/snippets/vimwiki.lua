@@ -8,7 +8,9 @@ local date = function()
   return { os.date("%Y-%m-%d") }
 end
 
-ls.add_snippets("vimwiki", {
+
+
+return {
   s(
     {
       trig = "--",
@@ -55,4 +57,4 @@ ls.add_snippets("vimwiki", {
     t({ "", "" }),
     i(2),
   }),
-})
+}

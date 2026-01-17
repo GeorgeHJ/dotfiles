@@ -20,6 +20,11 @@ return {
     mode = "n",
     { "<leader>w", group = "Vimwiki", icon = { icon = "󰠮", color = "purple" } },
     { "<leader>o", group = "Toggles", icon = { icon = "", color = "yellow" } },
+    { "<leader>od",
+        callback=function()
+          vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+        end,
+        desc = "Toggle Diagnostics" },
   })
   end,
 }
