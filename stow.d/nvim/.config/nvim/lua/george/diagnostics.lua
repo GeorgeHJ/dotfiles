@@ -2,7 +2,7 @@
 vim.api.nvim_create_autocmd("DiagnosticChanged", {
   callback = function()
     local ft = vim.bo.ft
-    if ft ~= "vimwiki" then
+    if ft ~= "vimwiki" and vim.diagnostic.is_enabled() then
       vim.diagnostic.setloclist({ open = false })
     end
   end,

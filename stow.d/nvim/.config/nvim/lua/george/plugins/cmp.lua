@@ -3,7 +3,6 @@ return {
   dependencies = {
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
-    "rafamadriz/friendly-snippets",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-buffer",
@@ -17,9 +16,6 @@ return {
     local luasnip = require("luasnip")
     local lspkind = require("lspkind")
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-
-    require("luasnip.loaders.from_vscode").lazy_load()
-    luasnip.config.setup({})
 
     -- Buffer source configuration
     local buffer_source = {
@@ -84,25 +80,6 @@ return {
             latex_symbols = "[  ]",
           },
         }),
-      },
-    })
-    cmp.setup.filetype({ "markdown", "vimwiki" }, {
-      sources = {
-        { name = "latex_symbols" },
-        unpack(common_sources),
-      },
-    })
-    cmp.setup.filetype("sql", {
-      sources = {
-        { name = "vim-dadbod-completion" },
-        unpack(common_sources),
-      },
-    })
-    cmp.setup.filetype("quarto", {
-      sources = {
-        { name = "otter" },
-        { name = "pandoc_references" },
-        unpack(common_sources),
       },
     })
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
