@@ -443,7 +443,7 @@
         <key>name</key>
         <string>Markdown Heading</string>
         <key>scope</key>
-        <string>markup.heading, markup.heading entity.name</string>
+        <string>markup.heading | markup.heading punctuation.definition.markdown</string>
         <key>settings</key>
         <dict>
           <key>fontStyle</key>
@@ -452,6 +452,17 @@
           <string>#7E9CD8</string>
         </dict>
       </dict>
+    <dict>
+        <key>name</key>
+        <string>Markdown Entity Name (excluding links)</string>
+        <key>scope</key>
+        <string>markdup.heading entity.name - meta.link</string>
+        <key>settings</key>
+        <dict>
+            <key>foreground</key>
+            <string>#7E9CD8</string>
+        </dict>
+    </dict>
       <dict>
         <key>name</key>
         <string>Markdown Heading Punctuation</string>
@@ -550,7 +561,7 @@
         <key>name</key>
         <string>Markdown Link Text</string>
         <key>scope</key>
-        <string>string.other.link.title.markdown, string.other.link.description.markdown</string>
+        <string>string.other.link.title.markdown, string.other.link.description.markdown, meta.link.inline</string>
         <key>settings</key>
         <dict>
           <key>foreground</key>
