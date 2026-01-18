@@ -542,8 +542,6 @@
         <string>markup.underline.link</string>
         <key>settings</key>
         <dict>
-          <key>fontStyle</key>
-          <string>underline</string>
           <key>foreground</key>
           <string>#7FB4CA</string>
         </dict>
@@ -556,7 +554,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#7AA89F</string>
+          <string>#7FB4CA</string>
         </dict>
       </dict>
       <dict>
@@ -596,11 +594,11 @@
         <key>name</key>
         <string>Markdown List Bullet</string>
         <key>scope</key>
-        <string>punctuation.definition.list.begin.markdown, markup.list.unnumbered.markdown</string>
+        <string>punctuation.definition.list.begin.markdown</string>
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#E46876</string>
+          <string>#7E9CD8</string>
         </dict>
       </dict>
       <dict>
