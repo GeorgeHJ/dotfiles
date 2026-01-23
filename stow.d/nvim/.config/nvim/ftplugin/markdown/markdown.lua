@@ -15,3 +15,5 @@ cmp.setup.buffer({
     },
   },
 })
+
+vim.treesitter.start()
