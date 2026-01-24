@@ -1,4 +1,15 @@
 local fold_augroup = vim.api.nvim_create_augroup("folds", { clear = true })
+-- Treesitter folding setup (runs before loadview)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "python", "markdown", "lua", "sh", "bash" },
+  group = fold_augroup,
+  callback = function()
+    vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.opt_local.foldenable = true
+  end,
+})
+
 -- Save folds on close
 vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
   pattern = { "*.*" },
