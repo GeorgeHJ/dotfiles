@@ -14,8 +14,6 @@ opt.softtabstop = 2
 opt.commentstring = "<!--%s-->"
 vim.treesitter.language.register( "markdown" , "vimwiki")
 vim.treesitter.start()
-vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.wo[0][0].foldmethod = "expr"
 
 if ok then
   wk.add({
