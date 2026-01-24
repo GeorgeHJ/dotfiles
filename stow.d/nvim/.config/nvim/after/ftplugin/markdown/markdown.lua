@@ -4,7 +4,6 @@ opt.wrap = true
 opt.linebreak = true
 opt.list = false
 opt.formatoptions:remove('l')
-opt.foldlevel = 4
 opt.textwidth = 80
 opt.expandtab = true
 opt.shiftwidth = 2

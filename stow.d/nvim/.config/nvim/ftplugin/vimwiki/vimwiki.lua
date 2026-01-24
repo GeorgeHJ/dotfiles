@@ -5,13 +5,14 @@ opt.wrap = true
 opt.linebreak = true
 opt.list = false
 opt.formatoptions:remove("l")
-opt.foldlevel = 4
 opt.textwidth = 80
 opt.expandtab = true
 opt.shiftwidth = 2
 opt.tabstop = 2
 opt.softtabstop = 2
 opt.commentstring = "<!--%s-->"
+vim.treesitter.language.register( "markdown" , "vimwiki")
+vim.treesitter.start()
 
 if ok then
   wk.add({

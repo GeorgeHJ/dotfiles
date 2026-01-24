@@ -1,10 +1,11 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
-  dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
-  config = function()
-    require("nvim-treesitter.configs").setup({
-      ensure_installed = {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    branch = "main",
+    lazy = false,
+    config = function()
+      require("nvim-treesitter").install({
         "vim",
         "vimdoc",
         "lua",
@@ -15,45 +16,69 @@ return {
         "markdown_inline",
         "yaml",
         "html",
-      },
-      sync_install = false,
-      ignore_install = {},
-      auto_install = false,
-      highlight = { enable = true },
-      indent = { enable = true },
-      modules = {},
-      textobjects = {
+      })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "folke/which-key.nvim",
+    },
+    config = function()
+      require("nvim-treesitter-textobjects").setup({
         select = {
-          enable = true,
           lookahead = true,
-          keymaps = {
-            ["af"] = {
-              query = "@function.outer",
-              desc = "Select outer function",
-            },
-            ["if"] = {
-              query = "@function.inner",
-              desc = "Select inner function",
-            },
-            ["ac"] = {
-              query = "@class.outer",
-              desc = "Select outer class",
-            },
-            ["ic"] = {
-              query = "@class.inner",
-              desc = "Select inner class",
-            },
-            ["al"] = {
-              query = "@loop.outer",
-              desc = "Select outer loop",
-            },
-            ["il"] = {
-              query = "@loop.inner",
-              desc = "Select inner loop",
-            },
-          },
         },
-      },
-    })
-  end,
+      })
+      local wk = require("which-key")
+      local select = require("nvim-treesitter-textobjects.select").select_textobject
+      wk.add({
+         mode = { "x", "o" },
+        {
+          "af",
+          function()
+            select("@function.outer", "textobjects")
+          end,
+          desc = "Select outer function",
+        },
+        {
+          "if",
+          function()
+            select("@function.inner", "textobjects")
+          end,
+          desc = "Select inner function",
+        },
+        {
+          "ac",
+          function()
+            select("@class.outer", "textobjects")
+          end,
+          desc = "Select outer class",
+        },
+        {
+          "ic",
+          function()
+            select("@class.inner", "textobjects")
+          end,
+          desc = "Select inner class",
+        },
+        {
+          "al",
+          function()
+            select("@loop.outer", "textobjects")
+          end,
+          desc = "Select outer loop",
+        },
+        {
+          "il",
+          function()
+            select("@loop.inner", "textobjects")
+          end,
+          desc = "Select inner loop",
+        },
+      })
+    end,
+  },
 }

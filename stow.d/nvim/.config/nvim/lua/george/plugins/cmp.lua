@@ -7,7 +7,6 @@ return {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-buffer",
     "onsails/lspkind.nvim",
-    "kdheepak/cmp-latex-symbols",
     "jmbuhr/cmp-pandoc-references",
     "windwp/nvim-autopairs",
   },
@@ -76,9 +75,6 @@ return {
           mode = "symbol_text",
           maxwidth = 50,
           ellipsis_char = "…",
-          menu = {
-            latex_symbols = "[  ]",
-          },
         }),
       },
     })

@@ -10,3 +10,6 @@ o.scrolloff = 5
 o.undofile = true
 o.inccommand = "nosplit"
 o.list = true
+o.foldlevel=99
+o.foldlevelstart=99
+o.viewoptions = "folds,cursor"

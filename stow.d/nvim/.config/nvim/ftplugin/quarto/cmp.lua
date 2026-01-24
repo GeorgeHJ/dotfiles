@@ -16,3 +16,6 @@ cmp.setup.buffer({
     },
   },
 })
+
+vim.treesitter.language.register( "markdown" , "quarto")
+vim.treesitter.start()

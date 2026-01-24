@@ -17,7 +17,7 @@ return {
     }
     vim.g.vimwiki_global_ext = 0
     vim.g.vimwiki_auto_chdir = 1
-    vim.treesitter.language.register("markdown", "vimwiki")
+    vim.g.vimwiki_folding = "expr"
     vim.g.vimwiki_list = {
       {
         name = "Notes",

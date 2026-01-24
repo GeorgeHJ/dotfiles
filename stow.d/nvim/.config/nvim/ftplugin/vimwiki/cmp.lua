@@ -2,7 +2,6 @@ local cmp = require("cmp")
 
 cmp.setup.buffer({
   sources = {
-    { name = "latex_symbols" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "path" },
