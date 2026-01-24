@@ -10,6 +10,5 @@ o.scrolloff = 5
 o.undofile = true
 o.inccommand = "nosplit"
 o.list = true
-o.foldcolumn = 'auto:1'
 o.foldlevel=99
 o.foldlevelstart=99
