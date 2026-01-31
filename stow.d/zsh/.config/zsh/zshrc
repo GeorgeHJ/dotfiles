@@ -128,7 +128,7 @@ autoload diary wik wake
 zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/zshrc"
 zstyle ':completion:*' rehash true
 zstyle ':completion::complete:*' use-cache on
-zcompcache="$XDG_CACHE_HOME/zsh/zcompcache" 
+zcompcache="$XDG_CACHE_HOME/zsh/zcompcache"
 [[ ! -d ${zcompcache} ]] && mkdir -p ${zcompcache}
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion:*' cache-path ${zcompcache}
