@@ -24,6 +24,7 @@ return {
         "bashls",
         "marksman",
         "basedpyright",
+        "harper_ls"
       },
       automatic_enable = false,
     })
