@@ -136,17 +136,17 @@ zstyle ':completion:*:messages' format '%U%d%u'
 zstyle ':completion:*:warnings' format "%B%{$fg[red]%}No match for:%b%{$reset_color%} %d"
 zstyle ':completion:*' group-name ''
 
+zcompdump="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
 # Execute code in the background to not affect the current session
 {
 	# Compile zcompdump, if modified, to increase startup speed.
-	zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
 	if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
 		zcompile "$zcompdump"
 	fi
 } &!
 
 autoload -Uz compinit
-compinit
+compinit -d "$zcompdump"
 #}}} End of lines added by compinstall
 
 #{{{ Bash-style help
