@@ -369,7 +369,7 @@ then
 fi
 
 if
-	[[ "command -v broot" ]]
+	command -v broot >/dev/null 2>&1
 then
 	autoload br
 fi
