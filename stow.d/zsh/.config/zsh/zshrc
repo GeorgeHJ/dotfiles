@@ -39,7 +39,7 @@ PS1="%B[%{$fg[green]%}%n%{$fg[green]%}%{$reset_color%}%B@%{$fg[green]%}%M %{$res
 #{{{ Dircolors
 # Use dircolors to set LS_COLOR
 [[ -f "$HOME/.dircolors" ]] &&
-	eval "$(dircolors "$HOME/.dir_colors")" ||
+	eval "$(dircolors "$HOME/.dircolors")" ||
 	[[ -f "$HOME/.config/dir_colors/dir_colors" ]] &&
 	eval "$(dircolors "$HOME/.config/dir_colors/dir_colors")"
 #}}}
