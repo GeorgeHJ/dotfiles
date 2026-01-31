@@ -1,4 +1,4 @@
-#! /bin/env zsh
+#! /usr/bin/env zsh
 # vim: foldmethod=marker
 
 # Direnv{{{
@@ -39,7 +39,7 @@ PS1="%B[%{$fg[green]%}%n%{$fg[green]%}%{$reset_color%}%B@%{$fg[green]%}%M %{$res
 #{{{ Dircolors
 # Use dircolors to set LS_COLOR
 [[ -f "$HOME/.dircolors" ]] &&
-	eval "$(dircolors "$HOME/.dir_colors")" ||
+	eval "$(dircolors "$HOME/.dircolors")" ||
 	[[ -f "$HOME/.config/dir_colors/dir_colors" ]] &&
 	eval "$(dircolors "$HOME/.config/dir_colors/dir_colors")"
 #}}}
@@ -125,25 +125,28 @@ autoload diary wik wake
 # }}}
 
 #{{{ compinstall and compinit options
-zstyle :compinstall filename '/home/george/.config/zsh/zshrc'
+zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/zshrc"
 zstyle ':completion:*' rehash true
+zcompcache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache"
+[[ ! -d "$zcompcache" ]] && mkdir -p "$zcompcache"
 zstyle ':completion::complete:*' use-cache on
+zstyle ':completion:*' cache-path "$zcompcache"
 zstyle ':completion:*:descriptions' format $'%B%{\e[10;39m%}[%d]%b%{\e[0m%}'
 zstyle ':completion:*:messages' format '%U%d%u'
 zstyle ':completion:*:warnings' format "%B%{$fg[red]%}No match for:%b%{$reset_color%} %d"
 zstyle ':completion:*' group-name ''
 
+zcompdump="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
 # Execute code in the background to not affect the current session
 {
 	# Compile zcompdump, if modified, to increase startup speed.
-	zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
 	if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
 		zcompile "$zcompdump"
 	fi
 } &!
 
 autoload -Uz compinit
-compinit
+compinit -d "$zcompdump"
 #}}} End of lines added by compinstall
 
 #{{{ Bash-style help
@@ -369,7 +372,7 @@ then
 fi
 
 if
-	[[ "command -v broot" ]]
+	command -v broot >/dev/null 2>&1
 then
 	autoload br
 fi
@@ -418,13 +421,13 @@ bindkey 'M-w' forward-word
 # {{{ Plugins
 if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]];then
 	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [[ -f "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]];then
-	source "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+elif [[ -f "$XDG_DATA_HOME/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]];then
+	source "$XDG_DATA_HOME/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 if [[ -f /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
 	source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-elif [[ -f "/home/george/.local/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]];then
-	source "/home/george/.local/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+elif [[ -f "$XDG_DATA_HOME/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]];then
+	source "$XDG_DATA_HOME/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 elif [[ -f "$HOME/.nix-profile/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh" ]];then
 		source "$HOME/.nix-profile/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh"
 fi
@@ -432,8 +435,8 @@ if [[ $(tput colors) -ge "256" ]];then
 	autoload powerlevel9k; powerlevel9k
 	if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]];then
 		source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-	elif [[ -f "$HOME/.local/share/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme" ]];then
-		source "$HOME/.local/share/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme"
+	elif [[ -f "$XDG_DATA_HOME/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme" ]];then
+		source "$XDG_DATA_HOME/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme"
 	fi
 fi
 # }}}
