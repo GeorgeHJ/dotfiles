@@ -1,4 +1,4 @@
-#! /bin/env zsh
+#! /usr/bin/env zsh
 # vim: foldmethod=marker
 
 # Direnv{{{
@@ -128,10 +128,6 @@ autoload diary wik wake
 zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/zshrc"
 zstyle ':completion:*' rehash true
 zstyle ':completion::complete:*' use-cache on
-zcompcache="$XDG_CACHE_HOME/zsh/zcompcache" 
-[[ ! -d ${zcompcache} ]] && mkdir -p ${zcompcache}
-zstyle ':completion::complete:*' use-cache on
-zstyle ':completion:*' cache-path ${zcompcache}
 zstyle ':completion:*:descriptions' format $'%B%{\e[10;39m%}[%d]%b%{\e[0m%}'
 zstyle ':completion:*:messages' format '%U%d%u'
 zstyle ':completion:*:warnings' format "%B%{$fg[red]%}No match for:%b%{$reset_color%} %d"
