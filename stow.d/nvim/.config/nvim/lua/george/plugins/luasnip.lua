@@ -9,6 +9,8 @@ return {
     local from_vscode = require("luasnip.loaders.from_vscode")
 
     ls.config.setup({})
+    ls.filetype_extend("vimwiki", {"markdown"})
+    ls.filetype_extend("quarto", {"markdown"})
 
     from_vscode.lazy_load()
     from_lua.load(
