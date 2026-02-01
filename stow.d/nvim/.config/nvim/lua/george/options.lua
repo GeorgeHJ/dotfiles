@@ -13,3 +13,7 @@ o.list = true
 o.foldlevel=99
 o.foldlevelstart=99
 o.viewoptions = "folds,cursor"
+local spelldir = vim.fn.stdpath("data") .. '/spell/'
+vim.fn.mkdir(spelldir, "p")
+local spellfile = spelldir .. "en.utf-8.add"
+o.spellfile =  spellfile
