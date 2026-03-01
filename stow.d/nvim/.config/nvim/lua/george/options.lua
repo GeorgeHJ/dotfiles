@@ -17,3 +17,6 @@ local spelldir = vim.fn.stdpath("data") .. '/spell/'
 vim.fn.mkdir(spelldir, "p")
 local spellfile = spelldir .. "en.utf-8.add"
 o.spellfile =  spellfile
+o.ignorecase = true
+o.smartcase = true
+o.showmode = false
