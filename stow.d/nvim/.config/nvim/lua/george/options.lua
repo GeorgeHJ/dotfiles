@@ -9,13 +9,13 @@ o.scrolloff = 5
 o.undofile = true
 o.inccommand = "nosplit"
 o.list = true
-o.foldlevel=99
-o.foldlevelstart=99
+o.foldlevel = 99
+o.foldlevelstart = 99
 o.viewoptions = "folds,cursor"
-local spelldir = vim.fn.stdpath("data") .. '/spell/'
+local spelldir = vim.fn.stdpath("data") .. "/spell/"
 vim.fn.mkdir(spelldir, "p")
 local spellfile = spelldir .. "en.utf-8.add"
-o.spellfile =  spellfile
+o.spellfile = spellfile
 o.ignorecase = true
 o.smartcase = true
 o.showmode = false
