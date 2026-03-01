@@ -1,19 +1,31 @@
 local o = vim.o
+
+-- General settings
 o.number = true
-o.tabstop = 4
-o.shiftwidth = 4
 o.termguicolors = true
 o.mouse = "a"
-o.omnifunc = "syntaxcomplete#Complete"
 o.cursorline = true
 o.scrolloff = 5
-o.undofile = true
-o.inccommand = "nosplit"
 o.list = true
-o.foldlevel=99
-o.foldlevelstart=99
+o.showmode = false
+
+-- Indentation
+o.tabstop = 4
+o.shiftwidth = 4
+
+-- Search and Substitute
+o.inccommand = "nosplit"
+o.ignorecase = true
+o.smartcase = true
+
+-- Folds and View
+o.foldlevel = 99
+o.foldlevelstart = 99
 o.viewoptions = "folds,cursor"
-local spelldir = vim.fn.stdpath("data") .. '/spell/'
+
+-- Undo file and Spellfile
+o.undofile = true
+local spelldir = vim.fn.stdpath("data") .. "/spell/"
 vim.fn.mkdir(spelldir, "p")
 local spellfile = spelldir .. "en.utf-8.add"
-o.spellfile =  spellfile
+o.spellfile = spellfile
