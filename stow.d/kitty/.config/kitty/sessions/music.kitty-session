@@ -1,0 +1,21 @@
+
+enabled_layouts fat
+layout fat
+cd /home/george
+
+launch cava
+resize_window shorter 8
+launch albumart-kitty.bash
+launch ncmpcpp
+resize_window wider 56
+focus
+
+new_tab
+enabled_layouts stack
+layout stack
+cd /home/george/Music
+
+launch --env TERM=xterm-kitty-direct vifm /home/george/Music /home/george/.local/share/whipper
+focus
+
+focus_tab 0
