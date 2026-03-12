@@ -1,0 +1,18 @@
+
+layout splits
+enabled_layouts splits,stack
+set_layout_state {"pairs": {"one": 1}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [1], "window_groups": [{"id": 1, "window_ids": [1]}]}}
+cd /home/george
+
+launch 'kitty-unserialize-data={"id": 1}' --title=newsboat /usr/bin/newsboat
+focus
+
+new_tab
+layout splits
+enabled_layouts splits,stack
+set_layout_state {"pairs": {"one": 2}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [2], "window_groups": [{"id": 2, "window_ids": [2]}]}}
+cd /home/george/Documents/Notes
+
+launch 'kitty-unserialize-data={"id": 2}' --title=Wiki /usr/bin/nvim -c VimwikiIndex
+focus
+focus_tab 0
