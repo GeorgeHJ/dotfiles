@@ -1,0 +1,19 @@
+# vim: filetype=dosini
+
+[keys.viewer]
+Alt+k = zoom keep
+z     = zoom real
+Alt+z = zoom fit
+Shift+k = zoom -10
+Shift+j = zoom +10
+Shift+l = next_file
+Shift+h = prev_file
+g       = first_file
+Shift+g = last_file
+h = step_left
+l = step_right
+j = step_down
+k = step_up
+r = rotate_right
+Shift+r = rotate_left
+Alt+r = reload
