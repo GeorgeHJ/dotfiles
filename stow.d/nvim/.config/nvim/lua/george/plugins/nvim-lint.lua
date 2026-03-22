@@ -6,6 +6,7 @@ return {
     lint.linters_by_ft = {
       markdown = { "markdownlint" },
       vimwiki = { "markdownlint" },
+      ledger = { "hledger" },
     }
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "TextChanged", "InsertLeave" }, {

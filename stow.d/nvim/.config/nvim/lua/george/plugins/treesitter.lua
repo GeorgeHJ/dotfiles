@@ -12,6 +12,7 @@ return {
         "python",
         "bash",
         "latex",
+        "ledger",
         "markdown",
         "markdown_inline",
         "yaml",
