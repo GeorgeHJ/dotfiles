@@ -1,6 +1,6 @@
 local cmp = require("cmp")
 cmp.setup.buffer({
-  sources = {
+  sources = cmp.config.sources({
     { name = "otter" },
     { name = "pandoc_references" },
     { name = "nvim_lsp" },
@@ -16,7 +16,7 @@ cmp.setup.buffer({
         end,
       },
     },
-  },
+  }),
 })
 
 vim.treesitter.language.register( "markdown" , "quarto")

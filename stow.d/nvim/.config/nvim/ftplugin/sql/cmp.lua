@@ -1,7 +1,7 @@
 local cmp = require("cmp")
 
 cmp.setup.buffer({
-  sources = {
+  sources = cmp.config.sources({
     { name = "vim-dadbod-completion" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
@@ -16,5 +16,5 @@ cmp.setup.buffer({
         end,
       },
     },
-  },
+  }),
 })
