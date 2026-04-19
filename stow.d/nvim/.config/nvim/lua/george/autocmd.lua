@@ -53,6 +53,8 @@ vim.api.nvim_create_autocmd( "User",
   },
   group = git_augroup,
   callback = function()
-      require("lualine").refresh({ place = { "statusline" } })
+    vim.defer_fn(function()
+        require("lualine").refresh({ place = { "statusline" } })
+    end, 100)
   end,
 })
