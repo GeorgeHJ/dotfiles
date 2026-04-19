@@ -49,7 +49,8 @@ local git_augroup = vim.api.nvim_create_augroup("git", { clear = true })
 vim.api.nvim_create_autocmd( "User",
 {
   pattern = {
-    "FugitiveChanged"
+    "FugitiveChanged",
+    "GitSignsUpdate",
   },
   group = git_augroup,
   callback = function()
