@@ -44,3 +44,15 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.list = false
   end,
 })
+
+local git_augroup = vim.api.nvim_create_augroup("git", { clear = true })
+vim.api.nvim_create_autocmd( "User",
+{
+  pattern = {
+    "FugitiveChanged"
+  },
+  group = git_augroup,
+  callback = function()
+      require("lualine").refresh({ place = { "statusline" } })
+  end,
+})
