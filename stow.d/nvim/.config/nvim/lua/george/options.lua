@@ -8,6 +8,7 @@ o.cursorline = true
 o.scrolloff = 5
 o.list = true
 o.showmode = false
+o.confirm = true
 
 -- Indentation
 o.tabstop = 4
