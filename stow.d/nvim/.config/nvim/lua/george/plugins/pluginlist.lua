@@ -16,22 +16,6 @@ return {
     end,
   },
   {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-    config = function()
-      require("lualine").setup({
-        icons_enabled = true,
-        theme = "kanagawa",
-        sections = {
-          lualine_x = { "lsp_status", "encoding", "fileformat", "filetype" },
-        },
-      })
-    end,
-  },
-  {
     "goolord/alpha-nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
@@ -42,7 +26,9 @@ return {
     "brenoprata10/nvim-highlight-colors",
     event = "VeryLazy",
     config = function()
-      require("nvim-highlight-colors").setup({})
+      require("nvim-highlight-colors").setup({
+        exclude_filetypes = {"lazy"}
+      })
     end,
   },
   {

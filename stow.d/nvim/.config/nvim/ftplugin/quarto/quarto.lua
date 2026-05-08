@@ -1,6 +1,6 @@
 local cmp = require("cmp")
 cmp.setup.buffer({
-  sources = {
+  sources = cmp.config.sources({
     { name = "otter" },
     { name = "pandoc_references" },
     { name = "nvim_lsp" },
@@ -10,11 +10,13 @@ cmp.setup.buffer({
       name = "buffer",
       option = {
         get_bufnrs = function()
-          return vim.api.nvim_list_bufs()
+          return vim.tbl_filter(function(buf)
+            return vim.api.nvim_get_option_value("buflisted", { buf = buf })
+          end, vim.api.nvim_list_bufs())
         end,
       },
     },
-  },
+  }),
 })
 
 vim.treesitter.language.register( "markdown" , "quarto")

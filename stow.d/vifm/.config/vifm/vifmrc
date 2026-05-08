@@ -286,6 +286,8 @@ filextype {*.gif}
 	\ {View in mpv}
 	\ mpv --quiet --loop-file=inf --geometry=50%%:50%% --alpha=blend --background="#002B36" %f &,
 filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
+        \ {View in swayimg}
+        \ swayimg %f,
         \ {View in sxiv}
         \ sxiv %f,
         \ {View in gpicview}
