@@ -19,6 +19,11 @@ return {
           override_file_sorter = true,
         },
       },
+      pickers = {
+        find_files = {
+          find_command = { "fd", "--type", "f", "--no-ignore-vcs" },
+        },
+      }
     })
 
     require("telescope").load_extension("fzf")
