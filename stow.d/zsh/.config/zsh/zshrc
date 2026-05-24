@@ -2,7 +2,7 @@
 # vim: foldmethod=marker
 
 # Direnv{{{
-[[ -z $TMUX ]] || typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 command -V direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 # }}}
 
@@ -439,4 +439,5 @@ if [[ $(tput colors) -ge "256" ]];then
 		source "$XDG_DATA_HOME/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme"
 	fi
 fi
+[[ -f $XDG_CONFIG_HOME/fsh/kanagawa-wave.ini ]] && fast-theme XDG:kanagawa-wave > /dev/null 2>&1
 # }}}
