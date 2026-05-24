@@ -31,7 +31,7 @@ export XDG_DOCUMENTS_DIR=${XDG_DOCUMENTS_DIR:-"$HOME/Documents"}
 export XDG_MUSIC_DIR=${XDG_MUSIC_DIR:-"$HOME/Music"}
 export XDG_PICTURES_DIR=${XDG_PICTURES_DIR:-"$HOME/Pictures"}
 export XDG_VIDEOS_DIR=${XDG_VIDEOS_DIR:-"$HOME/Videos"}
-
+export XDG_PROJECTS_DIR="${XDG_PROJECTS_DIR:-$HOME/Projects}"
 # Load profiles from ~/.config/profile.d
 if test -d "$HOME/.config/profile.d"/; then
 	for profile in "$HOME"/.config/profile.d/*.sh; do
