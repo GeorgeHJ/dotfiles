@@ -439,4 +439,5 @@ if [[ $(tput colors) -ge "256" ]];then
 		source "$XDG_DATA_HOME/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme"
 	fi
 fi
+[[ -f $XDG_CONFIG_HOME/fsh/kanagawa-wave.ini ]] && fast-theme XDG:kanagawa-wave > /dev/null 2>&1
 # }}}
