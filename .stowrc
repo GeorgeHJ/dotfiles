@@ -2,3 +2,4 @@
 --ignore .stowrc
 --ignore README.md
 --ignore readme.md
+--ignore old/*
