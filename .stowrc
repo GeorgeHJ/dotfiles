@@ -1,0 +1,4 @@
+--target $HOME
+--ignore .stowrc
+--ignore README.md
+--ignore readme.md

@@ -62,8 +62,6 @@ export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 # Pass
 [ -d "$XDG_DATA_HOME/pass/password-store" ] && export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass/password-store"
-# Make xfce4-terminal the default terminal
-export TERMINAL=xfce4-terminal
 #Global alias file
 [ -f "$XDG_CONFIG_HOME/shells/alias" ] && . "$XDG_CONFIG_HOME/shells/alias"
 # Use nvim as a man pager
