@@ -19,6 +19,10 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
       vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     end
 
+    if vim.b[bufnr].lsp_keymaps_set then
+      return
+    end
+
     wk.add({
       {
         mode = { "n" },
@@ -44,6 +48,7 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
         { "gra", ta.code_action, desc = "Code Action", buffer = bufnr },
       },
     })
+    vim.b[bufnr].lsp_keymaps_set = true
   end,
 })
 vim.lsp.config("*", {
