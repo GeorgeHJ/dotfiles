@@ -43,6 +43,9 @@ return {
         local gs = package.loaded.gitsigns
         local wk = require("which-key")
 
+        if vim.b[bufnr].git_keymaps_set then
+          return
+        end
         wk.add({
           {
             icon = { icon = "󰊢", color = "cyan" },
@@ -76,7 +79,7 @@ return {
               desc = "Previous hunk",
               buffer = bufnr,
             },
-            { "<leader>h", group = "Git" },
+            { "<leader>h", group = "Git", buffer=bufnr },
             -- Actions
             { "<leader>hs", gs.stage_hunk, desc = "Stage hunk", buffer = bufnr },
             { "<leader>hr", gs.reset_hunk, desc = "Reset hunk", buffer = bufnr },
@@ -128,6 +131,8 @@ return {
             { "ih", ":<C-U>Gitsigns select_hunk<CR>", desc = "Select hunk", buffer = bufnr },
           },
         })
+
+        vim.b[bufnr].git_keymaps_set = true
       end,
     })
   end,
