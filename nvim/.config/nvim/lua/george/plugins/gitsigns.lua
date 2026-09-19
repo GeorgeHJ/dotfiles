@@ -43,6 +43,9 @@ return {
         local gs = package.loaded.gitsigns
         local wk = require("which-key")
 
+        if vim.b[bufnr].git_keymaps_set then
+          return
+        end
         wk.add({
           {
             icon = { icon = "󰊢", color = "cyan" },
@@ -128,6 +131,8 @@ return {
             { "ih", ":<C-U>Gitsigns select_hunk<CR>", desc = "Select hunk", buffer = bufnr },
           },
         })
+
+        vim.b[bufnr].git_keymaps_set = true
       end,
     })
   end,
