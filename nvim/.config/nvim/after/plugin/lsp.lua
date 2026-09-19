@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
           callback = function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
           end,
-          { buffer = bufnr } },
+           buffer = bufnr  },
         -- Telescope integration mappings
         { "gd", tb.lsp_definitions, desc = "Go to Definition", buffer = bufnr },
         { "gD", tb.lsp_declarations, desc = "Go to Declaration", buffer = bufnr },
