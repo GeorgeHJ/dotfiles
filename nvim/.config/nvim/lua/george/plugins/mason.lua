@@ -12,7 +12,6 @@ return {
         "shfmt",
         "shellcheck",
         "ruff",
-        "mypy",
         "markdownlint",
         "mdformat",
         "stylua",
